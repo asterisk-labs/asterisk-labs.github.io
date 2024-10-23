@@ -1,0 +1,32 @@
+.project-header-img {
+    max-height: 8rem;
+    max-width: 100%;
+    height: auto;
+    padding-bottom: 30px;
+}
+
+.project-p {
+    margin-bottom: 20px;
+    margin-top: 10px;
+    text-align: left;
+}
+
+.container-fluid {
+    background-color: white;/*rgba(69, 172, 243, 0.7);*/
+    margin: 0;
+    padding: 0;
+}
+
+.project-vis-img {
+    min-width: 50vw;
+    display: flex;
+    overflow-x: hidden;
+    margin: auto;
+}
+
+.project-desc {
+    margin: 20px 80px;
+    color: black;/*white;*/
+    text-align: justify;
+    font-size: 1.5rem;
+}
