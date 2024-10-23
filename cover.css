@@ -1,0 +1,211 @@
+/*
+ * Fonts
+ */
+/* league-spartan-100 - latin_latin-ext */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'League Spartan';
+  font-style: normal;
+  font-weight: 100;
+  src: url('fonts/league-spartan-v11-latin_latin-ext-100.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* league-spartan-200 - latin_latin-ext */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'League Spartan';
+  font-style: normal;
+  font-weight: 200;
+  src: url('fonts/league-spartan-v11-latin_latin-ext-200.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* league-spartan-300 - latin_latin-ext */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'League Spartan';
+  font-style: normal;
+  font-weight: 300;
+  src: url('fonts/league-spartan-v11-latin_latin-ext-300.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* league-spartan-regular - latin_latin-ext */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'League Spartan';
+  font-style: normal;
+  font-weight: 400;
+  src: url('fonts/league-spartan-v11-latin_latin-ext-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* league-spartan-500 - latin_latin-ext */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'League Spartan';
+  font-style: normal;
+  font-weight: 500;
+  src: url('fonts/league-spartan-v11-latin_latin-ext-500.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* league-spartan-600 - latin_latin-ext */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'League Spartan';
+  font-style: normal;
+  font-weight: 600;
+  src: url('fonts/league-spartan-v11-latin_latin-ext-600.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* league-spartan-700 - latin_latin-ext */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'League Spartan';
+  font-style: normal;
+  font-weight: 700;
+  src: url('fonts/league-spartan-v11-latin_latin-ext-700.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* league-spartan-800 - latin_latin-ext */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'League Spartan';
+  font-style: normal;
+  font-weight: 800;
+  src: url('fonts/league-spartan-v11-latin_latin-ext-800.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* league-spartan-900 - latin_latin-ext */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'League Spartan';
+  font-style: normal;
+  font-weight: 900;
+  src: url('fonts/league-spartan-v11-latin_latin-ext-900.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+
+/*
+ * Globals
+ */
+.league-spartan-<uniquifier> {
+  font-family: "League Spartan", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+}
+
+.logo {
+    
+    margin: 0 10px;
+    
+}
+
+.name-list {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    text-decoration: none;
+    color: rgba(69, 172, 243, 0.9);
+}
+
+.main-gif {
+    width: 70%;
+    margin: 20px;
+}
+
+.project-thumbnail {
+    height: 5rem;
+}
+
+.project-link a {
+    text-decoration: none;
+    color: black;
+}
+
+.project-link {
+    border-radius: 7px;
+    padding: 30px 10px;
+    box-shadow: 1px 2px 3px rgba(0,0,0,.1);
+}
+
+.project-link:hover {
+    border-color: #9ecaed;
+    box-shadow: 1px 2px 3px rgba(0,0,0,.5);
+}
+
+/* Custom default button */
+.btn-light,
+.btn-light:hover,
+.btn-light:focus {
+  color: #333;
+  text-shadow: none; /* Prevent inheritance from `body` */
+}
+
+
+/*
+ * Base structure
+ */
+
+body {
+    box-shadow: inset 0 0 1rem rgba(0, 0, 0, .25);
+    font-family: "League Spartan";
+    background-color: white;
+}
+
+.lead {
+    margin-top: 20px;
+}
+
+.cover-container {
+  max-width: 42em;
+}
+
+
+/*
+ * Header
+ */
+
+.nav-masthead .nav-link {
+    font-size: 1.2rem;
+  color: rgba(25, 25, 25, .5);
+  border-bottom: .25rem solid transparent;
+}
+
+.nav-masthead .nav-link:hover,
+.nav-masthead .nav-link:focus {
+  border-bottom-color: rgba(255, 255, 255, .25);
+}
+
+.nav-masthead .nav-link + .nav-link {
+  margin-left: 1rem;
+}
+
+.nav-masthead .active {
+  color: rgba(63, 169, 245, 1.0);
+  border-bottom-color: rgba(63, 169, 245, 0.15);
+}
+
+
+
+[data-bs-theme="blue"] {
+  --bs-body-color: var(--bs-white);
+  --bs-body-color-rgb: #{to-rgb($white)};
+  --bs-body-bg: var(--bs-blue);
+  --bs-body-bg-rgb: #{to-rgb($blue)};
+  --bs-tertiary-bg: #{$blue-600};
+
+  .dropdown-menu {
+    --bs-dropdown-bg: #{mix($blue-500, $blue-600)};
+    --bs-dropdown-link-active-bg: #{$blue-700};
+  }
+
+  .btn-secondary {
+    --bs-btn-bg: #{mix($gray-600, $blue-400, .5)};
+    --bs-btn-border-color: #{rgba($white, .25)};
+    --bs-btn-hover-bg: #{darken(mix($gray-600, $blue-400, .5), 5%)};
+    --bs-btn-hover-border-color: #{rgba($white, .25)};
+    --bs-btn-active-bg: #{darken(mix($gray-600, $blue-400, .5), 10%)};
+    --bs-btn-active-border-color: #{rgba($white, .5)};
+    --bs-btn-focus-border-color: #{rgba($white, .5)};
+    --bs-btn-focus-box-shadow: 0 0 0 .25rem rgba(255, 255, 255, .2);
+  }
+}
