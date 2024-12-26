@@ -17,16 +17,75 @@
     padding: 0;
 }
 
-.project-vis-img {
-    min-width: 50vw;
-    display: flex;
-    overflow-x: hidden;
-    margin: auto;
-}
-
 .project-desc {
     margin: 20px 80px;
     color: black;/*white;*/
     text-align: justify;
     font-size: 1.5rem;
+}
+
+/* Button styles */
+.button-row .btn-highlight {
+    background-color: rgba(63, 169, 245, 1.0); /* Highlight color */
+    border: none; /* No border for simplicity */
+    color: white;
+    font-weight: bold;
+    padding: 8px 16px; /* Adjust padding for smaller buttons */
+    border-radius: 4px; /* Slightly rounded corners for a clean look */
+    text-transform: uppercase;
+    font-size: 0.9rem; /* Adjusted font size */
+    transition: background-color 0.3s ease-in-out;
+    box-shadow: none; /* No shadow for a flat design */
+}
+
+.button-row .btn-highlight:hover {
+    background-color: rgba(63, 169, 245, 0.3); /* Darker shade on hover */
+}
+
+/* Adjust margins and padding for the button row */
+.button-row {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.project-vis-img {
+    min-width: 40vw;
+    display: flex;
+    padding: 5%;
+    
+    transition: background-color 0.3s ease-in-out; /* Smooth transition on hover */
+
+    background-color: rgba(63, 169, 245, 1.0); 
+    /* Apply hexagonal clipping to the image */
+    -webkit-clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
+    clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
+}
+
+.project-vis-img:hover {
+    background-color: rgba(45,45,45, 1.0); 
+}
+
+#projectCanvas {
+    display: block;
+    margin: auto;
+    background-color: transparent;
+    max-width: 90vw;
+
+    /* Apply hexagonal clipping to the image */
+    -webkit-clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
+    clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
+}
+
+/* FADE INs */
+/* Base styles for gradual reveal elements */
+.gradual-reveal {
+  opacity: 0;
+  transform: translateY(20px); /* Slightly shifted down */
+  transition: opacity 1s ease, transform 1s ease; /* Smooth transition */
+}
+
+/* When 'animate' class is added, the element will fade in and move up */
+.gradual-reveal.animate {
+  opacity: 1;
+  transform: translateY(0);
 }

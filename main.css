@@ -88,7 +88,6 @@
 .logo {
     
     margin: 0 10px;
-    
 }
 
 .name-list {
@@ -214,3 +213,172 @@ body {
     --bs-btn-focus-box-shadow: 0 0 0 .25rem rgba(255, 255, 255, .2);
   }
 }
+
+.text-highlight {
+    color: #492ae8ff;
+}
+
+/* Corner Triangles */
+/* Position the container for triangles in the fixed corners */
+.triangle-container {
+  position: fixed; /* Fixed positioning, relative to the viewport */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10; /* Ensure triangles are on top of other content */
+  pointer-events: none; /* Ensure triangles don't interfere with user interactions */
+}
+
+/* Top-left corner triangles */
+
+/* Triangle 1: 2:1 aspect ratio, top-left corner (bottom) */
+.triangle-bottom-tl {
+  width: 0;
+  height: 0;
+  border-top: 0px solid transparent;
+  border-left: 100px solid #492ae8ff; /* Deep Blue */
+  border-bottom: 50px solid transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* Triangle 2: 1:2 aspect ratio, top-left corner (middle) */
+.triangle-middle-tl {
+  width: 0;
+  height: 0;
+  border-top: 0px solid transparent;
+  border-left: 50px solid #c4ffc2ff; /* Light Green */
+  border-bottom: 100px solid transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* Triangle 3: 1:1 aspect ratio, top-left corner (top) */
+.triangle-top-tl {
+  width: 0;
+  height: 0;
+  border-top: 0px solid transparent;
+  border-left: 50px solid #f7cc09ff; /* Yellow */
+  border-bottom: 50px solid transparent;
+  position: absolute;
+  top: 0px; /* Adjust to stack on top of the other two triangles */
+  left: 0px; /* Adjust position for overlap */
+}
+
+/* Top-right corner triangles */
+
+/* Triangle 1: 2:1 aspect ratio, top-right corner (bottom) */
+.triangle-bottom-tr {
+  width: 0;
+  height: 0;
+  border-top: 0px solid transparent;
+  border-right: 100px solid #f7cc09ff; /* Yellow */
+  border-bottom: 50px solid transparent;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+/* Triangle 2: 1:2 aspect ratio, top-right corner (middle) */
+.triangle-middle-tr {
+  width: 0;
+  height: 0;
+  border-top: 0px solid transparent;
+  border-right: 50px solid #c4ffc2ff; /* Light Green */
+  border-bottom: 100px solid transparent;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+/* Triangle 3: 1:1 aspect ratio, top-right corner (top) */
+.triangle-top-tr {
+  width: 0;
+  height: 0;
+  border-top: 0px solid transparent;
+  border-right: 50px solid #492ae8ff; /* Deep Blue */
+  border-bottom: 50px solid transparent;
+  position: absolute;
+  top: 0px; /* Adjust to stack on top of the other two triangles */
+  right: 0px; /* Adjust position for overlap */
+}
+
+/* Bottom-left corner triangles */
+
+/* Triangle 1: 2:1 aspect ratio, bottom-left corner (bottom) */
+.triangle-bottom-bl {
+  width: 0;
+  height: 0;
+  border-bottom: 0px solid transparent;
+  border-left: 100px solid #492ae8ff; /* Deep Blue */
+  border-top: 50px solid transparent;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+/* Triangle 2: 1:2 aspect ratio, bottom-left corner (middle) */
+.triangle-middle-bl {
+  width: 0;
+  height: 0;
+  border-bottom: 0px solid transparent;
+  border-left: 50px solid #f7cc09ff; /* Yellow */
+  border-top: 100px solid transparent;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+/* Triangle 3: 1:1 aspect ratio, bottom-left corner (top) */
+.triangle-top-bl {
+  width: 0;
+  height: 0;
+  border-bottom: 0px solid transparent;
+  border-left: 50px solid #c4ffc2ff; /* Light Green */
+  border-top: 50px solid transparent;
+  position: absolute;
+  bottom: 0px; /* Adjust to stack on top of the other two triangles */
+  left: 0px; /* Adjust position for overlap */
+}
+
+/* Bottom-right corner triangles */
+
+/* Triangle 1: 2:1 aspect ratio, bottom-right corner (bottom) */
+.triangle-bottom-br {
+  width: 0;
+  height: 0;
+  border-bottom: 0px solid transparent;
+  border-right: 100px solid #c4ffc2ff; /* Light Green */
+  border-top: 50px solid transparent;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+/* Triangle 2: 1:2 aspect ratio, bottom-right corner (middle) */
+.triangle-middle-br {
+  width: 0;
+  height: 0;
+  border-bottom: 0px solid transparent;
+  border-right: 50px solid #492ae8ff; /* Deep Blue */
+  border-top: 100px solid transparent;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+/* Triangle 3: 1:1 aspect ratio, bottom-right corner (top) */
+.triangle-top-br {
+  width: 0;
+  height: 0;
+  border-bottom: 0px solid transparent;
+  border-right: 50px solid #f7cc09ff; /* Yellow */
+  border-top: 50px solid transparent;
+  position: absolute;
+  bottom: 0px; /* Adjust to stack on top of the other two triangles */
+  right: 0px; /* Adjust position for overlap */
+}
+
