@@ -53,7 +53,7 @@
     display: flex;
     padding: 5%;
     
-    transition: background-color 0.3s ease-in-out; /* Smooth transition on hover */
+    transition: background-color 1.3s ease-in-out; /* Smooth transition on hover */
 
     background-color: rgba(63, 169, 245, 1.0); 
     /* Apply hexagonal clipping to the image */

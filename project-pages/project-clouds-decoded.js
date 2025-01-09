@@ -11,8 +11,8 @@ var lastY = 0;
 var lastTime = 0;
 
 // Load the base and hover images
-baseImage.src = '../imgs/36U_97R_L1C.png';
-hoverImage.src = '../imgs/36U_97R_S1.png';  // Default hover image (S1)
+baseImage.src = '../imgs/rgb.jpg';
+hoverImage.src = '../imgs/ice.jpg';  // Default hover image (S1)
 
 // Function to update canvas size based on window size, ensuring it never exceeds 100% of viewport width
 function updateCanvasSize() {
@@ -117,9 +117,9 @@ document.getElementById('cirrusBtn').addEventListener('click', function () {
 });
 
 document.getElementById('iceBtn').addEventListener('click', function () {
-    hoverImage.src = '../imgs/36U_97R.png';  // Set to 36U_97R.png on Ice button click
+    hoverImage.src = '../imgs/ice.jpg';  // Set on Ice button click
 });
 
 document.getElementById('cloudHeightBtn').addEventListener('click', function () {
-    // You can add functionality for this button if needed
+    hoverImage.src = '../imgs/height-map.jpg';  // Set on height button click
 });
