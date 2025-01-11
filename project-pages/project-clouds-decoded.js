@@ -12,7 +12,7 @@ var lastTime = 0;
 
 // Load the base and hover images
 baseImage.src = '../imgs/rgb.jpg';
-hoverImage.src = '../imgs/ice.jpg';  // Default hover image (S1)
+hoverImage.src = '../imgs/cirrus.jpg';  // Default hover image (S1)
 
 // Function to update canvas size based on window size, ensuring it never exceeds 100% of viewport width
 function updateCanvasSize() {
@@ -63,10 +63,11 @@ function calculateSpeed(x, y, time) {
     lastTime = time;
 }
 
-// Function to handle touch or mousemove
 function handleMove(event) {
-    // For mousemove event
     var mouseX, mouseY;
+
+    // Get the bounding rectangle of the canvas to account for positioning on the page
+    var canvasRect = canvas.getBoundingClientRect();
 
     if (event.offsetX && event.offsetY) {
         // Mouse event
@@ -74,12 +75,18 @@ function handleMove(event) {
         mouseY = event.offsetY;
     } else if (event.changedTouches && event.changedTouches[0]) {
         // Touch event
-        mouseX = event.changedTouches[0].pageX - canvas.offsetLeft;
-        mouseY = event.changedTouches[0].pageY - canvas.offsetTop;
+        mouseX = event.changedTouches[0].pageX - canvasRect.left;  // Adjust by canvas left offset
+        mouseY = event.changedTouches[0].pageY - canvasRect.top;   // Adjust by canvas top offset
+
+        // Apply small offsets to move the circle above the touch point (Y) and slightly adjust X
+        var touchOffsetX = 15;   // Adjust this value to control the X offset (optional)
+        var touchOffsetY = -10;   // Adjust this value to control the Y offset (default -20)
+        mouseX += touchOffsetX;   // Apply X offset
+        mouseY += touchOffsetY;   // Apply Y offset
     } else {
-        // Fallback for other cases
-        mouseX = event.clientX - canvas.offsetLeft;
-        mouseY = event.clientY - canvas.offsetTop;
+        // Fallback for other cases (desktop or non-touch devices)
+        mouseX = event.clientX - canvasRect.left;
+        mouseY = event.clientY - canvasRect.top;
     }
 
     var currentTime = Date.now();
@@ -111,15 +118,32 @@ canvas.addEventListener('touchmove', function (event) {
     handleMove(event);
 }, { passive: false });
 
-// Add event listeners for the buttons
+// Function to set the active button
+function setActiveButton(button) {
+    // Get all the buttons
+    var buttons = document.querySelectorAll('button');
+    
+    // Remove 'active' class from all buttons
+    buttons.forEach(function (btn) {
+        btn.classList.remove('active');
+    });
+    
+    // Add 'active' class to the clicked button
+    button.classList.add('active');
+}
+
+// Update button event listeners
 document.getElementById('cirrusBtn').addEventListener('click', function () {
-    hoverImage.src = '../imgs/36U_97R_S1.png';  // Set to S1 on Cirrus button click
+    hoverImage.src = '../imgs/cirrus.jpg';  // Set to Cirrus image
+    setActiveButton(this);  // Set this button as active
 });
 
 document.getElementById('iceBtn').addEventListener('click', function () {
-    hoverImage.src = '../imgs/ice.jpg';  // Set on Ice button click
+    hoverImage.src = '../imgs/ice.jpg';  // Set to Ice image
+    setActiveButton(this);  // Set this button as active
 });
 
 document.getElementById('cloudHeightBtn').addEventListener('click', function () {
-    hoverImage.src = '../imgs/height-map.jpg';  // Set on height button click
+    hoverImage.src = '../imgs/height-map.jpg';  // Set to Height map image
+    setActiveButton(this);  // Set this button as active
 });

@@ -24,6 +24,12 @@
     font-size: 1.5rem;
 }
 
+@media (max-width: 768px) {
+    .project-desc {
+        font-size: 0.875rem;  /* Slightly smaller on mobile */
+    }
+}
+
 /* Button styles */
 .button-row .btn-highlight {
     background-color: rgba(63, 169, 245, 1.0); /* Highlight color */
@@ -40,6 +46,11 @@
 
 .button-row .btn-highlight:hover {
     background-color: rgba(63, 169, 245, 0.3); /* Darker shade on hover */
+}
+
+.button-row button.active {
+    background-color: #007bff;  /* Change this to the color you want */
+    color: white;               /* Text color */
 }
 
 /* Adjust margins and padding for the button row */
@@ -64,6 +75,11 @@
 .project-vis-img:hover {
     background-color: rgba(45,45,45, 1.0); 
 }
+
+.cd-text-highlight {
+    color: rgba(63, 169, 245, 1.0);
+}
+
 
 #projectCanvas {
     display: block;
