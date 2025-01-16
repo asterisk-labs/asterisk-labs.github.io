@@ -82,6 +82,7 @@
 
 
 #projectCanvas {
+    cursor: none; /* Hide the mouse pointer when hovering over the canvas */
     display: block;
     margin: auto;
     background-color: transparent;

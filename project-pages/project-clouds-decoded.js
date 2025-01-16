@@ -70,24 +70,27 @@ function handleMove(event) {
     var canvasRect = canvas.getBoundingClientRect();
 
     if (event.offsetX && event.offsetY) {
-        // Mouse event
+        // Mouse event (desktop)
         mouseX = event.offsetX;
         mouseY = event.offsetY;
     } else if (event.changedTouches && event.changedTouches[0]) {
-        // Touch event
-        mouseX = event.changedTouches[0].pageX - canvasRect.left;  // Adjust by canvas left offset
-        mouseY = event.changedTouches[0].pageY - canvasRect.top;   // Adjust by canvas top offset
-
-        // Apply small offsets to move the circle above the touch point (Y) and slightly adjust X
-        var touchOffsetX = 15;   // Adjust this value to control the X offset (optional)
-        var touchOffsetY = -10;   // Adjust this value to control the Y offset (default -20)
-        mouseX += touchOffsetX;   // Apply X offset
-        mouseY += touchOffsetY;   // Apply Y offset
+        // Touch event (mobile)
+        // Adjust touch position using canvasRect.left and canvasRect.top
+        var touch = event.changedTouches[0];
+        mouseX = touch.pageX - canvasRect.left;
+        mouseY = touch.pageY - canvasRect.top;
     } else {
-        // Fallback for other cases (desktop or non-touch devices)
+        // Fallback for other cases (non-touch devices)
         mouseX = event.clientX - canvasRect.left;
         mouseY = event.clientY - canvasRect.top;
     }
+
+    // Apply small offsets to move the circle above the touch point (Y) and slightly adjust X
+    var touchOffsetX = 15;   // Adjust this value to control the X offset (optional)
+    var touchOffsetY = -10;   // Adjust this value to control the Y offset (default -20)
+    
+    mouseX += touchOffsetX;   // Apply X offset
+    mouseY += touchOffsetY;   // Apply Y offset
 
     var currentTime = Date.now();
 
