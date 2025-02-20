@@ -103,7 +103,7 @@ a {
 
 a:hover {
     text-decoration: none;
-    color: rgba(69, 172, 243, 0.9);
+    color: rgba(69, 172, 243, 0.5);
 }
 
 .main-gif {
