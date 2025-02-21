@@ -42,6 +42,12 @@
     font-size: 0.9rem; /* Adjusted font size */
     transition: background-color 0.3s ease-in-out;
     box-shadow: none; /* No shadow for a flat design */
+    
+}
+
+.button-row button {
+    flex: 1; /* Let buttons grow and take equal width */
+    min-width: 100px; /* Ensure a minimum width for buttons */
 }
 
 .button-row .btn-highlight:hover {
@@ -62,7 +68,7 @@
 .project-vis-img {
     min-width: 40vw;
     display: flex;
-    padding: 5%;
+    padding:5%;
     
     transition: background-color 1.3s ease-in-out; /* Smooth transition on hover */
 
@@ -85,8 +91,9 @@
     cursor: none; /* Hide the mouse pointer when hovering over the canvas */
     display: block;
     margin: auto;
+    width: 100%; /* Make sure canvas takes up full width of its parent */
+    height: auto; /* Keep aspect ratio */
     background-color: transparent;
-    max-width: 90vw;
 
     /* Apply hexagonal clipping to the image */
     -webkit-clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
@@ -98,7 +105,7 @@
 .gradual-reveal {
   opacity: 0;
   transform: translateY(20px); /* Slightly shifted down */
-  transition: opacity 1s ease, transform 1s ease; /* Smooth transition */
+  transition: opacity 1s ease, transform 0.2s ease; /* Smooth transition */
 }
 
 /* When 'animate' class is added, the element will fade in and move up */
