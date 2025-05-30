@@ -86,6 +86,22 @@
     color: rgba(63, 169, 245, 1.0);
 }
 
+.acer-text-highlight {
+    color: rgba(28, 75, 155, 1.0);
+}
+
+.acer-text-highlight-2 {
+    color: rgba(255, 203, 41, 1.0);
+}
+
+a > .acer-text-highlight-2:hover {
+    color: rgba(28, 75, 155, 1.0);
+}
+
+
+a > .acer-text-highlight:hover {
+    color: rgba(255, 203, 41, 1.0);
+}
 
 #projectCanvas {
     cursor: none; /* Hide the mouse pointer when hovering over the canvas */
