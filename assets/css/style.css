@@ -86,19 +86,26 @@
 }
 
 .logo {
-    
     margin: 0 10px;
 }
 
-.name-list {
+#logo-text {
+    color:black;
+}
+#logo-text:hover {
+    color:#492ae8;
+}
+
+.name-list a {
     display: flex;
     flex-direction: column;
     text-align: center;
+    color: black !important;
 }
 
 a {
     text-decoration: none;
-    color: black;
+    color: #492ae8;
 }
 
 a:hover {
