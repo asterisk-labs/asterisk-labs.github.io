@@ -1,0 +1,25 @@
+---
+layout: default
+title: Copernicus AI Report
+---
+
+<link href="project.css"  rel="stylesheet">
+
+<div class="d-flex flex-column flex-lg-row container-fluid">
+    <h3 class="gradual-reveal">
+    coming soon
+    </h3>
+</div>
+
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+      const elements = document.querySelectorAll('.gradual-reveal');
+
+      // Trigger the animation with dynamic delays for each element
+      elements.forEach((element, index) => {
+        setTimeout(() => {
+          element.classList.add('animate'); // Add 'animate' class to trigger CSS transition
+        }, index * 800); // Stagger by 300ms
+      });
+    });
+</script>

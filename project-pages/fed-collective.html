@@ -1,0 +1,65 @@
+---
+layout: default
+title: Copernicus AI Report
+---
+
+<link href="project.css"  rel="stylesheet">
+
+<div class="d-flex flex-column flex-lg-row container-fluid">
+
+    <div class="project-desc">
+        <div class='gradual-reveal'>
+            <img src='/assets/imgs/fed-logo.png' class='project-thumbnail'/>
+        </div>
+        
+        <p class="project-p gradual-reveal">
+        <a href="https://asterisk.coop">Asterisk Labs</a> and <a href='https://www.linkedin.com/in/alberto-arribas-74294b4/'>Alberto Arribas</a> from <a href='https://noc.ac.uk/'>National Oceanography Centre</a> are taking part in a 6 month residency funded by <a href="https://www.aria.org.uk/">ARIA</a> through their FROST UK joint programme, where we are developing a proposal on strategies for resilient, globally distributed infrastructure, making it possible for everybody, everywhere to easily access and analyse all available environmental data.
+        </p>
+        
+        <p class="project-p gradual-reveal">
+            The critical bottleneck limiting high-impact environmental research is how difficult it has become to process increasingly huge and complex datasets. To overcome this bottleneck we will build open source, AI-powered software infrastructure and data-as-AI models that are trustworthy and publicly-owned. We will not only build technology, but establish a multi-institutional cooperative, reducing current fragmentation and complexity to massively increase the number of organisations that can access and manipulate Earth-scale environmental data.
+        </p>
+        <p class="project-p gradual-reveal">
+            Our software infrastructure will simultaneously empower data producers (so they can easily create Earth Embedding models) and data users (so they can easily access and manipulate them). Therefore, we will enable a transformative shift, massively reducing the compute costs and complexity for all.
+        </p>
+        <p class="project-p gradual-reveal">
+            Our software infrastructure has three key components:
+            <ul class='gradual-reveal'>
+                <li>Novel architecture enabling collaboration at global scale;</li>
+                <li>Compressing Technology enabling reduction of data volumes for Earth Observations, model data and video/audio data;</li>
+                <li>Protocol and standards enabling PB-scale data use and AI training;</li>
+            </ul>
+        </p>
+
+        <p class="project-p gradual-reveal">
+            By combining these three key components our software infrastructure will collapse today’s atomised, bespoke and excessively complex approaches, enabling the delivery of high-impact research not only for underpinning environmental monitoring/prediction (e.g. high-resolution data-driven weather and climate models) but for critical, real-world applications, such as: 
+            <ul class='gradual-reveal'>
+                <li>Protecting critical infrastructure;</li>
+                <li>Ensuring food security and human health; </li>
+                <li>Underpinning energy transition; </li>
+                <li>Enabling ecosystem monitoring and protection;</li>
+            </ul>
+        </p>
+    
+        <p class="project-p gradual-reveal">
+            We will work with a wide ecosystem of public institutions, private organisations and researchers to ensure global interoperability and transparent governance. Our FRO will have a not-for-profit structure (limited by guarantee) and we will incentivise collaboration by establishing a multi-institution co-operative that we expect to become financially sustainable by providing training, verification, consultancy, and enterprise services to data providers and users.
+        </p>
+        <p class="project-p gradual-reveal">
+        By building novel technology and establishing shared ownership we will not only significantly accelerate progress, but create resilience - a topical and pragmatic real-world use of our infrastructure would be data rescue. For example, to create efficient and low-cost proxy AI representations of unique and critically valuable datasets at risk of disappearance due to funding cuts, e.g. <a href="https://www.bbc.com/future/article/20250422-usa-scientists-race-to-save-climate-data-before-its-deleted-by-the-trump-administration">Saving USA climate data | BBC</a> - and empower the global community to tackle the triple climate, biodiversity and pollution planetary crisis.
+        </p>
+
+   </div>
+</div>
+
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+      const elements = document.querySelectorAll('.gradual-reveal');
+
+      // Trigger the animation with dynamic delays for each element
+      elements.forEach((element, index) => {
+        setTimeout(() => {
+          element.classList.add('animate'); // Add 'animate' class to trigger CSS transition
+        }, index * 800); // Stagger by 300ms
+      });
+    });
+</script>
