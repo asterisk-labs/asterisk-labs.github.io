@@ -10,11 +10,9 @@ title: About
             
 <div class='name-list'>
     <a href='team.html'><h3 style='margin-top: 100px;'>team</h3>
-    <p class='partner-name'><a href='team.html'>Jacqueline Campbell</a></p>
-    <p class='partner-name'><a href='team.html'>Mikolaj Czerkawski</a></p>
-    <p class='partner-name'><a href='team.html'>Alistair Francis</a></p>
-    <p class='partner-name'><a href='team.html'>Paul Borne--Pons</a></p>
-    <p class='partner-name'><a href='team.html'>Barbara Bertozzi</a></p>
+    {% for member in site.data.members %}        
+          <p class='partner-name'><a href='team.html'>{{ member.name }}</a></p>        
+    {% endfor %}
 </div>
     
 <script type="text/javascript">
