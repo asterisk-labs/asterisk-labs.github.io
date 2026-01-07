@@ -7,51 +7,20 @@ title: Team of Asterisk Labs
     <div class="team-section">
       <h3 style="margin-top: 100px;">team</h3>
       <div class="row justify-content-center">
-        <div class="col-md-4 mb-4 partner-name">
+        
+        {% for member in site.data.members %}
+        
+          <div class="col-md-4 mb-4 partner-name">
           <div class="team-member">
-            <div class="hexagon" style='background-color: #492ae8ff;'>
-              <img src="assets/imgs/profiles/jacqueline-transparent.png" alt="Jacqueline Campbell" class="profile-img">
+            <div class="hexagon" style='background-color: {{ member.color }}'>
+              <img src="{{ member.image | relative_url }}" alt="{{ member.name }}" class="profile-img">
             </div>
-            <h4>Jacqueline Campbell</h4>
-            <p class="description">Jacqueline Campbell is a Schmidt Science Fellow and interdisciplinary scientist with an unconventional career path. Having been a tube train driver and then social care worker, she pursued evening classes and correspondence courses in astrophysics before completing her undergraduate degree in Earth and Ocean Science. Her PhD at UCL focused on the search for life on Mars, and for her post-doc, she studied ocean acidification using remote sensing satellites at Oxford. She then went on to work at startups in the life sciences and science entrepreneurship sector. Now, as co-founder and partner scientist at Asterisk Labs, she hopes to use her diverse range of experience to bring together scientists and engineers to work on some of the world’s most challenging problems. She is passionate about increasing public trust in science and supporting people from underrepresented backgrounds like her own into science careers. She is also obsessed with the Tour de France despite riding her own bicycle infrequently and slowly. </p>
+            <h4>{{ member.name }}</h4>
+            <p class="description">{{ member.bio }}</p>
           </div>
         </div>
-        <div class="col-md-4 mb-4 partner-name">
-          <div class="team-member">
-            <div class="hexagon" style='background-color: #c4ffc2ff;'>
-              <img src="assets/imgs/profiles/miko-transparent.png" alt="Mikolaj Czerkawski" class="profile-img">
-            </div>
-            <h4>Mikolaj Czerkawski</h4>
-            <p class="description">Miko is a researcher specialising in AI, computer vision, signal processing and Earth observation. Before joining Asterisk Labs he was a postdoctoral research fellow at the European Space Agency. His research interests include data-centric analyses of large-scale Earth observation data, dataset curation, generative modelling, and restoration tasks for satellite imagery. He is a co-founder of the Major TOM community project, a platform for collaborating and reusing Earth observation datasets designed specifically for AI pipelines. He received the B.Eng. degree in electronic and electrical engineering in 2019 from the University of Strathclyde in Glasgow, United Kingdom, and the Ph.D. degree in 2023 at the same institution, specialising in applications of computer vision to Earth observation data. Miko enjoys waking up early.</p>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4 partner-name">
-          <div class="team-member">
-            <div class="hexagon" style='background-color: #f7cc09ff;'>
-              <img src="assets/imgs/profiles/ali-full.png" alt="Alistair Francis" class="profile-img">
-            </div>
-            <h4>Alistair Francis</h4>
-            <p class="description">Ali is a researcher working at the intersection of big data, remote sensing and planetary science. Having completed an undergraduate in physics at Oxford, he became fascinated by the technologies we use to observe the Earth and other planets. His PhD, at UCL, focused on using deep learning to map features across Earth, Mars, and the Moon, by developing models that could be used across different satellites without retraining. Now at Asterisk, Ali is keen to turn his attention to researching the climate crisis. Outside of work, Ali enjoys rock climbing, hiking, and reading dense political texts that he doesn’t really understand.</p>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4 partner-name">
-          <div class="team-member">
-            <div class="hexagon" style='background-color: #bfe8f3;'>
-              <img src="assets/imgs/profiles/paul-crop.png" alt="Paul Borne--Pons" class="profile-img">
-            </div>
-            <h4>Paul Borne--Pons</h4>
-            <p class="description">Paul is a pre-PhD student working at the intersection of deep learning, remote sensing, computer vision, and Earth sciences. His work explores how modern machine learning methods can advance our understanding of the physical processes that shape our planet and its climate. After completing an MSc at CentraleSupélec and ENS Paris-Saclay (MVA), he is preparing a PhD focused on adapting state-of-the-art computer vision techniques to retrieve three-dimensional cloud properties from EarthCARE and other next-generation satellite missions (MTG, MetOp-SG A). At Asterisk, Paul contributes to Clouds Decoded, where he designs scalable methods to estimate cloud heights from Sentinel-2 observations. Beyond research, he is passionate about cinema and film photography. He recently developed a very time consuming bird watching habit.</p>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4 partner-name">
-          <div class="team-member">
-            <div class="hexagon" style='background-color: #860050;'>
-              <img src="assets/imgs/profiles/barbara-transparent.png" alt="Barbara Bertozzi" class="profile-img">
-            </div>
-            <h4>Barbara Bertozzi</h4>
-            <p class="description">Barbara began her research journey underground, studying the melting of ice deposits in caves. For her PhD at the Karlsruhe Institute of Technology, she investigated atmospheric processes in simulation chambers with a particular focus on ice nucleation. Later, at the Paul Scherrer Institute, she ventured into the real atmosphere to characterize the optical properties of aerosol particles. Now at Asterisk Labs, she continues this upward trajectory by using satellite observations to explore cloud properties from above. She enjoys spending time in the mountains and growing vegetables, though the vegetables don't always share her enthusiasm.</p>
-          </div>
-        </div>
+        
+        {% endfor %}
       </div>
     </div>
   </main>
