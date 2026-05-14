@@ -27,3 +27,9 @@
   image: "/assets/imgs/profiles/barbara-transparent.png"
   color: "#860050" # Barbara colour theme
   bio: "Barbara began her research journey underground, studying the melting of ice deposits in caves. For her PhD at the Karlsruhe Institute of Technology, she investigated atmospheric processes in simulation chambers with a particular focus on ice nucleation. Later, at the Paul Scherrer Institute, she ventured into the real atmosphere to characterize the optical properties of aerosol particles. Now at Asterisk Labs, she continues this upward trajectory by using satellite observations to explore cloud properties from above. She enjoys spending time in the mountains and growing vegetables, though the vegetables don't always share her enthusiasm."
+
+- name: "Cesar Aybar"
+  role: "Scientist"
+  image: "/assets/imgs/profiles/cesar-transparent.png"
+  color: "#ff6b35" # Cesar colour theme
+  bio: "Cesar is a remote sensing researcher obsessed with how we store, structure, and serve satellite data for AI. His work focuses on making satellite imagery more accessible and useful, from enhancing spatial resolution to detecting clouds and atmospheric gases from space. He holds a BSc from UNMSM (Peru), an Erasmus Mundus MSc from the University of Salzburg, and a PhD from the University of Valencia's Image Processing Laboratory, where he collaborated with ESA and published on super-resolution, cloud detection, onboard processing, and AI-ready datasets for Earth observation."
