@@ -1,0 +1,68 @@
+---
+layout: default
+title: Congratulations Jacqueline & Vince
+permalink: /jackiechan/
+sitemap: false
+---
+
+<main class="mb-auto" style='text-align: center; max-width: 600px; margin: auto;'>
+        <h3 style='margin-bottom: 40px;'><span id='wishes-title' style='color:#000;'>jackie chan</span></h3>
+
+        <p style='font-size: 1.1rem;'>asterisk labs wishes the happiest married life to Jacqueline &amp; Vince</p>
+</main>
+
+<script type="text/javascript">
+    // Twinkle: continuously fade the members' colours through random characters of the title.
+    // Same effect as the /join page.
+    (function () {
+        var colors = ['#f7cc09', '#c4ffc2', '#492ae8', '#bfe8f3', '#860050', '#ff6b35'];
+        var base = '#000';
+        var el = document.getElementById('wishes-title');
+        var text = el.textContent;
+        var spans = [];
+        el.textContent = '';
+        for (var i = 0; i < text.length; i++) {
+            var s = document.createElement('span');
+            s.textContent = text[i];
+            s.style.transition = 'color 0.35s ease-in-out';
+            el.appendChild(s);
+            spans.push(s);
+        }
+        // indices of non-space characters (only these ever get coloured)
+        var idx = [];
+        for (var j = 0; j < text.length; j++) { if (text[j] !== ' ') idx.push(j); }
+
+        // Keep all 6 colours on screen at once: each colour occupies exactly one character.
+        // occupied[index] = colour currently there (or -1); slot[c] = index holding colour c.
+        var occupied = [];
+        for (var o = 0; o < spans.length; o++) { occupied.push(-1); }
+        var slot = [];
+        for (var m = 0; m < colors.length; m++) { slot.push(-1); }
+
+        function freeIndex() {
+            for (var tries = 0; tries < 50; tries++) {
+                var p = idx[Math.floor(Math.random() * idx.length)];
+                if (occupied[p] === -1) return p;
+            }
+            return -1;
+        }
+
+        // Move one colour to a fresh character: its old letter fades back, a new one lights up.
+        function place(c) {
+            var p = freeIndex();
+            if (p === -1) return;
+            if (slot[c] !== -1) { spans[slot[c]].style.color = base; occupied[slot[c]] = -1; }
+            spans[p].style.color = colors[c];
+            occupied[p] = c;
+            slot[c] = p;
+        }
+
+        function tick() { place(Math.floor(Math.random() * colors.length)); }
+
+        // Seed every colour so all 6 are showing from the start.
+        for (var c = 0; c < colors.length; c++) { place(c); }
+        // Respect users who prefer reduced motion: keep the static layout above, no animation.
+        var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!reduce) { setInterval(tick, 100); }
+    })();
+</script>
