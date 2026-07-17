@@ -8,6 +8,11 @@ sitemap: false
 <main class="mb-auto" style='text-align: center; max-width: 600px; margin: auto;'>
         <h3 style='margin-bottom: 40px;'><span id='wishes-title' style='color:#000;'>jackie chan</span></h3>
 
+        <!-- Frodo catching the One Ring, rendered as coloured ASCII in the asterisk brand palette -->
+        <div id="ring-panel" style='background:#0d0d12; border-radius:14px; padding:14px 8px; margin:0 auto 32px; overflow:hidden;'>
+            <pre id="ring" aria-label="An animation of Frodo catching the One Ring, in glowing asterisk colours" style='margin:0; color:#c4ffc2; font-family:"DejaVu Sans Mono","SFMono-Regular",Menlo,Consolas,monospace; line-height:1.0; white-space:pre; display:inline-block; text-align:left;'></pre>
+        </div>
+
         <p style='font-size: 1.1rem;'>asterisk labs wishes the happiest married life to Jacqueline &amp; Vince</p>
 </main>
 
@@ -64,5 +69,36 @@ sitemap: false
         // Respect users who prefer reduced motion: keep the static layout above, no animation.
         var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         if (!reduce) { setInterval(tick, 100); }
+    })();
+</script>
+
+<script src="/assets/js/ring-frames.js"></script>
+<script type="text/javascript">
+    // Coloured-ASCII ring player: cycle the pre-rendered frames from ring-frames.js.
+    (function () {
+        var frames = window.RING_FRAMES || [];
+        var pre = document.getElementById('ring');
+        var panel = document.getElementById('ring-panel');
+        if (!frames.length || !pre) return;
+
+        // Scale the monospace grid so the fixed-width art fills the column on any screen.
+        var cols = window.RING_COLS || 104;
+        function fit() {
+            var w = Math.min(560, (panel.clientWidth || 560) - 16);
+            pre.style.fontSize = (w / cols / 0.60) + 'px';
+        }
+        fit();
+        window.addEventListener('resize', fit);
+
+        var i = 0;
+        pre.innerHTML = frames[0];
+        var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        // GIF runs 29 frames over ~2.3s -> ~80ms/frame. Static first frame if reduced motion.
+        if (!reduce) {
+            setInterval(function () {
+                i = (i + 1) % frames.length;
+                pre.innerHTML = frames[i];
+            }, 80);
+        }
     })();
 </script>
