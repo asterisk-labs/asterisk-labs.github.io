@@ -1,0 +1,103 @@
+# Brand data for /brand/ (media kit) — single source of truth for the palette
+# and the downloadable asset lists rendered on that page.
+#
+# NOTE: the palette below uses the SITE values (canonical, per Miko 2026-07-23).
+# The logo SVG/PNG files in brand/assets/ currently use slightly different
+# values (#4E04EB / #A2FFA2 / #F8CE00) and should be regenerated to match.
+
+palette:
+  - name: ink
+    hex: "#000000"
+  - name: paper
+    hex: "#FFFFFF"
+  - name: mint green
+    hex: "#c4ffc2"
+  - name: indigo
+    hex: "#492ae8"
+  - name: yellow
+    hex: "#f7cc09"
+
+# Core logo lockups (light backgrounds). svg + png are derived from `name`;
+# `extras` lists additional file variants.
+core:
+  - name: logo-horizontal-color
+    label: "primary · horizontal"
+    extras:
+      - label: "png · white bg"
+        href: assets/png/logo-horizontal-color-on-white.png
+  - name: logo-stacked-color
+    label: "primary · stacked"
+    extras:
+      - label: "png · white bg"
+        href: assets/png/logo-stacked-color-on-white.png
+  - name: mark-color
+    label: symbol
+    extras:
+      - label: "png · white bg"
+        href: assets/png/mark-color-on-white.png
+  - name: logo-horizontal-black
+    label: "mono black · horizontal"
+    extras:
+      - label: "png · white bg"
+        href: assets/png/logo-horizontal-black-on-white.png
+  - name: logo-stacked-black
+    label: "mono black · stacked"
+  - name: mark-black
+    label: "mono black · symbol"
+
+# Dark-background grid: three treatments x horizontal/stacked/symbol.
+# Every cell gets svg + png + "png · ink bg" (assets/png/<name>-on-ink.png).
+dark_grid:
+  - label: mono white
+    note: "plain white — any dark surface"
+    items: [logo-horizontal-white, logo-stacked-white, mark-white]
+  - label: "dark #1 · white outline"
+    note: "default for dark backgrounds"
+    items: [logo-horizontal-dark1, logo-stacked-dark1, mark-dark1]
+  - label: "dark #2 · white mark"
+    note: "for solid black only"
+    items: [logo-horizontal-dark2, logo-stacked-dark2, mark-dark2]
+
+icons:
+  - name: icon-color
+    label: "symbol · transparent"
+  - name: icon-white-rounded
+    label: "app icon · light"
+  - name: icon-ink-rounded
+    label: "app icon · dark"
+  - name: favicon
+    label: favicon set
+    preview: assets/png/favicon-512.png
+    files:
+      - { label: "512", href: assets/png/favicon-512.png }
+      - { label: "180", href: assets/png/favicon-180.png }
+      - { label: "48", href: assets/png/favicon-48.png }
+      - { label: "32", href: assets/png/favicon-32.png }
+      - { label: "16", href: assets/png/favicon-16.png }
+
+avatars:
+  - name: avatar-indigo
+    label: indigo
+  - name: avatar-ink
+    label: ink
+  - name: avatar-yellow
+    label: yellow
+  - name: avatar-green
+    label: green
+
+# Corner-frame overlays (assets/corners/<name>.svg + .png)
+corners:
+  - name: corners-slide-16x9
+    label: "slide · 16:9"
+  - name: corners-slide-4x3
+    label: "slide · 4:3"
+  - name: corners-square
+    label: "social · 1:1"
+  - name: corners-poster-portrait
+    label: "poster · 2:3"
+  - name: corners-a4-portrait
+    label: "A4 · portrait"
+  - name: corners-a4-landscape
+    label: "A4 · landscape"
+  - name: corner-unit-tl
+    label: single corner tile

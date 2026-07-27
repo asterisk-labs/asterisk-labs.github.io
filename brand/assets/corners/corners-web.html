@@ -1,0 +1,27 @@
+<!-- asterisk labs — corner frame. Paste once per page; it fixes to the viewport. -->
+<style>
+.al-corners{position:fixed;inset:0;z-index:10;pointer-events:none}
+.al-corners i{position:absolute;width:0;height:0;display:block}
+/* top-left */
+.al-corners .tl1{top:0;left:0;border-left:100px solid #492ae8;border-bottom:50px solid transparent}
+.al-corners .tl2{top:0;left:0;border-left:50px solid #c4ffc2;border-bottom:100px solid transparent}
+.al-corners .tl3{top:0;left:0;border-left:50px solid #f7cc09;border-bottom:50px solid transparent}
+/* top-right */
+.al-corners .tr1{top:0;right:0;border-right:100px solid #f7cc09;border-bottom:50px solid transparent}
+.al-corners .tr2{top:0;right:0;border-right:50px solid #c4ffc2;border-bottom:100px solid transparent}
+.al-corners .tr3{top:0;right:0;border-right:50px solid #492ae8;border-bottom:50px solid transparent}
+/* bottom-left */
+.al-corners .bl1{bottom:0;left:0;border-left:100px solid #492ae8;border-top:50px solid transparent}
+.al-corners .bl2{bottom:0;left:0;border-left:50px solid #f7cc09;border-top:100px solid transparent}
+.al-corners .bl3{bottom:0;left:0;border-left:50px solid #c4ffc2;border-top:50px solid transparent}
+/* bottom-right */
+.al-corners .br1{bottom:0;right:0;border-right:100px solid #c4ffc2;border-top:50px solid transparent}
+.al-corners .br2{bottom:0;right:0;border-right:50px solid #492ae8;border-top:100px solid transparent}
+.al-corners .br3{bottom:0;right:0;border-right:50px solid #f7cc09;border-top:50px solid transparent}
+</style>
+<div class="al-corners" aria-hidden="true">
+  <i class="tl1"></i><i class="tl2"></i><i class="tl3"></i>
+  <i class="tr1"></i><i class="tr2"></i><i class="tr3"></i>
+  <i class="bl1"></i><i class="bl2"></i><i class="bl3"></i>
+  <i class="br1"></i><i class="br2"></i><i class="br3"></i>
+</div>

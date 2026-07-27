@@ -3,5 +3,10 @@ _site
 .jekyll-cache
 .jekyll-metadata
 vendor
+.bundle
 
 .DS_Store
+
+# Brand-kit staging: unpacked here, then merged into brand/assets/
+dist/
+Asterisk Labs media package*.zip

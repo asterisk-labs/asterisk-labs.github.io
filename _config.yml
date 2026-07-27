@@ -42,7 +42,10 @@ plugins:
 # Excluded items can be processed by explicitly listing the directories or
 # their entries' file path in the `include:` list.
 #
-# exclude:
+# dist/ is a staging unpack of the brand kit; the live page is /brand/ and pulls
+# its corrected assets from brand/assets/, so keep dist/ out of the published site.
+exclude:
+  - dist/
 #   - .sass-cache/
 #   - .jekyll-cache/
 #   - gemfiles/
