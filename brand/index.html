@@ -29,6 +29,33 @@ description: Logos, colours and usage guidelines for Asterisk Labs.
     #brandkit img { -webkit-user-drag: none; }
     @keyframes bkToastIn { from { opacity: 0; transform: translate(-50%, 12px); } to { opacity: 1; transform: translate(-50%, 0); } }
     #bk-toast { position: fixed; left: 50%; bottom: 34px; transform: translateX(-50%); z-index: 80; background: #000; color: #fff; padding: 12px 22px; border-radius: 999px; font-size: 14px; font-weight: 600; box-shadow: 0 8px 30px rgba(0,0,0,0.25); animation: bkToastIn .18s ease; display: none; }
+
+    /* Dark-backgrounds grid: 4-column table on desktop, stacked cards on mobile */
+    #brandkit .dk-table { border: 1px solid #1c1c1c; border-radius: 16px; overflow: hidden; background: #0b0b0b; }
+    #brandkit .dk-head, #brandkit .dk-row { display: grid; grid-template-columns: 180px 1fr 1fr 1fr; }
+    #brandkit .dk-head { border-bottom: 1px solid #1c1c1c; }
+    #brandkit .dk-colhead { padding: 14px 20px; font-size: 12px; font-weight: 700; letter-spacing: .14em; color: #888; text-align: center; }
+    #brandkit .dk-row { border-top: 1px solid #1c1c1c; align-items: stretch; }
+    #brandkit .dk-label { padding: 22px 20px; display: flex; flex-direction: column; justify-content: center; gap: 5px; border-right: 1px solid #1c1c1c; }
+    #brandkit .dk-label-name { font-weight: 700; font-size: 16px; color: #fff; }
+    #brandkit .dk-label-note { font-size: 12.5px; color: #8a8a8a; line-height: 1.4; }
+    #brandkit .dk-cell { border-right: 1px solid #1c1c1c; display: flex; flex-direction: column; }
+    #brandkit .dk-preview { flex: 1; min-height: 118px; display: flex; align-items: center; justify-content: center; padding: 20px 22px; background: #000; }
+    #brandkit .dk-preview img { max-width: 100%; max-height: 78px; width: auto; height: auto; display: block; }
+    #brandkit .dk-body { padding: 12px 16px; display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; border-top: 1px solid #141414; }
+    #brandkit .dk-tag { display: none; }  /* desktop: column headers name the forms */
+
+    @media (max-width: 640px) {
+        #brandkit .dk-head { display: none; }
+        #brandkit .dk-row { grid-template-columns: 1fr; }
+        #brandkit .dk-label { border-right: none; border-bottom: 1px solid #1c1c1c; }
+        #brandkit .dk-cell { border-right: none; flex-direction: row; align-items: center; gap: 14px; padding: 12px 16px; }
+        #brandkit .dk-cell + .dk-cell { border-top: 1px solid #141414; }
+        #brandkit .dk-preview { flex: 0 0 104px; height: 56px; min-height: 0; padding: 8px 12px; border-radius: 8px; }
+        #brandkit .dk-preview img { max-height: 38px; }
+        #brandkit .dk-body { flex: 1; border-top: none; padding: 0; justify-content: flex-start; align-items: center; }
+        #brandkit .dk-tag { display: block; flex: 0 0 100%; font-size: 11px; font-weight: 700; letter-spacing: .14em; color: #888; margin-bottom: 2px; }
+    }
 </style>
 
 <div id="brandkit">
@@ -83,25 +110,27 @@ description: Logos, colours and usage guidelines for Asterisk Labs.
 <h2 style="margin:0;font-size:34px;font-weight:600;letter-spacing:-.01em">for dark backgrounds</h2>
 </div>
 <p style="margin:0 0 30px;font-size:17px;line-height:1.6;color:#555;max-width:66ch">two dark-mode treatments. <strong style="color:#000">dark #1</strong> keeps the colour nodes and adds a crisp white outline — it&#39;s the <strong style="color:#000">default for dark backgrounds</strong>, because the black ring holds the nodes apart and keeps them legible. <strong style="color:#000">dark #2</strong> turns the ring white; reserve it for <strong style="color:#000">solid black</strong>, where the white ring reads cleanly — on mid-tone or coloured dark surfaces the light nodes lose contrast against the white ring, so use dark #1 instead. plain white monochrome is also here.</p>
-<div style="border:1px solid #1c1c1c;border-radius:16px;overflow:hidden;background:#0b0b0b">
-<div style="display:grid;grid-template-columns:180px 1fr 1fr 1fr;border-bottom:1px solid #1c1c1c">
-<div style="padding:14px 20px"></div>
-<div style="padding:14px 20px;font-size:12px;font-weight:700;letter-spacing:.14em;color:#888;text-align:center">horizontal</div>
-<div style="padding:14px 20px;font-size:12px;font-weight:700;letter-spacing:.14em;color:#888;text-align:center">stacked</div>
-<div style="padding:14px 20px;font-size:12px;font-weight:700;letter-spacing:.14em;color:#888;text-align:center">symbol</div>
+<div class="dk-table">
+<div class="dk-head">
+<div class="dk-colhead"></div>
+<div class="dk-colhead">horizontal</div>
+<div class="dk-colhead">stacked</div>
+<div class="dk-colhead">symbol</div>
 </div>
 {% for row in site.data.brand.dark_grid %}
-<div style="display:grid;grid-template-columns:180px 1fr 1fr 1fr;border-top:1px solid #1c1c1c;align-items:stretch">
-<div style="padding:22px 20px;display:flex;flex-direction:column;justify-content:center;gap:5px;border-right:1px solid #1c1c1c">
-<div style="font-weight:700;font-size:16px;color:#fff">{{ row.label }}</div>
-<div style="font-size:12.5px;color:#8a8a8a;line-height:1.4">{{ row.note }}</div>
+<div class="dk-row">
+<div class="dk-label">
+<div class="dk-label-name">{{ row.label }}</div>
+<div class="dk-label-note">{{ row.note }}</div>
 </div>
 {% for n in row.items %}
-<div style="border-right:1px solid #1c1c1c;display:flex;flex-direction:column">
-<div style="flex:1;min-height:118px;display:flex;align-items:center;justify-content:center;padding:20px 22px;background:#000">
-<img src="assets/svg/{{ n }}.svg" alt="{{ n }}" style="max-width:100%;max-height:78px;width:auto;height:auto;display:block"/>
+{% assign form = 'symbol' %}{% if n contains 'horizontal' %}{% assign form = 'horizontal' %}{% elsif n contains 'stacked' %}{% assign form = 'stacked' %}{% endif %}
+<div class="dk-cell">
+<div class="dk-preview">
+<img src="assets/svg/{{ n }}.svg" alt="{{ n }}"/>
 </div>
-<div style="padding:12px 16px;display:flex;flex-wrap:wrap;gap:6px;justify-content:center;border-top:1px solid #141414">
+<div class="dk-body">
+<span class="dk-tag">{{ form }}</span>
 <a href="assets/svg/{{ n }}.svg" download class="bk-pill-dark">svg ↓</a>
 <a href="assets/png/{{ n }}.png" download class="bk-pill-dark">png ↓</a>
 <a href="assets/png/{{ n }}-on-ink.png" download class="bk-pill-dark">png · ink bg ↓</a>
