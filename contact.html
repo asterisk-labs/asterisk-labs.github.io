@@ -3,7 +3,16 @@ layout: default
 title: Contact Asterisk Labs
 ---
 
-<main class="mb-auto">                           
-        <h1>contact us</h1>
-        <p class="lead"><a href="mailto:hello@asterisk.coop">hello@asterisk.coop</a></p>
+<style>
+        /* Contact page only: let main fill the height so the contact block can be
+           centred (margin:auto) while the media-kit note is pinned near the bottom. */
+        .cover-container > header.mb-auto { margin-bottom: 0 !important; }
+        main.mb-auto { margin-bottom: 0 !important; flex: 1 1 auto; display: flex; flex-direction: column; position: relative; }
+</style>
+<main class="mb-auto">
+        <div style='margin: auto;'>
+            <h1>contact us</h1>
+            <p class="lead"><a href="mailto:hello@asterisk.coop">hello@asterisk.coop</a></p>
+        </div>
+        <p style='position: absolute; left: 0; right: 0; bottom: 40px; margin: 0; font-size: 0.95rem;'>Writing about us? Grab our logos and colours from the <a href="/brand/" style='color: #492ae8ff;'>media kit</a>.</p>
 </main>
