@@ -3,30 +3,72 @@ layout: default
 title: Projects at Asterisk
 ---
 
-<main class="mb-0 project-link">
-    <a href="project-pages/project-clouds-decoded.html">
-        <img src='assets/imgs/clouds-decoded.png' class='project-thumbnail'/>
-        <p class="lead">Clouds Decoded aims to understand local properties of clouds in previously unexplored high-resolution optical data from the Sentinel-2 satellite</p>
-    </a>
+<style>
+    /* Projects listing — branded card grid, harmonised with the media kit.
+       This <style> only ships on this page, so widening the container is safe. */
+    .cover-container { max-width: 1000px !important; }
+    main.mb-auto { text-align: left; }
+
+    #projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; margin-bottom: 60px; }
+    .proj-card { display: flex; flex-direction: column; border: 1px solid #e7e7e3; border-radius: 14px; overflow: hidden; background: #fff; text-decoration: none; color: #000; transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease; }
+    .proj-card:hover { transform: translateY(-3px); }  /* colour set per-hover in JS */
+    .proj-preview { height: 150px; display: flex; align-items: center; justify-content: center; padding: 28px; background: #fff; border-bottom: 1px solid #eee; }
+    .proj-preview img { max-width: 84%; max-height: 74px; width: auto; height: auto; display: block; }
+    .proj-body { padding: 22px 24px; }
+    .proj-desc { margin: 0; font-size: 15px; line-height: 1.62; color: #555; }
+</style>
+
+<main class="mb-auto">
+    <div id="projects-grid">
+        <a class="proj-card" href="project-pages/project-clouds-decoded.html">
+            <div class="proj-preview"><img src="/assets/imgs/clouds-decoded.png" alt="Clouds Decoded"/></div>
+            <div class="proj-body">
+                <p class="proj-desc">Clouds Decoded aims to understand local properties of clouds in previously unexplored high-resolution optical data from the Sentinel-2 satellite</p>
+            </div>
+        </a>
+
+        <a class="proj-card" href="project-pages/project-copernicus-report.html">
+            <div class="proj-preview"><img src="/assets/imgs/vision-logo.jpg" alt="Copernicus AI Report"/></div>
+            <div class="proj-body">
+                <p class="proj-desc">AI Vision for Copernicus is a report for ESA summarising the state-of-the-art of AI for Earth Observation with recommendations about the future of the programme</p>
+            </div>
+        </a>
+
+        <a class="proj-card" href="project-pages/fed-collective.html">
+            <div class="proj-preview"><img src="/assets/imgs/fed-logo.png" alt="FED Collective"/></div>
+            <div class="proj-body">
+                <p class="proj-desc">Asterisk Labs and Alberto Arribas are in the process of forming an organisation dedicated to open and interoperable software framework for environmental data.</p>
+            </div>
+        </a>
+
+        <a class="proj-card" href="project-pages/project-wildcard.html">
+            <div class="proj-preview"><img src="/assets/imgs/wildcard-logo.png" alt="Wildcard Programme"/></div>
+            <div class="proj-body">
+                <p class="proj-desc">Framework for growing an interdisciplinary team of Asterisk by inviting and funding scientists with unusual ideas for Earth data commons</p>
+            </div>
+        </a>
+    </div>
 </main>
 
-<main class="mb-0 project-link">
-    <a href="project-pages/project-copernicus-report.html">
-        <img src='assets/imgs/vision-logo.jpg' class='project-thumbnail'/>
-        <p class="lead">AI Vision for Copernicus is a report for ESA summarising the state-of-the-art of AI for Earth Observation with recommendations about the future of the programme</p>
-    </a>
-</main>
-
-<main class="mb-0 project-link">
-    <a href="project-pages/fed-collective.html">
-        <img src='assets/imgs/fed-logo.png' class='project-thumbnail'/>
-        <p class="lead">Asterisk Labs and Alberto Arribas are in the process of forming an organisation dedicated to open and interoperable software framework for environmental data.</p>
-    </a>
-</main>
-
-<main class="mb-0 project-link">
-    <a href="project-pages/project-wildcard.html">
-        <img src='assets/imgs/wildcard-logo.png' class='project-thumbnail'/>
-        <p class="lead">Framework for growing an interdisciplinary team of Asterisk by inviting and funding scientists with unusual ideas for Earth data commons</p>
-    </a>
-</main>
+<script type="text/javascript">
+    // Highlight each project card with a random asterisk member colour on hover
+    // (same palette as the team page / title twinkle).
+    (function () {
+        var colours = ['#c4ffc2', '#492ae8', '#f7cc09', '#bfe8f3', '#860050', '#ff6b35'];
+        function glow(hex, a) {
+            var n = parseInt(hex.slice(1), 16);
+            return 'rgba(' + (n >> 16 & 255) + ',' + (n >> 8 & 255) + ',' + (n & 255) + ',' + a + ')';
+        }
+        document.querySelectorAll('.proj-card').forEach(function (card) {
+            card.addEventListener('mouseenter', function () {
+                var c = colours[Math.floor(Math.random() * colours.length)];
+                card.style.borderColor = c;
+                card.style.boxShadow = '0 10px 30px ' + glow(c, 0.18);
+            });
+            card.addEventListener('mouseleave', function () {
+                card.style.borderColor = '';
+                card.style.boxShadow = '';
+            });
+        });
+    })();
+</script>
