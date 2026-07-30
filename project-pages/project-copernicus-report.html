@@ -7,7 +7,7 @@ thumbnail: /assets/imgs/vision-logo.jpg
 
 <link href="project.css"  rel="stylesheet">
 
-<div class="d-flex flex-column flex-lg-row container-fluid">
+<div class="d-flex flex-column flex-lg-row container-fluid" style="--theme:#1c4b9b">
     <div class="gradual-reveal">
         <img src='/assets/imgs/MMEarth-embeddings.gif' class='main-gif'/>
         <p class="project-p" style='margin: 25px;'>
@@ -39,7 +39,7 @@ thumbnail: /assets/imgs/vision-logo.jpg
             </ul>
         </p>
 
-    <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/ESA_logo.png/1600px-ESA_logo.png?20200421140844' class='project-thumbnail gradual-reveal' style="margin: 50px"/>
+    <a href='https://www.esa.int/'><img src='/assets/imgs/esa-logo.png' class='project-thumbnail gradual-reveal' style="margin: 50px" alt="European Space Agency"/></a>
     </div>
 </div>
 
@@ -51,7 +51,7 @@ thumbnail: /assets/imgs/vision-logo.jpg
       elements.forEach((element, index) => {
         setTimeout(() => {
           element.classList.add('animate'); // Add 'animate' class to trigger CSS transition
-        }, index * 800); // Stagger by 300ms
+        }, index * 90); // Stagger by 300ms
       });
     });
 </script>
