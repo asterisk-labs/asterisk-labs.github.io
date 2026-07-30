@@ -20,8 +20,9 @@
 .project-desc {
     margin: 20px 40px;
     color: black;/*white;*/
-    text-align: justify;
-    font-size: 1.5rem;
+    text-align: left;
+    font-size: 1.2rem;
+    line-height: 1.6;
 }
 
 @media (max-width: 768px) {
@@ -30,19 +31,19 @@
     }
 }
 
-/* Button styles */
+/* Button styles — pill toggles in the page's theme colour (var --theme) */
 .button-row .btn-highlight {
-    background-color: rgba(63, 169, 245, 1.0); /* Highlight color */
-    border: none; /* No border for simplicity */
+    background-color: var(--theme, #3fa9f5); /* page theme colour */
+    opacity: 0.5;                            /* inactive = faded */
+    border: none;
     color: white;
     font-weight: bold;
-    padding: 8px 16px; /* Adjust padding for smaller buttons */
-    border-radius: 4px; /* Slightly rounded corners for a clean look */
+    padding: 8px 18px;
+    border-radius: 999px;                    /* pill */
     text-transform: uppercase;
-    font-size: 0.9rem; /* Adjusted font size */
-    transition: background-color 0.3s ease-in-out;
-    box-shadow: none; /* No shadow for a flat design */
-    
+    font-size: 0.9rem;
+    transition: opacity 0.2s ease-in-out;
+    box-shadow: none;
 }
 
 .button-row button {
@@ -51,12 +52,11 @@
 }
 
 .button-row .btn-highlight:hover {
-    background-color: rgba(63, 169, 245, 0.3); /* Darker shade on hover */
+    opacity: 0.8;
 }
 
 .button-row button.active {
-    background-color: #007bff;  /* Change this to the color you want */
-    color: white;               /* Text color */
+    opacity: 1;                 /* active = solid theme colour */
 }
 
 /* Adjust margins and padding for the button row */
@@ -121,11 +121,58 @@ a > .acer-text-highlight:hover {
 .gradual-reveal {
   opacity: 0;
   transform: translateY(20px); /* Slightly shifted down */
-  transition: opacity 1s ease, transform 0.2s ease; /* Smooth transition */
+  transition: opacity 0.5s ease, transform 0.5s ease; /* Smooth, quick transition */
 }
 
 /* When 'animate' class is added, the element will fade in and move up */
 .gradual-reveal.animate {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Section headings get a short accent bar in the page's theme colour */
+.project-desc h2 {
+  margin-top: 34px;
+}
+.project-desc h2::after {
+  content: "";
+  display: block;
+  width: 46px;
+  height: 3px;
+  margin-top: 10px;
+  border-radius: 2px;
+  background: var(--theme, #492ae8);
+}
+
+/* Copernicus PCA globe (and any hero gif) — keep it contained */
+.main-gif {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Wildcard placeholder — centred logo + "coming soon" */
+.coming-soon {
+  width: 100%;
+  min-height: 46vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  text-align: center;
+  padding: 60px 20px;
+}
+.coming-soon img {
+  max-width: min(440px, 82%);
+  height: auto;
+}
+.coming-soon p {
+  margin: 0;
+  font-size: 1.25rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: #888;
+  font-weight: 600;
 }

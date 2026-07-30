@@ -7,10 +7,11 @@ thumbnail: Interdisciplinary growth
 
 <link href="project.css"  rel="stylesheet">
 
-<div class="d-flex flex-column flex-lg-row container-fluid">
-    <h3 class="gradual-reveal">
-    coming soon
-    </h3>
+<div class="d-flex flex-column flex-lg-row container-fluid" style="--theme:#492ae8">
+    <div class="coming-soon gradual-reveal">
+        <img src="/assets/imgs/wildcard-logo.png" alt="Wildcard Programme"/>
+        <p>coming soon</p>
+    </div>
 </div>
 
 <script>
@@ -21,7 +22,7 @@ thumbnail: Interdisciplinary growth
       elements.forEach((element, index) => {
         setTimeout(() => {
           element.classList.add('animate'); // Add 'animate' class to trigger CSS transition
-        }, index * 800); // Stagger by 300ms
+        }, index * 90); // Stagger by 300ms
       });
     });
 </script>
