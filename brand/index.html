@@ -56,6 +56,10 @@ description: Logos, colours and usage guidelines for Asterisk Labs.
         #brandkit .dk-body { flex: 1; border-top: none; padding: 0; justify-content: flex-start; align-items: center; }
         #brandkit .dk-tag { display: block; flex: 0 0 100%; font-size: 11px; font-weight: 700; letter-spacing: .14em; color: #888; margin-bottom: 2px; }
     }
+
+    /* "For the team" collapsible region */
+    #brandkit #members-toggle:hover { border-color: #492ae8; }
+    #brandkit #members-chevron { transition: transform .2s ease; }
 </style>
 
 <div id="brandkit">
@@ -64,7 +68,7 @@ description: Logos, colours and usage guidelines for Asterisk Labs.
 <section style="padding:30px 0 60px">
 <div style="font-size:13px;font-weight:700;letter-spacing:.2em;color:#492ae8;text-transform:uppercase;margin-bottom:14px">media kit — brand &amp; logo guidelines</div>
 <nav style="margin-bottom:26px">
-<a class="bk-anchor" href="#logos">logos</a><a class="bk-anchor" href="#color">colour</a><a class="bk-anchor" href="#type">type</a><a class="bk-anchor" href="#usage">usage</a><a class="bk-anchor" href="#corners">corners</a><a class="bk-anchor" href="#download">download</a>
+<a class="bk-anchor" href="#logos">logos</a><a class="bk-anchor" href="#color">colour</a><a class="bk-anchor" href="#type">type</a><a class="bk-anchor" href="#usage">usage</a><a class="bk-anchor" href="#download">download</a>
 </nav>
 <div style="max-width:940px;margin:0 auto;padding:56px 40px;border:1px solid #ededea;border-radius:20px;background:#fafafa;display:flex;align-items:center;justify-content:center">
 <img src="assets/svg/logo-horizontal-color.svg" alt="asterisk labs" style="width:100%;max-width:720px;height:auto;display:block"/>
@@ -266,11 +270,118 @@ description: Logos, colours and usage guidelines for Asterisk Labs.
 </div>
 </section>
 
-<!-- 07 CORNER FRAME -->
-<section id="corners" style="padding:70px 0;border-top:1px solid #ededea">
+<!-- 07 ICONS -->
+<section id="icons" style="padding:70px 0;border-top:1px solid #ededea">
 <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:14px">
 <span style="font-size:14px;letter-spacing:.16em;color:#492ae8;font-weight:700">07</span>
-<h2 style="margin:0;font-size:34px;font-weight:600;letter-spacing:-.01em">the corner frame</h2>
+<h2 style="margin:0;font-size:34px;font-weight:600;letter-spacing:-.01em">app icons &amp; favicons</h2>
+</div>
+<p style="margin:0 0 30px;font-size:17px;line-height:1.6;color:#555;max-width:66ch">the symbol, squared up for browser tabs, home screens and app tiles. favicon pngs come in 16–512 px.</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px">
+{% for a in site.data.brand.icons %}
+<div style="border:1px solid #e7e7e3;border-radius:14px;overflow:hidden;background:#fff;display:flex;flex-direction:column">
+<div style="height:150px;display:flex;align-items:center;justify-content:center;padding:22px;background:#fafafa">
+<img src="{% if a.preview %}{{ a.preview }}{% else %}assets/svg/{{ a.name }}.svg{% endif %}" alt="{{ a.label }}" style="max-height:104px;max-width:104px;width:auto;height:auto;display:block"/>
+</div>
+<div style="padding:15px 18px;border-top:1px solid #eee;display:flex;flex-direction:column;gap:11px">
+<div style="font-weight:600;font-size:15px">{{ a.label }}</div>
+<div style="display:flex;flex-wrap:wrap;gap:6px">
+{% if a.files %}
+{% for f in a.files %}<a href="{{ f.href }}" download class="bk-pill">{{ f.label }} ↓</a>{% endfor %}
+{% else %}
+<a href="assets/svg/{{ a.name }}.svg" download class="bk-pill">svg ↓</a>
+<a href="assets/png/{{ a.name }}.png" download class="bk-pill">png ↓</a>
+{% endif %}
+</div>
+</div>
+</div>
+{% endfor %}
+</div>
+</section>
+
+<!-- 08 SOCIAL -->
+<section id="social" style="padding:70px 0;border-top:1px solid #ededea">
+<div style="display:flex;align-items:baseline;gap:14px;margin-bottom:14px">
+<span style="font-size:14px;letter-spacing:.16em;color:#492ae8;font-weight:700">08</span>
+<h2 style="margin:0;font-size:34px;font-weight:600;letter-spacing:-.01em">social avatars</h2>
+</div>
+<p style="margin:0 0 30px;font-size:17px;line-height:1.6;color:#555;max-width:66ch">square profile images, the mark centred on a brand colour. indigo is the default.</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:18px">
+{% for a in site.data.brand.avatars %}
+<div style="border:1px solid #e7e7e3;border-radius:14px;overflow:hidden;background:#fff;display:flex;flex-direction:column">
+<div style="height:170px;display:flex;align-items:center;justify-content:center;padding:22px;background:#fafafa">
+<img src="assets/svg/{{ a.name }}.svg" alt="{{ a.label }}" style="height:126px;width:126px;border-radius:14px;display:block"/>
+</div>
+<div style="padding:15px 18px;border-top:1px solid #eee;display:flex;flex-direction:column;gap:11px">
+<div style="font-weight:600;font-size:15px">{{ a.label }}</div>
+<div style="display:flex;flex-wrap:wrap;gap:6px">
+<a href="assets/svg/{{ a.name }}.svg" download class="bk-pill">svg ↓</a>
+<a href="assets/png/{{ a.name }}.png" download class="bk-pill">png ↓</a>
+</div>
+</div>
+</div>
+{% endfor %}
+</div>
+</section>
+
+<!-- DOWNLOAD -->
+<section id="download" style="padding:70px 0 30px;border-top:1px solid #ededea">
+<div style="border-radius:20px;background:#000;color:#fff;padding:54px 44px;text-align:center">
+<img src="assets/svg/mark-white.svg" alt="" style="height:56px;width:auto;display:block;margin:0 auto 24px"/>
+<h2 style="margin:0;font-size:clamp(26px,3.4vw,40px);font-weight:600;letter-spacing:-.01em">everything, in one download</h2>
+<p style="margin:16px auto 0;font-size:17px;line-height:1.6;color:#b5b5b5;max-width:52ch">all logos, symbols, icons and avatars — svg + png, transparent and solid-background — plus a colour reference and readme.</p>
+<div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:30px">
+<a href="assets/asterisk-labs-brand-kit.zip" download class="bk-btn-invert">download brand kit (.zip) ↓</a>
+</div>
+</div>
+</section>
+
+<!-- FOR THE TEAM (collapsible) -->
+<section style="padding:40px 0 30px;border-top:1px solid #ededea">
+<button type="button" id="members-toggle" aria-expanded="false" aria-controls="members-content" onclick="bkToggleMembers()" style="width:100%;text-align:left;cursor:pointer;font-family:inherit;background:#fafafa;border:1px solid #e7e7e3;border-radius:16px;padding:24px 28px;display:flex;align-items:center;justify-content:space-between;gap:16px">
+<span>
+<span style="display:block;font-size:13px;font-weight:700;letter-spacing:.2em;color:#492ae8;text-transform:uppercase">for the team</span>
+<span style="display:block;margin-top:6px;font-size:16px;color:#555">internal tools — email signature, slides &amp; posters, profile pictures</span>
+</span>
+<span id="members-chevron" style="font-size:22px;color:#492ae8">↓</span>
+</button>
+
+<div id="members-content" hidden>
+
+<!-- M01 EMAIL -->
+<section id="email" style="padding:60px 0 0">
+<div style="display:flex;align-items:baseline;gap:14px;margin-bottom:14px">
+<span style="font-size:14px;letter-spacing:.16em;color:#492ae8;font-weight:700">01</span>
+<h2 style="margin:0;font-size:34px;font-weight:600;letter-spacing:-.01em">email signature</h2>
+</div>
+<p style="margin:0 0 24px;font-size:17px;line-height:1.6;color:#555;max-width:66ch">a ready-made signature block. the image is already hosted on this site, so just paste the html into your mail client and edit the name.</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;align-items:start">
+<div style="border:1px solid #e7e7e3;border-radius:14px;padding:30px;background:#fff">
+<div style="font-size:12px;font-weight:700;letter-spacing:.14em;color:#9a9a97;margin-bottom:18px">preview</div>
+<table cellpadding="0" cellspacing="0" style="border-collapse:collapse"><tr>
+<td style="padding-right:18px;border-right:2px solid #c4ffc2;vertical-align:middle"><img src="assets/svg/mark-color.svg" width="52" height="59" alt="asterisk labs" style="display:block"/></td>
+<td style="padding-left:18px;vertical-align:middle">
+<div style="font-size:16px;font-weight:700;color:#000">your name <span style="font-weight:400;font-size:13px;color:#999">(they/them)</span></div>
+<div style="font-size:13px;color:#666;margin-top:2px">researcher · asterisk labs</div>
+<div style="font-size:13px;margin-top:5px"><a href="https://asterisk.coop" style="color:#492ae8">asterisk.coop</a></div>
+</td>
+</tr></table>
+</div>
+<div style="border:1px solid #e7e7e3;border-radius:14px;padding:22px;background:#0b0b0b">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px">
+<div style="font-size:12px;font-weight:700;letter-spacing:.14em;color:#666">html snippet</div>
+<button type="button" class="bk-copy" onclick="bkCopy(document.getElementById('bk-sig-snippet').textContent)">copy html</button>
+</div>
+<pre id="bk-sig-snippet" style="margin:0;white-space:pre-wrap;word-break:break-word;font-size:12px;line-height:1.55;color:#c9c9c9"></pre>
+</div>
+</div>
+</section>
+
+<!-- M02 SLIDES & POSTERS (corner frame) -->
+<section id="corners" style="padding:70px 0 0">
+<div style="display:flex;align-items:baseline;gap:14px;margin-bottom:14px">
+<span style="font-size:14px;letter-spacing:.16em;color:#492ae8;font-weight:700">02</span>
+<h2 style="margin:0;font-size:34px;font-weight:600;letter-spacing:-.01em">slides &amp; posters</h2>
 </div>
 <p style="margin:0 0 30px;font-size:17px;line-height:1.6;color:#555;max-width:66ch">the stacked corner triangles are part of the brand — you can see them framing this very page. use them as a light frame on full-bleed layouts — slides, posters, social, covers. drop the matching overlay on top of your artwork, edge to edge, and keep your content inside a safe margin. grab a ready-made size below, or paste the web snippet.</p>
 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;margin-bottom:40px">
@@ -332,98 +443,39 @@ description: Logos, colours and usage guidelines for Asterisk Labs.
 </div>
 </section>
 
-<!-- 08 ICONS -->
-<section id="icons" style="padding:70px 0;border-top:1px solid #ededea">
+<!-- M03 PROFILE PICTURES -->
+<section id="profiles" style="padding:70px 0 0">
 <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:14px">
-<span style="font-size:14px;letter-spacing:.16em;color:#492ae8;font-weight:700">08</span>
-<h2 style="margin:0;font-size:34px;font-weight:600;letter-spacing:-.01em">app icons &amp; favicons</h2>
+<span style="font-size:14px;letter-spacing:.16em;color:#492ae8;font-weight:700">03</span>
+<h2 style="margin:0;font-size:34px;font-weight:600;letter-spacing:-.01em">profile pictures</h2>
 </div>
-<p style="margin:0 0 30px;font-size:17px;line-height:1.6;color:#555;max-width:66ch">the symbol, squared up for browser tabs, home screens and app tiles. favicon pngs come in 16–512 px.</p>
-<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px">
-{% for a in site.data.brand.icons %}
+<p style="margin:0 0 24px;font-size:17px;line-height:1.6;color:#555;max-width:66ch">your team hexagon — your photo on your member colour, cut to the asterisk hexagon — as a transparent png for slides, decks and social. generated right here in your browser from the <a href="/team.html" style="color:#492ae8">team page</a> data, so they always match the site. no install, nothing to run.</p>
+<div style="display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-bottom:24px">
+<label style="font-size:14px;color:#555">size
+<select id="hex-size" style="margin-left:6px;font-family:inherit;font-size:14px;padding:6px 10px;border:1px solid #ddd;border-radius:8px;background:#fff">
+<option value="512">512 px</option>
+<option value="1024" selected>1024 px</option>
+<option value="2048">2048 px</option>
+</select>
+</label>
+<button type="button" class="bk-btn-primary" style="cursor:pointer;font-family:inherit" onclick="hexDownloadAll(this)">download all (.zip) ↓</button>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:18px">
+{% for m in site.data.members %}
 <div style="border:1px solid #e7e7e3;border-radius:14px;overflow:hidden;background:#fff;display:flex;flex-direction:column">
-<div style="height:150px;display:flex;align-items:center;justify-content:center;padding:22px;background:#fafafa">
-<img src="{% if a.preview %}{{ a.preview }}{% else %}assets/svg/{{ a.name }}.svg{% endif %}" alt="{{ a.label }}" style="max-height:104px;max-width:104px;width:auto;height:auto;display:block"/>
+<div style="padding:16px;display:flex;align-items:center;justify-content:center;background:#fafafa">
+<canvas id="hexc-{{ m.name | slugify }}" width="260" height="260" style="width:120px;height:120px;display:block" aria-label="{{ m.name }} hexagon"></canvas>
 </div>
-<div style="padding:15px 18px;border-top:1px solid #eee;display:flex;flex-direction:column;gap:11px">
-<div style="font-weight:600;font-size:15px">{{ a.label }}</div>
-<div style="display:flex;flex-wrap:wrap;gap:6px">
-{% if a.files %}
-{% for f in a.files %}<a href="{{ f.href }}" download class="bk-pill">{{ f.label }} ↓</a>{% endfor %}
-{% else %}
-<a href="assets/svg/{{ a.name }}.svg" download class="bk-pill">svg ↓</a>
-<a href="assets/png/{{ a.name }}.png" download class="bk-pill">png ↓</a>
-{% endif %}
-</div>
+<div style="padding:12px 14px;border-top:1px solid #eee;display:flex;flex-direction:column;gap:8px">
+<div style="font-weight:600;font-size:13.5px">{{ m.name }}</div>
+<button type="button" class="bk-pill" style="cursor:pointer;font-family:inherit" onclick='hexDownload({{ m.name | jsonify }})'>png ↓</button>
 </div>
 </div>
 {% endfor %}
 </div>
+<p style="margin:20px 0 0;font-size:14px;color:#777;line-height:1.6">prefer the command line, or batching this in a build? there&#39;s a python version too — <a href="https://github.com/asterisk-labs/asterisk-labs.github.io/blob/main/scripts/export_member_hexes.py" target="_blank" rel="noopener" style="color:#492ae8">scripts/export_member_hexes.py</a>.</p>
 </section>
 
-<!-- 09 SOCIAL -->
-<section id="social" style="padding:70px 0;border-top:1px solid #ededea">
-<div style="display:flex;align-items:baseline;gap:14px;margin-bottom:14px">
-<span style="font-size:14px;letter-spacing:.16em;color:#492ae8;font-weight:700">09</span>
-<h2 style="margin:0;font-size:34px;font-weight:600;letter-spacing:-.01em">social avatars</h2>
-</div>
-<p style="margin:0 0 30px;font-size:17px;line-height:1.6;color:#555;max-width:66ch">square profile images, the mark centred on a brand colour. indigo is the default.</p>
-<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:18px">
-{% for a in site.data.brand.avatars %}
-<div style="border:1px solid #e7e7e3;border-radius:14px;overflow:hidden;background:#fff;display:flex;flex-direction:column">
-<div style="height:170px;display:flex;align-items:center;justify-content:center;padding:22px;background:#fafafa">
-<img src="assets/svg/{{ a.name }}.svg" alt="{{ a.label }}" style="height:126px;width:126px;border-radius:14px;display:block"/>
-</div>
-<div style="padding:15px 18px;border-top:1px solid #eee;display:flex;flex-direction:column;gap:11px">
-<div style="font-weight:600;font-size:15px">{{ a.label }}</div>
-<div style="display:flex;flex-wrap:wrap;gap:6px">
-<a href="assets/svg/{{ a.name }}.svg" download class="bk-pill">svg ↓</a>
-<a href="assets/png/{{ a.name }}.png" download class="bk-pill">png ↓</a>
-</div>
-</div>
-</div>
-{% endfor %}
-</div>
-</section>
-
-<!-- 10 EMAIL -->
-<section id="email" style="padding:70px 0;border-top:1px solid #ededea">
-<div style="display:flex;align-items:baseline;gap:14px;margin-bottom:14px">
-<span style="font-size:14px;letter-spacing:.16em;color:#492ae8;font-weight:700">10</span>
-<h2 style="margin:0;font-size:34px;font-weight:600;letter-spacing:-.01em">email signature</h2>
-</div>
-<p style="margin:0 0 24px;font-size:17px;line-height:1.6;color:#555;max-width:66ch">a ready-made signature block. the image is already hosted on this site, so just paste the html into your mail client and edit the name.</p>
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;align-items:start">
-<div style="border:1px solid #e7e7e3;border-radius:14px;padding:30px;background:#fff">
-<div style="font-size:12px;font-weight:700;letter-spacing:.14em;color:#9a9a97;margin-bottom:18px">preview</div>
-<table cellpadding="0" cellspacing="0" style="border-collapse:collapse"><tr>
-<td style="padding-right:18px;border-right:2px solid #c4ffc2;vertical-align:middle"><img src="assets/svg/mark-color.svg" width="52" height="59" alt="asterisk labs" style="display:block"/></td>
-<td style="padding-left:18px;vertical-align:middle">
-<div style="font-size:16px;font-weight:700;color:#000">your name <span style="font-weight:400;font-size:13px;color:#999">(they/them)</span></div>
-<div style="font-size:13px;color:#666;margin-top:2px">researcher · asterisk labs</div>
-<div style="font-size:13px;margin-top:5px"><a href="https://asterisk.coop" style="color:#492ae8">asterisk.coop</a></div>
-</td>
-</tr></table>
-</div>
-<div style="border:1px solid #e7e7e3;border-radius:14px;padding:22px;background:#0b0b0b">
-<div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px">
-<div style="font-size:12px;font-weight:700;letter-spacing:.14em;color:#666">html snippet</div>
-<button type="button" class="bk-copy" onclick="bkCopy(document.getElementById('bk-sig-snippet').textContent)">copy html</button>
-</div>
-<pre id="bk-sig-snippet" style="margin:0;white-space:pre-wrap;word-break:break-word;font-size:12px;line-height:1.55;color:#c9c9c9"></pre>
-</div>
-</div>
-</section>
-
-<!-- DOWNLOAD -->
-<section id="download" style="padding:70px 0 30px;border-top:1px solid #ededea">
-<div style="border-radius:20px;background:#000;color:#fff;padding:54px 44px;text-align:center">
-<img src="assets/svg/mark-white.svg" alt="" style="height:56px;width:auto;display:block;margin:0 auto 24px"/>
-<h2 style="margin:0;font-size:clamp(26px,3.4vw,40px);font-weight:600;letter-spacing:-.01em">everything, in one download</h2>
-<p style="margin:16px auto 0;font-size:17px;line-height:1.6;color:#b5b5b5;max-width:52ch">all logos, symbols, icons and avatars — svg + png, transparent and solid-background — plus a colour reference and readme.</p>
-<div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:30px">
-<a href="assets/asterisk-labs-brand-kit.zip" download class="bk-btn-invert">download brand kit (.zip) ↓</a>
-</div>
 </div>
 </section>
 
@@ -452,6 +504,17 @@ description: Logos, colours and usage guidelines for Asterisk Labs.
         }
     }
 
+    // Expand / collapse the "for the team" region.
+    function bkToggleMembers() {
+        var content = document.getElementById('members-content');
+        var btn = document.getElementById('members-toggle');
+        var chevron = document.getElementById('members-chevron');
+        var opening = content.hasAttribute('hidden');
+        if (opening) { content.removeAttribute('hidden'); } else { content.setAttribute('hidden', ''); }
+        btn.setAttribute('aria-expanded', String(opening));
+        chevron.style.transform = opening ? 'rotate(180deg)' : 'none';
+    }
+
     // Snippets are built here (not hand-escaped HTML) and injected as text.
     (function () {
         var cornerSnippet = [
@@ -468,7 +531,7 @@ description: Logos, colours and usage guidelines for Asterisk Labs.
             '.bl2{bottom:0;left:0;border-left:50px solid #f7cc09;border-top:100px solid transparent}',
             '.bl3{bottom:0;left:0;border-left:50px solid #c4ffc2;border-top:50px solid transparent}',
             '.br1{bottom:0;right:0;border-right:100px solid #c4ffc2;border-top:50px solid transparent}',
-            '.br2{bottom:0;right:0;border-right:50px solid #492ae8;border-top:100px solid transparent}',
+            '.br2{bottom:0;right:0;border-right:50px solid #492ae8;border-top:50px solid transparent}',
             '.br3{bottom:0;right:0;border-right:50px solid #f7cc09;border-top:50px solid transparent}',
             '</style>',
             '<div class="al-corners" aria-hidden="true">',
@@ -492,5 +555,135 @@ description: Logos, colours and usage guidelines for Asterisk Labs.
         ].join('\n');
         document.getElementById('bk-corner-snippet').textContent = cornerSnippet;
         document.getElementById('bk-sig-snippet').textContent = emailSig;
+    })();
+</script>
+
+<!-- Member data for the in-browser profile-picture generator (from _data/members.yml) -->
+<script type="text/javascript">
+    window.AL_MEMBERS = [
+    {% for m in site.data.members %}{ name: {{ m.name | jsonify }}, image: {{ m.image | relative_url | jsonify }}, color: {{ m.color | jsonify }} }{% unless forloop.last %},{% endunless %}
+    {% endfor %}];
+</script>
+
+<script type="text/javascript">
+    // Profile-picture generator: draw each member's hexagon on a canvas and export
+    // as a transparent PNG — same geometry as .hexagon in style.css. Fully client-side.
+    (function () {
+        var HEX = [[0.50, 0], [0.93, 0.25], [0.93, 0.75], [0.50, 1], [0.07, 0.75], [0.07, 0.25]];
+        var members = window.AL_MEMBERS || [];
+
+        function slug(name) { return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''); }
+        function rgb(color) { return (color && color.length === 9) ? color.slice(0, 7) : color; }  // drop #RRGGBBAA alpha
+
+        var cache = {};
+        function loadImage(src) {
+            return cache[src] || (cache[src] = new Promise(function (resolve, reject) {
+                var img = new Image();
+                img.onload = function () { resolve(img); };
+                img.onerror = reject;
+                img.src = src;
+            }));
+        }
+
+        function paint(canvas, img, color, size) {
+            canvas.width = size;
+            canvas.height = size;
+            var ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, size, size);
+            ctx.beginPath();
+            HEX.forEach(function (p, i) {
+                var x = p[0] * size, y = p[1] * size;
+                if (i) { ctx.lineTo(x, y); } else { ctx.moveTo(x, y); }
+            });
+            ctx.closePath();
+            ctx.save();
+            ctx.clip();                          // everything outside the hexagon stays transparent
+            ctx.fillStyle = rgb(color);
+            ctx.fillRect(0, 0, size, size);      // member colour behind the portrait
+            var scale = Math.max(size / img.width, size / img.height);  // object-fit: cover
+            var w = img.width * scale, h = img.height * scale;
+            ctx.drawImage(img, (size - w) / 2, (size - h) / 2, w, h);
+            ctx.restore();
+        }
+
+        function renderOffscreen(member, size) {
+            return loadImage(member.image).then(function (img) {
+                var canvas = document.createElement('canvas');
+                paint(canvas, img, member.color, size);
+                return canvas;
+            });
+        }
+
+        function toBlob(canvas) {
+            return new Promise(function (resolve) { canvas.toBlob(resolve, 'image/png'); });
+        }
+
+        function save(blob, filename) {
+            var url = URL.createObjectURL(blob);
+            var a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+        }
+
+        function chosenSize() {
+            var sel = document.getElementById('hex-size');
+            return (sel && parseInt(sel.value, 10)) || 1024;
+        }
+
+        // Live previews in each member card.
+        members.forEach(function (m) {
+            var canvas = document.getElementById('hexc-' + slug(m.name));
+            if (canvas) {
+                loadImage(m.image).then(function (img) { paint(canvas, img, m.color, 260); });
+            }
+        });
+
+        // Single-member download.
+        window.hexDownload = function (name) {
+            var member = members.filter(function (m) { return m.name === name; })[0];
+            if (!member) { return; }
+            renderOffscreen(member, chosenSize()).then(toBlob).then(function (blob) {
+                save(blob, slug(name) + '.png');
+            });
+        };
+
+        // Lazily load JSZip (only when someone actually asks for the zip).
+        function ensureJSZip() {
+            if (window.JSZip) { return Promise.resolve(window.JSZip); }
+            return new Promise(function (resolve, reject) {
+                var s = document.createElement('script');
+                s.src = 'https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js';
+                s.onload = function () { resolve(window.JSZip); };
+                s.onerror = reject;
+                document.head.appendChild(s);
+            });
+        }
+
+        // Download all members as a single zip.
+        window.hexDownloadAll = function (btn) {
+            var size = chosenSize();
+            var label = btn.textContent;
+            btn.textContent = 'zipping…';
+            btn.disabled = true;
+            ensureJSZip().then(function (JSZip) {
+                var zip = new JSZip();
+                return Promise.all(members.map(function (m) {
+                    return renderOffscreen(m, size).then(toBlob).then(function (blob) {
+                        zip.file(slug(m.name) + '.png', blob);
+                    });
+                })).then(function () { return zip.generateAsync({ type: 'blob' }); });
+            }).then(function (blob) {
+                save(blob, 'asterisk-team-hexagons.zip');
+            }).catch(function () {
+                alert('Sorry — could not build the zip. Try the individual downloads.');
+            }).then(function () {
+                btn.textContent = label;
+                btn.disabled = false;
+            });
+        };
     })();
 </script>
