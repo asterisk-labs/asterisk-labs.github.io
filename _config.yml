@@ -46,6 +46,7 @@ plugins:
 # its corrected assets from brand/assets/, so keep dist/ out of the published site.
 exclude:
   - dist/
+  - archive/   # retired page snapshots kept for reference, not published
 #   - .sass-cache/
 #   - .jekyll-cache/
 #   - gemfiles/
