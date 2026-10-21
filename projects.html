@@ -4,49 +4,51 @@ title: Projects at Asterisk
 ---
 
 <style>
-    /* Projects listing — branded card grid, harmonised with the media kit.
+    /* Projects listing — branded card grid built from _data/projects.yml.
        This <style> only ships on this page, so widening the container is safe. */
     .cover-container { max-width: 1000px !important; }
     main.mb-auto { text-align: left; }
 
-    #projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; margin-bottom: 60px; }
+    .proj-section { font-size: 20px; font-weight: 600; letter-spacing: -.01em; margin: 42px 0 18px; }
+    .proj-section:first-of-type { margin-top: 8px; }
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
     .proj-card { display: flex; flex-direction: column; border: 1px solid #e7e7e3; border-radius: 14px; overflow: hidden; background: #fff; text-decoration: none; color: #000; transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease; }
     .proj-card:hover { transform: translateY(-3px); }  /* colour set per-hover in JS */
     .proj-preview { height: 150px; display: flex; align-items: center; justify-content: center; padding: 28px; background: #fff; border-bottom: 1px solid #eee; }
     .proj-preview img { max-width: 84%; max-height: 74px; width: auto; height: auto; display: block; }
-    .proj-body { padding: 22px 24px; }
+    .proj-body { padding: 20px 24px 22px; }
+    .proj-badge { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 3px 9px; border-radius: 999px; margin-bottom: 12px; }
+    .proj-badge-ongoing  { background: #c4ffc2; color: #16511a; }
+    .proj-badge-upcoming { background: #f7cc09; color: #5a4600; }
+    .proj-badge-complete { background: #ededea; color: #666; }
     .proj-desc { margin: 0; font-size: 15px; line-height: 1.62; color: #555; }
+    #projects-wrap { margin-bottom: 60px; }
 </style>
 
 <main class="mb-auto">
-    <div id="projects-grid">
-        <a class="proj-card" href="project-pages/project-clouds-decoded.html">
-            <div class="proj-preview"><img src="/assets/imgs/clouds-decoded.png" alt="Clouds Decoded"/></div>
-            <div class="proj-body">
-                <p class="proj-desc">Clouds Decoded aims to understand local properties of clouds in previously unexplored high-resolution optical data from the Sentinel-2 satellite</p>
-            </div>
-        </a>
-
-        <a class="proj-card" href="project-pages/project-copernicus-report.html">
-            <div class="proj-preview"><img src="/assets/imgs/vision-logo.jpg" alt="Copernicus AI Report"/></div>
-            <div class="proj-body">
-                <p class="proj-desc">AI Vision for Copernicus is a report for ESA summarising the state-of-the-art of AI for Earth Observation with recommendations about the future of the programme</p>
-            </div>
-        </a>
-
-        <a class="proj-card" href="project-pages/fed-collective.html">
-            <div class="proj-preview"><img src="/assets/imgs/fed-logo.png" alt="FED Collective"/></div>
-            <div class="proj-body">
-                <p class="proj-desc">Asterisk Labs and Alberto Arribas are in the process of forming an organisation dedicated to open and interoperable software framework for environmental data.</p>
-            </div>
-        </a>
-
-        <a class="proj-card" href="project-pages/project-wildcard.html">
-            <div class="proj-preview"><img src="/assets/imgs/wildcard-logo.png" alt="Wildcard Programme"/></div>
-            <div class="proj-body">
-                <p class="proj-desc">Framework for growing an interdisciplinary team of Asterisk by inviting and funding scientists with unusual ideas for Earth data commons</p>
-            </div>
-        </a>
+    <div id="projects-wrap">
+    {% assign statuses = "ongoing,upcoming,complete" | split: "," %}
+    {% assign labels   = "Ongoing,Upcoming,Complete" | split: "," %}
+    {% for i in (0..2) %}
+        {% assign st = statuses[i] %}
+        {% assign group = site.data.projects | where: "status", st %}
+        {% if group.size > 0 %}
+        <h2 class="proj-section">{{ labels[i] }}</h2>
+        <div class="projects-grid">
+            {% for p in group %}
+            {% if p.image %}{% assign img = p.image %}{% else %}{% assign img = "/assets/imgs/mark-construction.svg" %}{% endif %}
+            {% if p.url %}{% assign link = p.url %}{% else %}{% capture link %}project-pages/under-construction.html?p={{ p.title | slugify }}{% endcapture %}{% endif %}
+            <a class="proj-card" href="{{ link }}">
+                <div class="proj-preview"><img src="{{ img }}" alt="{{ p.title }}"/></div>
+                <div class="proj-body">
+                    <span class="proj-badge proj-badge-{{ p.status }}">{{ p.status }}</span>
+                    <p class="proj-desc">{{ p.summary }}</p>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+        {% endif %}
+    {% endfor %}
     </div>
 </main>
 

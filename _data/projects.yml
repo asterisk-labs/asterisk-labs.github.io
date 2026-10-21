@@ -1,0 +1,56 @@
+# Projects shown on /projects.html — one block per project card.
+#
+# To add a project:
+#   1. Copy a block below and edit its fields.
+#   2. (optional) Put a logo in assets/imgs/ and point `image` at it.
+#   3. (optional) Link a detail page via `url`, or leave `url` out to use the
+#      shared "under construction" placeholder until the real page is built.
+#
+# Fields
+#   title    required   project name (shown on the card, used for alt text)
+#   status   required   ongoing | upcoming | complete  — sets the section and badge
+#   summary  required   one or two lines shown on the card
+#   image    optional   logo path; omit to fall back to the under-construction mark
+#   url      optional   detail page or external link; omit to use under-construction.html
+#   contact  optional   guardian shown on the placeholder: { name: ..., email: ... }
+#
+# Order within a status group follows the order below.
+# Sections render Ongoing -> Upcoming -> Complete.
+
+# ── Ongoing ──────────────────────────────────────────────────────────────────
+- title: Earth Compress
+  status: ongoing
+  image: /assets/imgs/earth-compress-logo.png
+  summary: A three-year ARIA-funded project with the National Oceanography Centre, building open compression algorithms that cut the size and cost of large environmental datasets.
+  url: project-pages/earth-compress.html
+
+- title: IRIS
+  status: ongoing
+  summary: Details coming soon.
+  # image omitted -> under-construction mark; url omitted -> under-construction page
+
+# ── Upcoming ─────────────────────────────────────────────────────────────────
+- title: Clouds from Above and Below
+  status: upcoming
+  summary: Details coming soon.
+
+- title: RainCheck
+  status: upcoming
+  summary: Details coming soon.
+
+- title: ThunderTrace
+  status: upcoming
+  summary: Details coming soon.
+
+# ── Complete ─────────────────────────────────────────────────────────────────
+- title: Clouds Decoded
+  status: complete
+  image: /assets/imgs/clouds-decoded.png
+  summary: Understanding local cloud properties in previously unexplored high-resolution Sentinel-2 data.
+  url: project-pages/project-clouds-decoded.html
+
+- title: Copernicus AI Report
+  status: complete
+  image: /assets/imgs/vision-logo.jpg
+  summary: A report for ESA summarising the state of AI for Earth Observation, with recommendations for the programme's future.
+  url: project-pages/project-copernicus-report.html
