@@ -1,67 +1,48 @@
 ---
 layout: default
-title: FED Collective
-description: Changing the future of environmental data together
-thumbnail: assets/imgs/fed-logo.png
+title: Earth Compress
+description: Cutting the cost of petabyte-scale environmental data
+thumbnail: /assets/imgs/earth-compress-logo.png
 ---
 
 <link href="project.css"  rel="stylesheet">
 
-<div class="d-flex flex-column flex-lg-row container-fluid" style="--theme:#492ae8">
+<div class="d-flex flex-column flex-lg-row container-fluid" style="--theme:#3aa1a1">
 
     <div class="project-desc">
         <div class='gradual-reveal'>
-            <img src='/assets/imgs/fed-logo.png' class='project-thumbnail'/>
+            <img src='/assets/imgs/earth-compress-logo.png' class='project-thumbnail'/>
         </div>
-        
-        <p class="project-p gradual-reveal">
-        <a href="https://asterisk.coop">Asterisk Labs</a> and <a href='https://www.linkedin.com/in/alberto-arribas-74294b4/'>Alberto Arribas</a> from <a href='https://noc.ac.uk/'>National Oceanography Centre</a> are taking part in a 6 month residency funded by <a href="https://www.aria.org.uk/">ARIA</a> through their FROST UK joint programme, where we are developing a proposal on strategies for resilient, globally distributed infrastructure, making it possible for everybody, everywhere to easily access and analyse all available environmental data.
-        </p>
-        
-        <p class="project-p gradual-reveal">
-            The critical bottleneck limiting high-impact environmental research is how difficult it has become to process increasingly huge and complex datasets. To overcome this bottleneck we will build open source, AI-powered software infrastructure and data-as-AI models that are trustworthy and publicly-owned. We will not only build technology, but establish a multi-institutional cooperative, reducing current fragmentation and complexity to massively increase the number of organisations that can access and manipulate Earth-scale environmental data.
-        </p>
-        <p class="project-p gradual-reveal">
-            Our software infrastructure will simultaneously empower data producers (so they can easily create Earth Embedding models) and data users (so they can easily access and manipulate them). Therefore, we will enable a transformative shift, massively reducing the compute costs and complexity for all.
-        </p>
-        <p class="project-p gradual-reveal">
-            Our software infrastructure has three key components:
-            <ul class='gradual-reveal'>
-                <li>Novel architecture enabling collaboration at global scale;</li>
-                <li>Compressing Technology enabling reduction of data volumes for Earth Observations, model data and video/audio data;</li>
-                <li>Protocol and standards enabling PB-scale data use and AI training;</li>
-            </ul>
-        </p>
 
         <p class="project-p gradual-reveal">
-            By combining these three key components our software infrastructure will collapse today’s atomised, bespoke and excessively complex approaches, enabling the delivery of high-impact research not only for underpinning environmental monitoring/prediction (e.g. high-resolution data-driven weather and climate models) but for critical, real-world applications, such as: 
-            <ul class='gradual-reveal'>
-                <li>Protecting critical infrastructure;</li>
-                <li>Ensuring food security and human health; </li>
-                <li>Underpinning energy transition; </li>
-                <li>Enabling ecosystem monitoring and protection;</li>
-            </ul>
-        </p>
-    
-        <p class="project-p gradual-reveal">
-            We will work with a wide ecosystem of public institutions, private organisations and researchers to ensure global interoperability and transparent governance. Our FRO will have a not-for-profit structure (limited by guarantee) and we will incentivise collaboration by establishing a multi-institution co-operative that we expect to become financially sustainable by providing training, verification, consultancy, and enterprise services to data providers and users.
-        </p>
-        <p class="project-p gradual-reveal">
-        By building novel technology and establishing shared ownership we will not only significantly accelerate progress, but create resilience - a topical and pragmatic real-world use of our infrastructure would be data rescue. For example, to create efficient and low-cost proxy AI representations of unique and critically valuable datasets at risk of disappearance due to funding cuts, e.g. <a href="https://www.bbc.com/future/article/20250422-usa-scientists-race-to-save-climate-data-before-its-deleted-by-the-trump-administration">Saving USA climate data | BBC</a> - and empower the global community to tackle the triple climate, biodiversity and pollution planetary crisis.
+            Earth Compress is a three-year, £7&nbsp;million project funded by the <a href="https://www.aria.org.uk/" style="color:#3aa1a1">Advanced Research and Invention Agency (ARIA)</a>, led by the <a href="https://noc.ac.uk/" style="color:#3aa1a1">National Oceanography Centre</a> and <a href="https://asterisk.coop/" style="color:#3aa1a1">Asterisk Labs</a>. It develops and operationalises highly performant compression algorithms that massively reduce the size and cost of increasingly large environmental datasets.
         </p>
 
-   </div>
+        <h2 class='gradual-reveal'>The problem</h2>
+        <p class="project-p gradual-reveal">
+            Environmental datasets are growing to petabyte scale, and the cost of hosting, transferring and analysing them has become a bottleneck for high-impact research. When storing and moving the data is expensive, fewer people can work with it — and the science slows down.
+        </p>
+
+        <h2 class='gradual-reveal'>Our approach</h2>
+        <p class="project-p gradual-reveal">
+            We work closely with data producers like ECMWF and EUMETSAT, alongside the wider Earth observation and environmental communities, to build an open-source toolbox that democratises data access — letting anyone run global-scale experiments and analysis on petabytes of data.
+        </p>
+        <p class="project-p gradual-reveal">
+            To hear more about the project, read <a href="https://aria.org.uk/insights/2026/doubling-down-on-earth-scale-data" style="color:#3aa1a1">ARIA’s announcement</a>.
+        </p>
+
+    </div>
 </div>
 
 <script>
         document.addEventListener("DOMContentLoaded", function () {
       const elements = document.querySelectorAll('.gradual-reveal');
 
-      // Trigger the animation with dynamic delays for each element
+      // Trigger the animation with a gentle stagger for each element
       elements.forEach((element, index) => {
         setTimeout(() => {
           element.classList.add('animate'); // Add 'animate' class to trigger CSS transition
-        }, index * 90); // Stagger by 300ms
+        }, index * 90);
       });
     });
 </script>
