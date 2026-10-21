@@ -1,0 +1,35 @@
+---
+layout: default
+title: Under Construction
+---
+
+<main class="mb-auto" style="text-align:center; max-width:600px; margin:auto;">
+    <img src="/assets/imgs/mark-construction.svg" alt="" aria-hidden="true" style="width:92px;height:auto;margin-bottom:26px;">
+    <h3 id="uc-title" style="margin-bottom:20px;">under construction</h3>
+    <p id="uc-msg" style="font-size:1.05rem; line-height:1.6; color:#555;">This project page is still being built. For more information or urgent questions, email <a href="mailto:hello@asterisk.coop" style="color:#492ae8ff;">hello@asterisk.coop</a>.</p>
+    <p style="margin-top:30px;"><a href="/projects.html" style="color:#492ae8ff;">&larr; back to projects</a></p>
+</main>
+
+<script type="text/javascript">
+    // Projects (from _data/projects.yml) so this shared page can name the right
+    // project and its guardian, based on the ?p=<slug> in the link.
+    window.AL_PROJECTS = [
+    {% for p in site.data.projects %}{ slug: {{ p.title | slugify | jsonify }}, title: {{ p.title | jsonify }}{% if p.contact %}, contact: { name: {{ p.contact.name | jsonify }}, email: {{ p.contact.email | default: "hello@asterisk.coop" | jsonify }} }{% endif %} }{% unless forloop.last %},{% endunless %}
+    {% endfor %}];
+
+    (function () {
+        var slug = new URLSearchParams(location.search).get('p');
+        if (!slug) return;
+        var proj = (window.AL_PROJECTS || []).filter(function (x) { return x.slug === slug; })[0];
+        if (!proj) return;
+
+        document.getElementById('uc-title').textContent = proj.title + ' — under construction';
+        var email = (proj.contact && proj.contact.email) || 'hello@asterisk.coop';
+        var lead = (proj.contact && proj.contact.name)
+            ? 'This page is being built by ' + proj.contact.name + '. '
+            : 'This page is still being built. ';
+        document.getElementById('uc-msg').innerHTML = lead +
+            'For more information or urgent questions, email ' +
+            '<a href="mailto:' + email + '" style="color:#492ae8ff;">' + email + '</a>.';
+    })();
+</script>
