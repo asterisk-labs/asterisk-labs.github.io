@@ -23,24 +23,29 @@
   image: /assets/imgs/earth-compress-logo.png
   summary: A three-year ARIA-funded project with the National Oceanography Centre, building open compression algorithms that cut the size and cost of large environmental datasets.
   url: project-pages/earth-compress.html
+  contact: { name: Miko, email: miko@asterisk.coop}
 
 - title: IRIS
   status: ongoing
   summary: Details coming soon.
+  contact: { name: Ali, email: ali@asterisk.coop}
   # image omitted -> under-construction mark; url omitted -> under-construction page
 
 # ── Upcoming ─────────────────────────────────────────────────────────────────
 - title: Clouds from Above and Below
   status: upcoming
   summary: Details coming soon.
+  contact: { name: Jacqueline, email: jacqueline@asterisk.coop}
 
 - title: RainCheck
   status: upcoming
   summary: Details coming soon.
+  contact: { name: Barbara, email: barbara@asterisk.coop}
 
 - title: ThunderTrace
   status: upcoming
   summary: Details coming soon.
+  contact: { name: Barbara, email: barbara@asterisk.coop}
 
 # ── Complete ─────────────────────────────────────────────────────────────────
 - title: Clouds Decoded
@@ -48,9 +53,11 @@
   image: /assets/imgs/clouds-decoded.png
   summary: Understanding local cloud properties in previously unexplored high-resolution Sentinel-2 data.
   url: project-pages/project-clouds-decoded.html
+  contact: { name: Barbara, email: barbara@asterisk.coop}
 
 - title: Copernicus AI Report
   status: complete
   image: /assets/imgs/vision-logo.jpg
   summary: A report for ESA summarising the state of AI for Earth Observation, with recommendations for the programme's future.
   url: project-pages/project-copernicus-report.html
+  contact: { name: Miko, email: miko@asterisk.coop}
