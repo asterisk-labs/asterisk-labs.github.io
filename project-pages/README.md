@@ -2,6 +2,9 @@
 
 How the projects section works, and how to add or look after a project.
 
+> New here? Start at the front door: [`../CONTRIBUTING.md`](../CONTRIBUTING.md)
+> — the four ways to contribute, the style rules, and the review process.
+>
 > Looking for the open-source **magic** section? See
 > [`../magic-pages/README.md`](../magic-pages/README.md).
 

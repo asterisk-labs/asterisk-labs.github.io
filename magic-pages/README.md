@@ -2,6 +2,9 @@
 
 How the magic section works, and how to add or look after an item.
 
+> New here? Start at the front door: [`../CONTRIBUTING.md`](../CONTRIBUTING.md)
+> — the four ways to contribute, the style rules, and the review process.
+>
 > Looking for the funded **projects** section? See
 > [`../project-pages/README.md`](../project-pages/README.md).
 
