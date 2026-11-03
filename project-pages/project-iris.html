@@ -1,0 +1,212 @@
+---
+layout: default
+title: IRIS
+description: A web tool for labelling satellite imagery pixel by pixel, now being extended for embeddings-first workflows with ESA
+thumbnail: /assets/imgs/iris-segmentation.png
+---
+
+<link href="project.css"  rel="stylesheet">
+
+<style>
+    /* IRIS page only */
+    .iris-hero {
+        width: 100%;
+        max-width: 1100px;
+        margin: 0 auto 10px auto;
+        display: block;
+        border-radius: 8px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
+    }
+    .iris-caption {
+        text-align: center;
+        color: #666;
+        font-size: 0.95rem;
+        margin: 8px 0 0 0;
+    }
+    .iris-video {
+        position: relative;
+        width: 100%;
+        max-width: 900px;
+        margin: 10px auto 0 auto;
+        aspect-ratio: 16 / 9;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
+    }
+    .iris-video iframe {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+    .iris-diagram {
+        width: 100%;
+        max-width: 860px;
+        height: auto;
+        display: block;
+        margin: 10px auto 0 auto;
+    }
+    .iris-themes {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 18px 28px;
+        margin: 10px 0 20px 0;
+    }
+    .iris-themes h3 {
+        font-size: 1.1rem;
+        margin: 0 0 6px 0;
+        color: var(--theme, #5B9AA9);
+    }
+    .iris-themes p {
+        font-size: 1.05rem;
+        line-height: 1.5;
+        margin: 0;
+    }
+    .iris-links a {
+        color: var(--theme, #5B9AA9);
+        font-weight: 600;
+    }
+    .iris-logos {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 40px;
+        margin: 40px 0 10px 0;
+    }
+    .iris-logos img {
+        max-height: 4rem;
+        height: auto;
+    }
+</style>
+
+<div class="d-flex flex-column container-fluid" style="--theme:#5B9AA9">
+    <div class="project-desc">
+        <div class='gradual-reveal'>
+            <img src='/assets/imgs/iris-logo.svg' class='project-thumbnail' alt='IRIS'/>
+        </div>
+
+        <img src='/assets/imgs/iris-segmentation.png' class='iris-hero gradual-reveal' alt='The IRIS segmentation view: a Sentinel-2 scene with cloud classes painted over it'/>
+        <p class="iris-caption gradual-reveal">The IRIS annotation view: paint a few pixels, let the model fill in the rest, correct, repeat.</p>
+
+        <p class="project-p gradual-reveal">
+            IRIS is a web tool for labelling satellite imagery pixel by pixel. It was first built at ESA's Φ-lab in 2019 to speed up the annotation of cloudy Sentinel-2 scenes, and it has since become a popular tool that has been used for a range of other tasks. The user paints a few pixels of each class, a gradient boosted model is trained on those pixels and predicts the rest of the image, and the user corrects the prediction and trains again.
+        </p>
+
+        <h2 class='gradual-reveal'>Where we started</h2>
+        <p class="project-p gradual-reveal">
+            The original IRIS, built for the Sentinel-2 cloud mask catalogue, explained in a few minutes.
+        </p>
+        <div class="iris-video gradual-reveal">
+            <iframe src="https://www.youtube-nocookie.com/embed/ERJA2-fTW6k" title="IRIS: Intelligently Reinforced Image Segmentation" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+
+        <h2 class='gradual-reveal'>Why it needs to change</h2>
+        <p class="project-p gradual-reveal">
+            The model is retrained from scratch for every image, which keeps labelling errors from spreading between images but also means that nothing learnt on one image helps with the next. That design made sense when supervised training of a convolutional model was the only reason to build a labelled dataset. It makes less sense now that pre-computed embeddings are available for the whole planet. A linear model on AlphaEarth or TESSERA embeddings can separate many land cover classes with a handful of examples, and the goal of an annotation project is then not a dataset for training a new model but a mapping from classes to regions of embedding space that can be applied anywhere.
+        </p>
+
+        <h2 class='gradual-reveal'>What we are building</h2>
+        <p class="project-p gradual-reveal">
+            Over six months, with the support of ESA's Φ-lab, we are extending IRIS along four lines.
+        </p>
+
+        <svg class="iris-diagram gradual-reveal" viewBox="0 0 860 420" role="img" aria-labelledby="iris-diagram-title">
+            <title id="iris-diagram-title">The four themes of the IRIS project around the core tool</title>
+            <defs>
+                <marker id="iris-dot" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6">
+                    <circle cx="5" cy="5" r="4" fill="#5B9AA9"/>
+                </marker>
+            </defs>
+            <!-- connectors -->
+            <g stroke="#5B9AA9" stroke-width="2.5" fill="none" stroke-linecap="round">
+                <path d="M 340 170 C 290 150, 250 130, 205 112"/>
+                <path d="M 520 170 C 570 150, 610 130, 655 112"/>
+                <path d="M 340 250 C 290 270, 250 290, 205 308"/>
+                <path d="M 520 250 C 570 270, 610 290, 655 308"/>
+            </g>
+            <!-- centre -->
+            <g>
+                <polygon points="430,130 505,172 505,248 430,290 355,248 355,172" fill="#5B9AA9"/>
+                <text x="430" y="203" text-anchor="middle" font-family="inherit" font-size="30" font-weight="700" fill="#ffffff">IRIS</text>
+                <text x="430" y="232" text-anchor="middle" font-family="inherit" font-size="13" fill="#e8f3f5">paint · predict · correct</text>
+            </g>
+            <!-- theme nodes -->
+            <g font-family="inherit">
+                <g>
+                    <rect x="30" y="60" width="200" height="86" rx="12" fill="#ffffff" stroke="#5B9AA9" stroke-width="2.5"/>
+                    <text x="130" y="94" text-anchor="middle" font-size="16" font-weight="700" fill="#1f3b42">Embeddings workflows</text>
+                    <text x="130" y="116" text-anchor="middle" font-size="12.5" fill="#555">linear models, shared annotations,</text>
+                    <text x="130" y="132" text-anchor="middle" font-size="12.5" fill="#555">smart choice of the next image</text>
+                </g>
+                <g>
+                    <rect x="630" y="60" width="200" height="86" rx="12" fill="#ffffff" stroke="#5B9AA9" stroke-width="2.5"/>
+                    <text x="730" y="94" text-anchor="middle" font-size="16" font-weight="700" fill="#1f3b42">Agentic setup</text>
+                    <text x="730" y="116" text-anchor="middle" font-size="12.5" fill="#555">describe a task, get a ready</text>
+                    <text x="730" y="132" text-anchor="middle" font-size="12.5" fill="#555">dataset and project</text>
+                </g>
+                <g>
+                    <rect x="30" y="274" width="200" height="86" rx="12" fill="#ffffff" stroke="#5B9AA9" stroke-width="2.5"/>
+                    <text x="130" y="308" text-anchor="middle" font-size="16" font-weight="700" fill="#1f3b42">Time-series annotation</text>
+                    <text x="130" y="330" text-anchor="middle" font-size="12.5" fill="#555">step through dates of a place,</text>
+                    <text x="130" y="346" text-anchor="middle" font-size="12.5" fill="#555">label each one</text>
+                </g>
+                <g>
+                    <rect x="630" y="274" width="200" height="86" rx="12" fill="#ffffff" stroke="#5B9AA9" stroke-width="2.5"/>
+                    <text x="730" y="308" text-anchor="middle" font-size="16" font-weight="700" fill="#1f3b42">Visualisation &amp; speed</text>
+                    <text x="730" y="330" text-anchor="middle" font-size="12.5" fill="#555">views over hundreds of bands,</text>
+                    <text x="730" y="346" text-anchor="middle" font-size="12.5" fill="#555">cloud-native image formats</text>
+                </g>
+            </g>
+        </svg>
+
+        <div class="iris-themes gradual-reveal">
+            <div>
+                <h3>Embeddings workflows</h3>
+                <p>Pixel-wise embeddings are added as an image source, with a linear classifier alongside the existing gradient boosted trees, and with annotations shared across the dataset so that a new image arrives with a prediction already drawn. Image-level embeddings from models such as THOR and TerraMind are used to choose which image to annotate next, by looking for the one least like those already labelled, and to decide which images are similar enough to share annotations at all. Language-aligned embeddings, where a class is described by a sentence and the embedding model turns it into a first guess at the mask, are the least certain part of the plan.</p>
+            </div>
+            <div>
+                <h3>Agentic setup</h3>
+                <p>Building a dataset is still the slowest part of starting a project. We are adding a catalogue of data sources and an assistant that turns a description of the task, the region and the data you want into a ready IRIS project, with views and classes chosen to suit the job. Setting up by hand stays exactly as it is.</p>
+            </div>
+            <div>
+                <h3>Time-series annotation</h3>
+                <p>Many questions are about change rather than a single date. IRIS will step through the dates available for a place and keep a mask for each, so annual embedding products and seasonal imagery can be labelled over time rather than one scene at a time.</p>
+            </div>
+            <div>
+                <h3>Visualisation and speed</h3>
+                <p>Embedding products carry 64 or 128 bands and hyperspectral sensors many more. We are reworking how IRIS stores, loads and displays imagery so that views over many bands are quick to make and quick to draw, with cloud-native formats that let the browser read only what it needs.</p>
+            </div>
+        </div>
+
+        <h2 class='gradual-reveal'>The people who use it</h2>
+        <p class="project-p gradual-reveal">
+            IRIS has been downloaded and forked many times, but as an open source project with a permissive licence we have little idea what it has been used for or what its users would change. We will be conducting a user survey and setting up a forum where development can be discussed. From that group we will pick two champion use cases, build their datasets with them whilst the new features are being written, and release both datasets at the end of the project. The results and the tool will be presented at a webinar in early 2027.
+        </p>
+        <p class="project-p gradual-reveal">
+            Anyone who has used IRIS and would like to be involved is welcome to <a href="mailto:hello@asterisk.coop" style="color: var(--theme);">get in touch</a>.
+        </p>
+
+        <h2 class='gradual-reveal'>Links</h2>
+        <p class="project-p iris-links gradual-reveal">
+            <a href="https://github.com/ESA-PhiLab/iris">IRIS on GitHub</a> (code, documentation and issues) ·
+            <a href="https://github.com/ESA-PhiLab/iris/blob/master/docs/config.md">project configuration guide</a>
+        </p>
+
+        <div class="iris-logos gradual-reveal">
+            <a href="https://philab.esa.int/"><img src='/assets/imgs/esa-logo.png' alt='ESA'/></a>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const elements = document.querySelectorAll('.gradual-reveal');
+        elements.forEach((element, index) => {
+            setTimeout(() => {
+                element.classList.add('animate');
+            }, index * 90);
+        });
+    });
+</script>
