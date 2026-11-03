@@ -178,9 +178,47 @@ thumbnail: /assets/imgs/iris-segmentation.png
         .iris-themes-list p { font-size: 1.05rem; line-height: 1.5; margin: 0; }
     }
 
-    .iris-links a {
-        color: var(--theme, #5B9AA9);
-        font-weight: 600;
+    .iris-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin: 6px 0 10px 0;
+    }
+    .iris-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 20px 12px 16px;
+        border: 2px solid var(--theme, #5B9AA9);
+        border-radius: 999px;
+        background: #fff;
+        color: #1f3b42;
+        font-weight: 700;
+        font-size: 1rem;
+        text-decoration: none;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+        transition: background-color 0.15s ease, color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .iris-button svg {
+        width: 22px;
+        height: 22px;
+        flex: none;
+        fill: currentColor;
+    }
+    .iris-button small {
+        display: block;
+        font-weight: 400;
+        font-size: 0.8rem;
+        opacity: 0.75;
+    }
+    .iris-button:hover,
+    .iris-button:focus-visible {
+        background: var(--theme, #5B9AA9);
+        color: #fff;
+        text-decoration: none;
+        transform: translateY(-2px);
+        box-shadow: 0 10px 26px rgba(91, 154, 169, 0.4);
+        outline: none;
     }
     .iris-logos {
         display: flex;
@@ -271,10 +309,20 @@ thumbnail: /assets/imgs/iris-segmentation.png
         </p>
 
         <h2 class='gradual-reveal'>Links</h2>
-        <p class="project-p iris-links gradual-reveal">
-            <a href="https://github.com/ESA-PhiLab/iris">IRIS on GitHub</a> (code, documentation and issues) ·
-            <a href="https://github.com/ESA-PhiLab/iris/blob/master/docs/config.md">project configuration guide</a>
-        </p>
+        <div class="iris-buttons gradual-reveal">
+            <a class="iris-button" href="https://github.com/ESA-PhiLab/iris">
+                <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+                <span>IRIS on GitHub<small>code, issues and releases</small></span>
+            </a>
+            <a class="iris-button" href="https://github.com/ESA-PhiLab/iris/blob/master/docs/config.md">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3h9a4 4 0 0 1 3 1.35A4 4 0 0 1 19 3h1a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1h-6.5a2.5 2.5 0 0 0-2.5 2.5V8a3 3 0 0 0-3-3H4V3zm0 4h4a1 1 0 0 1 1 1v12.5A4.5 4.5 0 0 0 5.5 20H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1zm15-2a2 2 0 0 0-2 2v12.58A4.5 4.5 0 0 1 19 18h0V5z"/></svg>
+                <span>Configuration guide<small>how to set up a project</small></span>
+            </a>
+            <a class="iris-button" href="https://www.youtube.com/watch?v=ERJA2-fTW6k">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+                <span>Original IRIS video<small>the 2020 walkthrough</small></span>
+            </a>
+        </div>
 
         <div class="iris-logos gradual-reveal">
             <a href="https://philab.esa.int/"><img src='/assets/imgs/esa-logo.png' alt='ESA'/></a>
