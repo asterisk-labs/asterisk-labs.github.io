@@ -49,6 +49,7 @@ exclude:
   - archive/   # retired page snapshots kept for reference, not published
   - .claude/   # Claude Code skills / config, not web content
   - CLAUDE.md  # repo instructions for Claude, not web content
+  - CONTRIBUTING.md  # contributor front door, not web content
   - docs/      # contributor docs (style checklist etc.), not web content
 #   - .sass-cache/
 #   - .jekyll-cache/
