@@ -32,10 +32,12 @@
   # image omitted -> under-construction mark; url omitted -> under-construction page
 
 # ── Upcoming ─────────────────────────────────────────────────────────────────
-- title: Clouds from Above and Below
+- title: Understanding Clouds from Above and Below
   status: upcoming
-  summary: Details coming soon.
+  summary: Asterisk Labs and The Clouds Appreciation Society are working together to understand clouds from above and below
   contact: { name: Jacqueline, email: jacqueline@asterisk.coop}
+  url: projects-pages/UCAB.html
+  image: /assets/imgs/UCAB-logo.png
 
 - title: RainCheck
   status: upcoming
