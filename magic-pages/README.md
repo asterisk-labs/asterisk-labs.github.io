@@ -54,17 +54,19 @@ link for magic items.
 
 ## Build a real detail page
 
-When an item earns its own page, put it in **this folder** (`magic-pages/`):
+When an item earns its own page, put it in **this folder** (`magic-pages/`). Copy
+a starter from `project-pages/` — both use the shared `project` layout:
 
-- **HTML:** create `magic-pages/<name>.html` the same way as a project page —
-  see the steps and `project.css` helpers in
-  [`../project-pages/README.md`](../project-pages/README.md#build-a-real-detail-page).
-- **Markdown:** copy the shared starter `project-pages/_template.md` to
-  `magic-pages/<name>.md`, set `layout: project` and a `theme:` colour, and write
-  the body in Markdown.
+- **Markdown:** `project-pages/_template.md` → `magic-pages/<name>.md`
+- **HTML:** `project-pages/_template.html` → `magic-pages/<name>.html`
 
-Jekyll builds `<name>.md` / `<name>.html` into `<name>.html`, so point the item's
-`url` in `_data/magic.yml` at `magic-pages/<name>.html`.
+Set a `theme:` colour, write the content, and leave
+`<p class="needs-copy">WRITE: …</p>` briefs for copy you don't have yet (a human
+fills these before merge). Add buttons with `{% include button.html … %}`. Point
+the item's `url` in `_data/magic.yml` at `magic-pages/<name>.html`.
+
+For the `project.css` helpers and the **test before you push** steps, see
+[`../project-pages/README.md`](../project-pages/README.md#build-a-real-detail-page).
 
 ## Retiring an item
 

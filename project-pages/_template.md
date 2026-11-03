@@ -7,19 +7,17 @@ theme: "#3aa1a1"          # accent colour for the heading underlines (hex)
 <!-- Optional logo. A plain Markdown image also works: ![name](/assets/imgs/your-logo.png) -->
 <img src="/assets/imgs/your-logo.png" alt="Project or tool name" class="project-header-img">
 
-A one- or two-sentence summary of what this is.
+<p class="needs-copy">WRITE: a one- or two-sentence summary of what this is.</p>
 
 ## The problem
 
-Plain Markdown — prose, **bold**, _italics_, [links](https://example.com), and
-lists all work:
-
-- point one
-- point two
+<p class="needs-copy">WRITE: the gap or need this addresses.</p>
 
 ## Our approach
 
-How it works, what it produces, and who it is for.
+<p class="needs-copy">WRITE: how it works, what it produces, and who it is for.</p>
 
-<!-- Need something Markdown can't do (an interactive canvas, a custom widget)?
-     Drop raw HTML right here — it passes straight through. -->
+<!-- When you have the real copy, replace each .needs-copy line with Markdown:
+     prose, **bold**, _italics_, [links](…), lists, images. A button:
+     {% raw %}{% include button.html text="Read more" href="/x.html" %}{% endraw %}
+     Need something custom (a canvas, a widget)? Drop raw HTML here. -->

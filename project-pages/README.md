@@ -60,50 +60,57 @@ accountable for building it.
 
 ## Build a real detail page
 
-When a project earns its own page:
+When a project earns its own page, start from a template in this folder — both
+use the shared `project` layout, so you only write the content:
 
-1. Create **`project-pages/<name>.html`** starting with front matter:
-   ```
-   ---
-   layout: default
-   title: My Project
-   ---
-   ```
-2. (optional) Link the shared styles for the standard look:
-   `<link href="project.css" rel="stylesheet">`
-3. Set a **theme colour** on the top container — it drives the heading accent bars:
-   `<div class="… container-fluid" style="--theme:#3aa1a1"> … </div>`
-4. Write the content however you like. **Project pages are free-form** — compare
-   `project-clouds-decoded.html` (interactive canvas) with `earth-compress.html`
-   (text). Nothing forces them to look the same.
-5. Point the project's `url` in `_data/projects.yml` at your new page.
-
-### Helpers in `project.css`
-- `.project-desc` — the readable text column.
-- `.project-p` — a paragraph.
-- `<h2>` inside `.project-desc` — gets a themed accent underline (uses `--theme`).
-- `.gradual-reveal` + the small reveal `<script>` — fades elements in on load.
-
-### Write it in Markdown instead
-
-Prefer not to write HTML? Use the **`project`** layout and write the body in
-Markdown. Copy **`project-pages/_template.md`** to `project-pages/<name>.md`:
+- **Markdown:** copy **`_template.md`** to `project-pages/<name>.md` (prose, lists,
+  links, images; drop in raw HTML when you need something custom).
+- **HTML:** copy **`_template.html`** to `project-pages/<name>.html`.
 
 ```
 ---
 layout: project
-title: My Tool
-theme: "#3aa1a1"      # heading accent colour
+title: My Project
+theme: "#3aa1a1"      # optional: heading accent colour
 ---
-
-## The problem
-Plain Markdown — prose, lists, links, images.
 ```
 
-Jekyll builds `<name>.md` into `<name>.html`, so point the project's `url` at
-`project-pages/<name>.html`. Headings get the themed accent bar automatically.
-Links don't auto-theme, and for anything interactive you can drop raw HTML into
-the Markdown. The `_template.md` file itself is not published (the leading `_`).
+Then:
+- Write the content however you like — **pages are free-form** (compare
+  `project-clouds-decoded.html`'s interactive canvas with `earth-compress.html`'s
+  plain text). Consistency is the colours and type, not the layout.
+- For copy you don't have yet, leave a brief, not placeholder prose:
+  `<p class="needs-copy">WRITE: one line on what this does.</p>` — it shows as a
+  dashed box on the page, and a human fills it in before merge.
+- Add buttons with `{% include button.html text="…" href="…" variant="primary" %}`.
+- Point the project's `url` in `_data/projects.yml` at `project-pages/<name>.html`
+  (Jekyll builds `<name>.md` into `<name>.html` too).
+
+The `_template.*` files are not published (the leading `_`).
+
+### Helpers in `project.css`
+- `.project-desc` — the readable text column.
+- `.project-p` — a paragraph with the standard spacing (HTML pages).
+- `<h2>` inside `.project-desc` — gets a themed accent underline (uses `theme:`).
+- `.gradual-reveal` + the small reveal `<script>` — fades elements in on load.
+
+## Test before you push
+
+Preview locally before you commit:
+
+```
+bundle exec jekyll serve --port 4000
+```
+Open `http://localhost:4000/projects.html` and your page. Check it renders — text
+and images show, links work, no `.needs-copy` briefs left by accident. Then
+confirm a clean build:
+
+```
+bundle exec jekyll build        # must exit 0, no errors
+```
+
+Commit to a **branch**, not `main`, and open a pull request — a website mod
+reviews and merges (a Cloudflare Pages preview on the PR shows it live).
 
 ## "magic" (open-source tools)
 
