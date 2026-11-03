@@ -1,0 +1,32 @@
+# "magic" — open-source tools, datasets and models shown on /magic.html.
+# One block per item. Same shape as _data/projects.yml, minus `status`
+# (these are not staged ongoing/upcoming/complete).
+#
+# Fields
+#   title    required   name on the card (also used for alt text and the slug)
+#   summary  required   one or two lines shown on the card
+#   image    optional   logo path in assets/imgs/; omit -> under-construction mark
+#   url      optional   detail page or external repo link; omit -> under-construction page
+#   contact  optional   guardian shown on the placeholder: { name: ..., email: ... }
+#
+# Order on the page follows the order below.
+
+- title: TACO
+  summary: Details coming soon.
+  contact: { email: hello@asterisk.coop }   # add guardian: { name: ..., email: ... }
+
+- title: BetaEarth
+  summary: Details coming soon.
+  contact: { email: hello@asterisk.coop }   # add guardian: { name: ..., email: ... }
+
+- title: GeoZL
+  summary: Details coming soon.
+  contact: { email: hello@asterisk.coop }   # add guardian: { name: ..., email: ... }
+
+- title: rumi
+  summary: Details coming soon.
+  contact: { email: hello@asterisk.coop }   # add guardian: { name: ..., email: ... }
+
+- title: Major TOM
+  summary: Details coming soon.
+  contact: { email: hello@asterisk.coop }   # add guardian: { name: ..., email: ... }

@@ -81,6 +81,14 @@ When a project earns its own page:
 - `<h2>` inside `.project-desc` — gets a themed accent underline (uses `--theme`).
 - `.gradual-reveal` + the small reveal `<script>` — fades elements in on load.
 
+## "magic" (open-source tools)
+
+The **/magic.html** page works the same way, from **`_data/magic.yml`**. These are
+open-source tools, datasets and models — kept separate from funded projects, so
+there is no `status` field. Everything else is identical: a card per block,
+`image`/`url` optional, and a missing `url` falls back to the same
+`under-construction.html?p=<slug>` placeholder with its `contact` guardian.
+
 ## Retiring a project
 
 Delete its block from `_data/projects.yml`. If it had a detail page worth keeping
