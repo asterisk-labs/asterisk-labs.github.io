@@ -203,16 +203,19 @@ thumbnail: /assets/imgs/iris-segmentation.png
         <p class="iris-caption gradual-reveal">The IRIS annotation view: paint a few pixels, let the model fill in the rest, correct, repeat.</p>
 
         <p class="project-p gradual-reveal">
-            IRIS is a web tool for labelling satellite imagery pixel by pixel. It was first built at ESA's Φ-lab in 2019 to speed up the annotation of cloudy Sentinel-2 scenes, and it has since become a popular tool that has been used for a range of other tasks. The user paints a few pixels of each class, a gradient boosted model is trained on those pixels and predicts the rest of the image, and the user corrects the prediction and trains again.
+            IRIS is a browser-based, collaborative tool for massively accelerating the labelling of satellite imagery with segmentation masks. It was first built at ESA's Φ-lab in 2019 to speed up the annotation of cloudy Sentinel-2 scenes, and it has since become a popular tool that has been used for a range of other tasks. The user paints a few pixels of each class, an ML model is trained on those pixels and predicts the rest of the image, and the user corrects the prediction and trains again. This iterative loop helps a user annotate a whole image accurately in a much shorter time than manually painting it.
         </p>
 
-        <h2 class='gradual-reveal'>Where we started</h2>
+        <h2 class='gradual-reveal'>Previous versions</h2>
         <p class="project-p gradual-reveal">
             The original IRIS, built for the Sentinel-2 cloud mask catalogue, explained in a few minutes.
         </p>
         <div class="iris-video gradual-reveal">
             <iframe src="https://www.youtube-nocookie.com/embed/ERJA2-fTW6k" title="IRIS: Intelligently Reinforced Image Segmentation" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
+        <p class="project-p gradual-reveal" style="margin-top: 24px;">
+            In 2025 and 2026 the <a href="https://ssecenter.cc.gatech.edu/" style="color: var(--theme);">Scientific Software Engineering Center at Georgia Tech</a>, supported by Schmidt Sciences through its Virtual Institute for Scientific Software (VISS), took IRIS from a research prototype towards a maintainable piece of software. The interface was rebuilt in React and TypeScript, with user accounts, an administration view and a built-in project configuration editor, and the Python backend was refactored, packaged and given a test suite and continuous integration. That overhaul is the codebase the current project builds on.
+        </p>
 
         <h2 class='gradual-reveal'>Why it needs to change</h2>
         <p class="project-p gradual-reveal">
