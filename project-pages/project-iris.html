@@ -214,17 +214,12 @@ thumbnail: /assets/imgs/iris-segmentation.png
             <iframe src="https://www.youtube-nocookie.com/embed/ERJA2-fTW6k" title="IRIS: Intelligently Reinforced Image Segmentation" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
         <p class="project-p gradual-reveal" style="margin-top: 24px;">
-            In 2025 and 2026 the <a href="https://ssecenter.cc.gatech.edu/" style="color: var(--theme);">Scientific Software Engineering Center at Georgia Tech</a>, supported by Schmidt Sciences through its Virtual Institute for Scientific Software (VISS), took IRIS from a research prototype towards a maintainable piece of software. The interface was rebuilt in React and TypeScript, with user accounts, an administration view and a built-in project configuration editor, and the Python backend was refactored, packaged and given a test suite and continuous integration. That overhaul is the codebase the current project builds on.
+            In 2025, the <a href="https://ssecenter.cc.gatech.edu/" style="color: var(--theme);">Scientific Software Engineering Center at Georgia Tech</a>, supported by Schmidt Sciences through its Virtual Institute for Scientific Software (VISS), took IRIS from a research prototype towards a maintainable piece of software. The interface was rebuilt in React and TypeScript, with user accounts, an administration view and a built-in project configuration editor, and the Python backend was refactored, packaged and given a test suite and continuous integration. That overhaul has laid the groundwork for the changes we are now making to IRIS, which you can read about below.
         </p>
 
-        <h2 class='gradual-reveal'>Why it needs to change</h2>
+        <h2 class='gradual-reveal'>New developments</h2>
         <p class="project-p gradual-reveal">
-            The model is retrained from scratch for every image, which keeps labelling errors from spreading between images but also means that nothing learnt on one image helps with the next. That design made sense when supervised training of a convolutional model was the only reason to build a labelled dataset. It makes less sense now that pre-computed embeddings are available for the whole planet. A linear model on AlphaEarth or TESSERA embeddings can separate many land cover classes with a handful of examples, and the goal of an annotation project is then not a dataset for training a new model but a mapping from classes to regions of embedding space that can be applied anywhere.
-        </p>
-
-        <h2 class='gradual-reveal'>What we are building</h2>
-        <p class="project-p gradual-reveal">
-            Over six months, with the support of ESA's Φ-lab, we are extending IRIS along four lines.
+            IRIS retrains its model from scratch for every image, which keeps labelling errors from spreading between images but also means that nothing learnt on one image helps with the next. That design made sense when the point of annotation was a dataset for training a convolutional model. Now that pre-computed embeddings are available for the whole planet, a linear model on AlphaEarth or TESSERA embeddings can separate many classes from a handful of examples, and the goal of an annotation project becomes a mapping from classes to regions of embedding space that can be applied anywhere. Over six months, with the support of ESA's Φ-lab, we are extending IRIS along four lines to make the most of that.
         </p>
 
         <div class="iris-orbit gradual-reveal" id="iris-orbit" aria-label="The four themes of the project, circling the tool">
