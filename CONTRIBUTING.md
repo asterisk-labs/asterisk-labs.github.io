@@ -50,6 +50,9 @@ or generated text — a human writes it before merge.
    the PR shows the change live before it merges.
 4. On merge, GitHub Pages redeploys asterisk.coop automatically.
 
+Mods and admins: the reviewer's checklist and the one-time branch-protection and
+preview setup are in [`docs/review-gate.md`](docs/review-gate.md).
+
 ## Where things live
 
 | Path | What |
