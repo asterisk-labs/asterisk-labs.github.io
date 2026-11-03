@@ -9,6 +9,13 @@ thumbnail: /assets/imgs/iris-segmentation.png
 
 <style>
     /* IRIS page only */
+    .iris-title {
+        font-size: 2.6rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        color: #1f3b42;
+        margin: 10px 0 18px 0;
+    }
     .iris-hero {
         width: 100%;
         max-width: 1100px;
@@ -40,29 +47,135 @@ thumbnail: /assets/imgs/iris-segmentation.png
         height: 100%;
         border: 0;
     }
-    .iris-diagram {
+
+    /* Orbit diagram: four theme cards circling the tool; hover a card to
+       read its description. On narrow screens the cards are listed instead. */
+    .iris-orbit {
+        position: relative;
         width: 100%;
-        max-width: 860px;
-        height: auto;
-        display: block;
+        max-width: 820px;
+        aspect-ratio: 1 / 1;
+        max-height: 560px;
         margin: 10px auto 0 auto;
+        user-select: none;
     }
-    .iris-themes {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-        gap: 18px 28px;
-        margin: 10px 0 20px 0;
+    .iris-orbit-ring {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 62%;
+        height: 62%;
+        transform: translate(-50%, -50%);
+        border: 1.5px dashed rgba(91, 154, 169, 0.45);
+        border-radius: 50%;
+        pointer-events: none;
     }
-    .iris-themes h3 {
-        font-size: 1.1rem;
-        margin: 0 0 6px 0;
+    .iris-orbit-centre {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 150px;
+        height: 150px;
+        transform: translate(-50%, -50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        background: var(--theme, #5B9AA9);
+        clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
+        pointer-events: none;
+    }
+    .iris-orbit-centre strong {
+        font-size: 1.6rem;
+        letter-spacing: 0.1em;
+    }
+    .iris-orbit-centre span {
+        font-size: 0.78rem;
+        opacity: 0.9;
+    }
+    .iris-orbit-item {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 190px;
+        margin-left: -95px;
+        margin-top: -34px;
+        padding: 12px 14px;
+        background: #fff;
+        border: 2px solid var(--theme, #5B9AA9);
+        border-radius: 12px;
+        text-align: center;
+        font-weight: 700;
+        font-size: 1rem;
+        color: #1f3b42;
+        cursor: pointer;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.10);
+        transition: box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+        will-change: transform;
+    }
+    .iris-orbit-item:hover,
+    .iris-orbit-item.is-open {
+        background: var(--theme, #5B9AA9);
+        color: #fff;
+        box-shadow: 0 10px 28px rgba(91, 154, 169, 0.45);
+    }
+    .iris-orbit-item small {
+        display: block;
+        font-weight: 400;
+        font-size: 0.8rem;
+        margin-top: 3px;
+        opacity: 0.85;
+    }
+    .iris-popover {
+        position: absolute;
+        z-index: 5;
+        width: min(380px, 90%);
+        padding: 16px 18px;
+        background: #fff;
+        border: 1px solid #ddd;
+        border-top: 4px solid var(--theme, #5B9AA9);
+        border-radius: 10px;
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.22);
+        text-align: left;
+        font-size: 1rem;
+        line-height: 1.5;
+        color: #222;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(6px);
+        transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+        pointer-events: none;
+    }
+    .iris-popover.is-visible {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+    .iris-popover h3 {
+        font-size: 1.05rem;
+        margin: 0 0 8px 0;
         color: var(--theme, #5B9AA9);
     }
-    .iris-themes p {
-        font-size: 1.05rem;
-        line-height: 1.5;
+    .iris-popover p {
         margin: 0;
     }
+    .iris-orbit-hint {
+        text-align: center;
+        color: #777;
+        font-size: 0.9rem;
+        margin: 6px 0 0 0;
+    }
+    .iris-themes-list {
+        display: none;
+    }
+    @media (max-width: 700px), (hover: none) {
+        .iris-orbit, .iris-orbit-hint { display: none; }
+        .iris-themes-list { display: block; margin: 10px 0 20px 0; }
+        .iris-themes-list h3 { font-size: 1.1rem; margin: 18px 0 6px 0; color: var(--theme, #5B9AA9); }
+        .iris-themes-list p { font-size: 1.05rem; line-height: 1.5; margin: 0; }
+    }
+
     .iris-links a {
         color: var(--theme, #5B9AA9);
         font-weight: 600;
@@ -83,11 +196,9 @@ thumbnail: /assets/imgs/iris-segmentation.png
 
 <div class="d-flex flex-column container-fluid" style="--theme:#5B9AA9">
     <div class="project-desc">
-        <div class='gradual-reveal'>
-            <img src='/assets/imgs/iris-logo.svg' class='project-thumbnail' alt='IRIS'/>
-        </div>
+        <div class="iris-title gradual-reveal">IRIS</div>
 
-        <img src='/assets/imgs/iris-segmentation.png' class='iris-hero gradual-reveal' alt='The IRIS segmentation view: a Sentinel-2 scene with cloud classes painted over it'/>
+        <img src='/assets/imgs/iris-segmentation.png' class='iris-hero gradual-reveal' alt='The IRIS segmentation view: a Sentinel-2 scene with its views side by side and the annotation tools'/>
         <p class="iris-caption gradual-reveal">The IRIS annotation view: paint a few pixels, let the model fill in the rest, correct, repeat.</p>
 
         <p class="project-p gradual-reveal">
@@ -112,69 +223,38 @@ thumbnail: /assets/imgs/iris-segmentation.png
             Over six months, with the support of ESA's Φ-lab, we are extending IRIS along four lines.
         </p>
 
-        <svg class="iris-diagram gradual-reveal" viewBox="0 0 860 420" role="img" aria-labelledby="iris-diagram-title">
-            <title id="iris-diagram-title">The four themes of the IRIS project around the core tool</title>
-            <defs>
-                <marker id="iris-dot" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6">
-                    <circle cx="5" cy="5" r="4" fill="#5B9AA9"/>
-                </marker>
-            </defs>
-            <!-- connectors -->
-            <g stroke="#5B9AA9" stroke-width="2.5" fill="none" stroke-linecap="round">
-                <path d="M 340 170 C 290 150, 250 130, 205 112"/>
-                <path d="M 520 170 C 570 150, 610 130, 655 112"/>
-                <path d="M 340 250 C 290 270, 250 290, 205 308"/>
-                <path d="M 520 250 C 570 270, 610 290, 655 308"/>
-            </g>
-            <!-- centre -->
-            <g>
-                <polygon points="430,130 505,172 505,248 430,290 355,248 355,172" fill="#5B9AA9"/>
-                <text x="430" y="203" text-anchor="middle" font-family="inherit" font-size="30" font-weight="700" fill="#ffffff">IRIS</text>
-                <text x="430" y="232" text-anchor="middle" font-family="inherit" font-size="13" fill="#e8f3f5">paint · predict · correct</text>
-            </g>
-            <!-- theme nodes -->
-            <g font-family="inherit">
-                <g>
-                    <rect x="30" y="60" width="200" height="86" rx="12" fill="#ffffff" stroke="#5B9AA9" stroke-width="2.5"/>
-                    <text x="130" y="94" text-anchor="middle" font-size="16" font-weight="700" fill="#1f3b42">Embeddings workflows</text>
-                    <text x="130" y="116" text-anchor="middle" font-size="12.5" fill="#555">linear models, shared annotations,</text>
-                    <text x="130" y="132" text-anchor="middle" font-size="12.5" fill="#555">smart choice of the next image</text>
-                </g>
-                <g>
-                    <rect x="630" y="60" width="200" height="86" rx="12" fill="#ffffff" stroke="#5B9AA9" stroke-width="2.5"/>
-                    <text x="730" y="94" text-anchor="middle" font-size="16" font-weight="700" fill="#1f3b42">Agentic setup</text>
-                    <text x="730" y="116" text-anchor="middle" font-size="12.5" fill="#555">describe a task, get a ready</text>
-                    <text x="730" y="132" text-anchor="middle" font-size="12.5" fill="#555">dataset and project</text>
-                </g>
-                <g>
-                    <rect x="30" y="274" width="200" height="86" rx="12" fill="#ffffff" stroke="#5B9AA9" stroke-width="2.5"/>
-                    <text x="130" y="308" text-anchor="middle" font-size="16" font-weight="700" fill="#1f3b42">Time-series annotation</text>
-                    <text x="130" y="330" text-anchor="middle" font-size="12.5" fill="#555">step through dates of a place,</text>
-                    <text x="130" y="346" text-anchor="middle" font-size="12.5" fill="#555">label each one</text>
-                </g>
-                <g>
-                    <rect x="630" y="274" width="200" height="86" rx="12" fill="#ffffff" stroke="#5B9AA9" stroke-width="2.5"/>
-                    <text x="730" y="308" text-anchor="middle" font-size="16" font-weight="700" fill="#1f3b42">Visualisation &amp; speed</text>
-                    <text x="730" y="330" text-anchor="middle" font-size="12.5" fill="#555">views over hundreds of bands,</text>
-                    <text x="730" y="346" text-anchor="middle" font-size="12.5" fill="#555">cloud-native image formats</text>
-                </g>
-            </g>
-        </svg>
+        <div class="iris-orbit gradual-reveal" id="iris-orbit" aria-label="The four themes of the project, circling the tool">
+            <div class="iris-orbit-ring"></div>
+            <div class="iris-orbit-centre"><strong>IRIS</strong><span>paint · predict · correct</span></div>
 
-        <div class="iris-themes gradual-reveal">
-            <div>
+            <div class="iris-orbit-item" data-theme="embeddings" tabindex="0">Embeddings workflows<small>linear models, shared annotations</small></div>
+            <div class="iris-orbit-item" data-theme="agentic" tabindex="0">Agentic setup<small>describe a task, get a project</small></div>
+            <div class="iris-orbit-item" data-theme="timeseries" tabindex="0">Time-series annotation<small>label a place across dates</small></div>
+            <div class="iris-orbit-item" data-theme="visualisation" tabindex="0">Visualisation &amp; speed<small>many bands, cloud-native data</small></div>
+
+            <div class="iris-popover" id="iris-popover" role="dialog" aria-live="polite">
+                <h3 id="iris-popover-title"></h3>
+                <p id="iris-popover-text"></p>
+            </div>
+        </div>
+        <p class="iris-orbit-hint gradual-reveal">Hover over a theme to read more.</p>
+
+        <!-- Theme descriptions: shown in the popover on hover, and as a plain
+             list on small or touch screens. -->
+        <div class="iris-themes-list" id="iris-themes">
+            <div data-theme="embeddings">
                 <h3>Embeddings workflows</h3>
                 <p>Pixel-wise embeddings are added as an image source, with a linear classifier alongside the existing gradient boosted trees, and with annotations shared across the dataset so that a new image arrives with a prediction already drawn. Image-level embeddings from models such as THOR and TerraMind are used to choose which image to annotate next, by looking for the one least like those already labelled, and to decide which images are similar enough to share annotations at all. Language-aligned embeddings, where a class is described by a sentence and the embedding model turns it into a first guess at the mask, are the least certain part of the plan.</p>
             </div>
-            <div>
+            <div data-theme="agentic">
                 <h3>Agentic setup</h3>
                 <p>Building a dataset is still the slowest part of starting a project. We are adding a catalogue of data sources and an assistant that turns a description of the task, the region and the data you want into a ready IRIS project, with views and classes chosen to suit the job. Setting up by hand stays exactly as it is.</p>
             </div>
-            <div>
+            <div data-theme="timeseries">
                 <h3>Time-series annotation</h3>
                 <p>Many questions are about change rather than a single date. IRIS will step through the dates available for a place and keep a mask for each, so annual embedding products and seasonal imagery can be labelled over time rather than one scene at a time.</p>
             </div>
-            <div>
+            <div data-theme="visualisation">
                 <h3>Visualisation and speed</h3>
                 <p>Embedding products carry 64 or 128 bands and hyperspectral sensors many more. We are reworking how IRIS stores, loads and displays imagery so that views over many bands are quick to make and quick to draw, with cloud-native formats that let the browser read only what it needs.</p>
             </div>
@@ -208,5 +288,90 @@ thumbnail: /assets/imgs/iris-segmentation.png
                 element.classList.add('animate');
             }, index * 90);
         });
+
+        // Orbit: the four cards circle the centre slowly; hovering a card
+        // pauses the orbit and shows its description next to it.
+        const orbit = document.getElementById('iris-orbit');
+        if (!orbit) return;
+        const items = Array.from(orbit.querySelectorAll('.iris-orbit-item'));
+        const popover = document.getElementById('iris-popover');
+        const popTitle = document.getElementById('iris-popover-title');
+        const popText = document.getElementById('iris-popover-text');
+        const descriptions = {};
+        document.querySelectorAll('#iris-themes [data-theme]').forEach((d) => {
+            descriptions[d.dataset.theme] = {
+                title: d.querySelector('h3').textContent,
+                text: d.querySelector('p').textContent,
+            };
+        });
+
+        const PERIOD_MS = 60000;           // one full revolution
+        let angle = 0;                     // radians
+        let paused = false;
+        let last = null;
+        let open = null;
+
+        function place() {
+            const w = orbit.clientWidth, h = orbit.clientHeight;
+            const rx = w * 0.31, ry = h * 0.31;
+            items.forEach((item, i) => {
+                const a = angle + (i * Math.PI * 2) / items.length;
+                const x = Math.cos(a) * rx, y = Math.sin(a) * ry;
+                item.style.transform = `translate(${x}px, ${y}px)`;
+                item.dataset.x = x; item.dataset.y = y;
+            });
+            if (open) positionPopover(open);
+        }
+
+        function positionPopover(item) {
+            const w = orbit.clientWidth, h = orbit.clientHeight;
+            const x = parseFloat(item.dataset.x), y = parseFloat(item.dataset.y);
+            const pw = popover.offsetWidth, ph = popover.offsetHeight;
+            // Prefer the side away from the centre; clamp inside the orbit box.
+            let left = w / 2 + x + (x >= 0 ? 110 : -110 - pw);
+            let top = h / 2 + y - ph / 2;
+            left = Math.max(0, Math.min(w - pw, left));
+            top = Math.max(0, Math.min(h - ph, top));
+            popover.style.left = left + 'px';
+            popover.style.top = top + 'px';
+        }
+
+        function show(item) {
+            const d = descriptions[item.dataset.theme];
+            if (!d) return;
+            popTitle.textContent = d.title;
+            popText.textContent = d.text;
+            items.forEach((i) => i.classList.toggle('is-open', i === item));
+            open = item;
+            paused = true;
+            popover.classList.add('is-visible');
+            positionPopover(item);
+        }
+
+        function hide() {
+            open = null;
+            paused = false;
+            items.forEach((i) => i.classList.remove('is-open'));
+            popover.classList.remove('is-visible');
+        }
+
+        items.forEach((item) => {
+            item.addEventListener('mouseenter', () => show(item));
+            item.addEventListener('focus', () => show(item));
+            item.addEventListener('mouseleave', hide);
+            item.addEventListener('blur', hide);
+        });
+
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        function tick(now) {
+            if (last !== null && !paused && !reduceMotion) {
+                angle += ((now - last) / PERIOD_MS) * Math.PI * 2;
+            }
+            last = now;
+            place();
+            requestAnimationFrame(tick);
+        }
+        window.addEventListener('resize', place);
+        requestAnimationFrame(tick);
     });
 </script>

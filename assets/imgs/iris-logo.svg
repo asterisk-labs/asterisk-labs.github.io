@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100" width="300" height="100" role="img" aria-label="IRIS">
-  <polygon points="50,6 88,28 88,72 50,94 12,72 12,28" fill="#5B9AA9"/>
-  <polygon points="50,24 72,37 72,63 50,76 28,63 28,37" fill="none" stroke="#ffffff" stroke-width="3" opacity="0.9"/>
-  <circle cx="50" cy="50" r="7" fill="#ffffff"/>
-  <text x="108" y="64" font-family="Helvetica, Arial, sans-serif" font-size="46" font-weight="700" letter-spacing="2" fill="#1f3b42">IRIS</text>
-</svg>

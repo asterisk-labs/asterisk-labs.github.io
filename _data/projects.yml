@@ -27,7 +27,7 @@
 
 - title: IRIS
   status: ongoing
-  image: /assets/imgs/iris-logo.svg
+  image: /assets/imgs/iris-wordmark.svg
   summary: A web tool for labelling satellite imagery pixel by pixel, built at ESA's Φ-lab in 2019 and now being extended with ESA for embeddings-first annotation workflows.
   url: project-pages/project-iris.html
   contact: { name: Ali, email: ali@asterisk.coop}
