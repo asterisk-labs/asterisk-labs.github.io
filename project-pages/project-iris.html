@@ -59,16 +59,17 @@ thumbnail: /assets/imgs/iris-segmentation.png
         margin: 10px auto 0 auto;
         user-select: none;
     }
-    .iris-orbit-ring {
+    .iris-orbit-sticks {
         position: absolute;
-        left: 50%;
-        top: 50%;
-        width: 62%;
-        height: 62%;
-        transform: translate(-50%, -50%);
-        border: 1.5px dashed rgba(91, 154, 169, 0.45);
-        border-radius: 50%;
+        inset: 0;
+        width: 100%;
+        height: 100%;
         pointer-events: none;
+    }
+    .iris-orbit-sticks line {
+        stroke: var(--theme, #5B9AA9);
+        stroke-width: 2.5;
+        stroke-linecap: round;
     }
     .iris-orbit-centre {
         position: absolute;
@@ -224,7 +225,9 @@ thumbnail: /assets/imgs/iris-segmentation.png
         </p>
 
         <div class="iris-orbit gradual-reveal" id="iris-orbit" aria-label="The four themes of the project, circling the tool">
-            <div class="iris-orbit-ring"></div>
+            <svg class="iris-orbit-sticks" aria-hidden="true">
+                <line/><line/><line/><line/>
+            </svg>
             <div class="iris-orbit-centre"><strong>IRIS</strong><span>paint · predict · correct</span></div>
 
             <div class="iris-orbit-item" data-theme="embeddings" tabindex="0">Embeddings workflows<small>linear models, shared annotations</small></div>
@@ -305,7 +308,8 @@ thumbnail: /assets/imgs/iris-segmentation.png
             };
         });
 
-        const PERIOD_MS = 60000;           // one full revolution
+        const PERIOD_MS = 150000;          // one full revolution
+        const sticks = Array.from(orbit.querySelectorAll('.iris-orbit-sticks line'));
         let angle = 0;                     // radians
         let paused = false;
         let last = null;
@@ -313,12 +317,17 @@ thumbnail: /assets/imgs/iris-segmentation.png
 
         function place() {
             const w = orbit.clientWidth, h = orbit.clientHeight;
-            const rx = w * 0.31, ry = h * 0.31;
+            const rx = w * 0.36, ry = h * 0.24;   // an ellipse, wider than tall
             items.forEach((item, i) => {
                 const a = angle + (i * Math.PI * 2) / items.length;
                 const x = Math.cos(a) * rx, y = Math.sin(a) * ry;
                 item.style.transform = `translate(${x}px, ${y}px)`;
                 item.dataset.x = x; item.dataset.y = y;
+                const line = sticks[i];
+                if (line) {
+                    line.setAttribute('x1', w / 2); line.setAttribute('y1', h / 2);
+                    line.setAttribute('x2', w / 2 + x); line.setAttribute('y2', h / 2 + y);
+                }
             });
             if (open) positionPopover(open);
         }
