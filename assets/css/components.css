@@ -30,3 +30,17 @@
 
 /* A row of buttons with consistent spacing. */
 .a-btn-row { display: flex; flex-wrap: wrap; gap: 12px; }
+
+/* Author's brief for missing copy. A human fills these in; never generated
+   prose. Greppable before merge: search "needs-copy". See the add-page skill. */
+.needs-copy {
+  display: block;
+  border: 2px dashed #492ae8;              /* brand purple */
+  background: rgba(73, 42, 232, 0.06);
+  color: #492ae8;
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin: 16px 0;
+  font-size: .95rem;
+  font-style: italic;
+}
