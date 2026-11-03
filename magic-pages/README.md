@@ -1,0 +1,73 @@
+# magic (open-source tools)
+
+How the magic section works, and how to add or look after an item.
+
+> Looking for the funded **projects** section? See
+> [`../project-pages/README.md`](../project-pages/README.md).
+
+## Overview
+
+The listing at **/magic.html** is built from one data file, **`_data/magic.yml`**.
+Each entry becomes a card. magic is open-source tools, datasets and models — kept
+separate from funded projects, so there is no `status` field. A card can link to
+a detail page in this folder, to an external repo, or — if no page exists yet —
+to the shared **under construction** placeholder.
+
+```
+_data/magic.yml  ──►  /magic.html   (cards)
+        │
+        ├─ url: magic-pages/<name>.html      a detail page in this folder
+        ├─ url: https://github.com/…         an external repo or link
+        └─ (no url)                          under-construction.html?p=<item>
+```
+
+You never edit `magic.html` to add an item — only the data file.
+
+## Add an item
+
+1. Open **`_data/magic.yml`** and copy an existing block.
+2. Edit its fields:
+
+   | field     | required | notes |
+   |-----------|----------|-------|
+   | `title`   | yes      | shown on the card; also the slug |
+   | `summary` | yes      | one or two lines on the card |
+   | `image`   | no       | logo in `assets/imgs/`; omit to show the dashed "under construction" mark |
+   | `url`     | no       | a detail page or external link; omit to use the placeholder |
+   | `contact` | no       | `{ name, email }` — the guardian named on the placeholder |
+
+3. Commit. The card appears automatically.
+
+## The "under construction" placeholder
+
+An item with no `url` links to the shared
+`project-pages/under-construction.html?p=<slug>`. It names the item and, if you
+set `contact`, the guardian responsible. The placeholder is shared with the
+projects section — same page, same dashed mark — and shows a "← back to magic"
+link for magic items.
+
+```yaml
+- title: TACO
+  summary: Details coming soon.
+  contact: { name: Jane Doe, email: hello@asterisk.coop }
+```
+
+## Build a real detail page
+
+When an item earns its own page, put it in **this folder** (`magic-pages/`):
+
+- **HTML:** create `magic-pages/<name>.html` the same way as a project page —
+  see the steps and `project.css` helpers in
+  [`../project-pages/README.md`](../project-pages/README.md#build-a-real-detail-page).
+- **Markdown:** copy the shared starter `project-pages/_template.md` to
+  `magic-pages/<name>.md`, set `layout: project` and a `theme:` colour, and write
+  the body in Markdown.
+
+Jekyll builds `<name>.md` / `<name>.html` into `<name>.html`, so point the item's
+`url` in `_data/magic.yml` at `magic-pages/<name>.html`.
+
+## Retiring an item
+
+Delete its block from `_data/magic.yml`. If it had a detail page worth keeping,
+copy it into `archive/` (excluded from the published site) and remove the live
+page.

@@ -2,6 +2,9 @@
 
 How the projects section works, and how to add or look after a project.
 
+> Looking for the open-source **magic** section? See
+> [`../magic-pages/README.md`](../magic-pages/README.md).
+
 ## Overview
 
 The listing at **/projects.html** is built from one data file, **`_data/projects.yml`**.
@@ -81,13 +84,33 @@ When a project earns its own page:
 - `<h2>` inside `.project-desc` — gets a themed accent underline (uses `--theme`).
 - `.gradual-reveal` + the small reveal `<script>` — fades elements in on load.
 
+### Write it in Markdown instead
+
+Prefer not to write HTML? Use the **`project`** layout and write the body in
+Markdown. Copy **`project-pages/_template.md`** to `project-pages/<name>.md`:
+
+```
+---
+layout: project
+title: My Tool
+theme: "#3aa1a1"      # heading accent colour
+---
+
+## The problem
+Plain Markdown — prose, lists, links, images.
+```
+
+Jekyll builds `<name>.md` into `<name>.html`, so point the project's `url` at
+`project-pages/<name>.html`. Headings get the themed accent bar automatically.
+Links don't auto-theme, and for anything interactive you can drop raw HTML into
+the Markdown. The `_template.md` file itself is not published (the leading `_`).
+
 ## "magic" (open-source tools)
 
-The **/magic.html** page works the same way, from **`_data/magic.yml`**. These are
-open-source tools, datasets and models — kept separate from funded projects, so
-there is no `status` field. Everything else is identical: a card per block,
-`image`/`url` optional, and a missing `url` falls back to the same
-`under-construction.html?p=<slug>` placeholder with its `contact` guardian.
+Open-source tools, datasets and models are a separate section with its own data
+file (`_data/magic.yml`), page (`/magic.html`) and guide. It works the same way
+as projects, minus the `status` field. See
+[`../magic-pages/README.md`](../magic-pages/README.md).
 
 ## Retiring a project
 
