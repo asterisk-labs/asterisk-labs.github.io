@@ -203,7 +203,7 @@ thumbnail: /assets/imgs/iris-segmentation.png
         <p class="iris-caption gradual-reveal">The IRIS annotation view: paint a few pixels, let the model fill in the rest, correct, repeat.</p>
 
         <p class="project-p gradual-reveal">
-            IRIS is a browser-based, collaborative tool for massively accelerating the labelling of satellite imagery with segmentation masks. It was first built at ESA's Φ-lab in 2019 to speed up the annotation of cloudy Sentinel-2 scenes, and it has since become a popular tool that has been used for a range of other tasks. The user paints a few pixels of each class, an ML model is trained on those pixels and predicts the rest of the image, and the user corrects the prediction and trains again. This iterative loop helps a user annotate a whole image accurately in a much shorter time than manually painting it.
+            IRIS is a browser-based, collaborative tool for massively accelerating the labelling of satellite imagery with segmentation masks. It was first built at ESA <a href="https://philab.esa.int/" style="color: var(--theme);">Φ-lab</a> in 2019 to speed up the annotation of cloudy Sentinel-2 scenes, and it has since become a popular tool that has been used for a range of other tasks. The user paints a few pixels of each class, an ML model is trained on those pixels and predicts the rest of the image, and the user corrects the prediction and trains again. This iterative loop helps a user annotate a whole image accurately in a much shorter time than manually painting it.
         </p>
 
         <h2 class='gradual-reveal'>Previous versions</h2>
@@ -219,7 +219,7 @@ thumbnail: /assets/imgs/iris-segmentation.png
 
         <h2 class='gradual-reveal'>New developments</h2>
         <p class="project-p gradual-reveal">
-            IRIS retrains its model from scratch for every image, which keeps labelling errors from spreading between images but also means that nothing learnt on one image helps with the next. That design made sense when the point of annotation was a dataset for training a convolutional model. Now that pre-computed embeddings are available for the whole planet, a linear model on AlphaEarth or TESSERA embeddings can separate many classes from a handful of examples, and the goal of an annotation project becomes a mapping from classes to regions of embedding space that can be applied anywhere. Over six months, with the support of ESA's Φ-lab, we are extending IRIS along four lines to make the most of that.
+            IRIS retrains its model from scratch for every image, which keeps labelling errors from spreading between images but also means that nothing learnt on one image helps with the next. That design made sense when the point of annotation was a dataset for training a convolutional model. Now that pre-computed embeddings are available for the whole planet, a linear model on AlphaEarth or TESSERA embeddings can separate many classes from a handful of examples, and the goal of an annotation project becomes a mapping from classes to regions of embedding space that can be applied anywhere. Over six months, with the support of ESA <a href="https://philab.esa.int/" style="color: var(--theme);">Φ-lab</a>, we are extending IRIS along four lines to make the most of that.
         </p>
 
         <div class="iris-orbit gradual-reveal" id="iris-orbit" aria-label="The four themes of the project, circling the tool">
