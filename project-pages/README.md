@@ -5,8 +5,8 @@ How the projects section works, and how to add or look after a project.
 > New here? Start at the front door: [`../CONTRIBUTING.md`](../CONTRIBUTING.md)
 > — the four ways to contribute, the style rules, and the review process.
 >
-> Looking for the open-source **magic** section? See
-> [`../magic-pages/README.md`](../magic-pages/README.md).
+> Looking for the open-source **tools** section? See
+> [`../tools-pages/README.md`](../tools-pages/README.md).
 
 ## Overview
 
@@ -115,12 +115,12 @@ bundle exec jekyll build        # must exit 0, no errors
 Commit to a **branch**, not `main`, and open a pull request — a website mod
 reviews and merges (a Cloudflare Pages preview on the PR shows it live).
 
-## "magic" (open-source tools)
+## "tools" (open-source)
 
 Open-source tools, datasets and models are a separate section with its own data
-file (`_data/magic.yml`), page (`/magic.html`) and guide. It works the same way
+file (`_data/tools.yml`), page (`/tools.html`) and guide. It works the same way
 as projects, minus the `status` field. See
-[`../magic-pages/README.md`](../magic-pages/README.md).
+[`../tools-pages/README.md`](../tools-pages/README.md).
 
 ## Retiring a project
 

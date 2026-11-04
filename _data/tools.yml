@@ -1,4 +1,4 @@
-# "magic" — open-source tools, datasets and models shown on /magic.html.
+# "tools" — open-source tools, datasets and models shown on /tools.html.
 # One block per item. Same shape as _data/projects.yml, minus `status`
 # (these are not staged ongoing/upcoming/complete).
 #

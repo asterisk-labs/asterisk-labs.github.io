@@ -16,9 +16,9 @@ Never commit to `main` directly.
 2. **Markdown.** Copy a starter and write in Markdown — prose, lists, links,
    images.
    - Projects: copy [`project-pages/_template.md`](project-pages/_template.md)
-   - Tools (magic): copy it into `magic-pages/`
+   - Tools: copy it into `tools-pages/`
    - Guides: [`project-pages/README.md`](project-pages/README.md) ·
-     [`magic-pages/README.md`](magic-pages/README.md)
+     [`tools-pages/README.md`](tools-pages/README.md)
 
 3. **Custom HTML.** For a page that needs its own canvas, widget or layout. Copy
    [`project-pages/_template.html`](project-pages/_template.html). Same guides as
@@ -29,7 +29,7 @@ Never commit to `main` directly.
    follows are in [`CLAUDE.md`](CLAUDE.md).
 
 All four produce the same thing: an entry in `_data/projects.yml` or
-`_data/magic.yml`, and an optional detail page — on a branch, for review.
+`_data/tools.yml`, and an optional detail page — on a branch, for review.
 
 ## Style
 
@@ -57,8 +57,8 @@ preview setup are in [`docs/review-gate.md`](docs/review-gate.md).
 
 | Path | What |
 |------|------|
-| `_data/projects.yml`, `_data/magic.yml` | the listings (cards are generated from these) |
-| `project-pages/`, `magic-pages/` | detail pages + their README guides |
+| `_data/projects.yml`, `_data/tools.yml` | the listings (cards are generated from these) |
+| `project-pages/`, `tools-pages/` | detail pages + their README guides |
 | `_layouts/project.html` | the detail-page layout (`theme:` sets the accent colour) |
 | `_includes/` | shared components (buttons, viewers) |
 | `assets/` | CSS and images |

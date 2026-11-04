@@ -13,12 +13,12 @@ A no-code contributor filled in the Notion submission form and set its
 
 ## Steps
 
-1. **Open the submission** in Notion. Note: **Section** (projects or magic),
+1. **Open the submission** in Notion. Note: **Section** (projects or tools),
    **Title**, **Summary**, **External URL** (if any), **Guardian**, **Images**,
    and the **Body** copy.
 
 2. **Add the listing entry.** Copy a block in `_data/projects.yml` or
-   `_data/magic.yml` (Section decides which) and fill it from the submission:
+   `_data/tools.yml` (Section decides which) and fill it from the submission:
 
    ```yaml
    - title: <Title>
@@ -35,7 +35,7 @@ A no-code contributor filled in the Notion submission form and set its
    from the page (and as the card `image:` if they sent a logo).
 
 4. **Detail page.** Copy `project-pages/_template.md` to
-   `project-pages/<name>.md` (or `magic-pages/<name>.md`). Then:
+   `project-pages/<name>.md` (or `tools-pages/<name>.md`). Then:
    - Paste the contributor's body copy **verbatim**. Do not rewrite it.
    - Anything they did not provide stays a `<p class="needs-copy">WRITE: …</p>`
      brief — never fill it with generated prose.

@@ -11,7 +11,7 @@ by name, and renaming one breaks the sync.
 | Property | Type | Required | Maps to |
 |----------|------|----------|---------|
 | `Title` | Title | yes | the entry `title` (also the page slug) |
-| `Section` | Select | yes | which listing: `projects` or `magic` |
+| `Section` | Select | yes | which listing: `projects` or `tools` |
 | `Status` | Select | yes | intake state: `Draft` · `Ready for site` · `On site` |
 | `Summary` | Text | yes | the card `summary` (one or two lines) |
 | `External URL` | URL | no | the entry `url` — an external link; if set, no detail page is made |
@@ -25,11 +25,11 @@ by name, and renaming one breaks the sync.
 - **Status drives intake.** The Action (and a mod doing it by hand) only picks up
   rows set to **`Ready for site`**. `Draft` is ignored; `On site` is set after
   merge so a row is not processed twice.
-- **Section's values matter.** Use exactly `projects` or `magic` — the code keys
+- **Section's values matter.** Use exactly `projects` or `tools` — the code keys
   off them to choose the data file and folder.
 - **External URL vs Body.** If `External URL` is set, the entry just links out and
   no detail page is built. Otherwise `Body` becomes the page; anything missing
   stays a `needs-copy` brief for a human.
-- **Project status** applies only to the projects section (magic has no status).
+- **Project status** applies only to the projects section (tools has no status).
 - **Stable names.** Add properties if you like, but do not rename the ones above
   without updating the Action.

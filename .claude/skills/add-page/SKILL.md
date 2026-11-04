@@ -1,6 +1,6 @@
 ---
 name: add-page
-description: Add or update a project or open-source ("magic") page on the Asterisk Labs website — a listing entry and/or a detail page. Use when a contributor wants their project or tool on the site.
+description: Add or update a project or open-source ("tools") page on the Asterisk Labs website — a listing entry and/or a detail page. Use when a contributor wants their project or tool on the site.
 ---
 
 # Add or update a page
@@ -10,7 +10,7 @@ You lay pages out; you do not write their prose.
 
 ## 1. Read first
 - The right guide: `project-pages/README.md` (funded projects) or
-  `magic-pages/README.md` (open-source tools).
+  `tools-pages/README.md` (open-source tools).
 - `docs/style-checklist.md`. Skim `/brand` if unsure on style.
 
 ## 2. Get the content
@@ -27,9 +27,9 @@ title · ~100-word summary · ~500-word body · image(s) · contact.
 - **Custom HTML page** — copy `project-pages/_template.html`.
 
 ## 4. Build
-- Add or update the entry in `_data/projects.yml` or `_data/magic.yml`
+- Add or update the entry in `_data/projects.yml` or `_data/tools.yml`
   (fields per the README).
-- Detail page → the right folder (`project-pages/` or `magic-pages/`),
+- Detail page → the right folder (`project-pages/` or `tools-pages/`),
   `layout: project` with an optional `theme:` hex colour.
 - Drop the supplied text and images in; put `.needs-copy` briefs in the gaps.
 - Buttons via `{% include button.html text="…" href="…" variant="primary" %}`.
