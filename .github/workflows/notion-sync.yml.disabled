@@ -1,0 +1,52 @@
+# notion-sync — DISABLED STUB. Does not run.
+#
+# The `.yml.disabled` extension keeps GitHub Actions from picking this up. To
+# turn it on, FIRST do the prerequisites below, THEN rename to `notion-sync.yml`.
+#
+# Prerequisites (none of these exist yet):
+#   1. The submission database exists in Notion — see docs/notion-db-spec.md.
+#   2. Repo secret NOTION_TOKEN   = a Notion integration token with read access.
+#   3. Repo variable NOTION_DB_ID = the database id.
+#   4. The sync script at scripts/notion-sync.js exists (NOT written yet — it
+#      pulls rows where Status = "Ready for site", converts Body via
+#      notion-to-md, downloads Images into assets/imgs/, writes the _data entry
+#      and a detail page with needs-copy briefs for anything missing).
+#
+# What it does once wired: on a schedule (and on demand), open ONE branch + PR
+# per ready submission. The human review stays — it is the PR. See
+# docs/notion-intake.md, whose manual steps this replaces.
+
+name: notion-sync
+
+on:
+  workflow_dispatch:        # manual run button
+  schedule:
+    - cron: "0 7 * * *"     # daily 07:00 UTC; adjust once live
+
+permissions:
+  contents: write           # push the branch
+  pull-requests: write      # open the PR
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      # TODO: scripts/notion-sync.js does not exist yet. Written against the
+      # property names in docs/notion-db-spec.md once the database is built.
+      - name: Pull ready submissions and build pages
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_DB_ID: ${{ vars.NOTION_DB_ID }}
+        run: |
+          echo "STUB: npm i @notionhq/client notion-to-md"
+          echo "STUB: node scripts/notion-sync.js"
+
+      # TODO: open a branch + PR per processed row (e.g. peter-evans/create-pull-request).
+      - name: Open pull request
+        run: echo "STUB: open a branch + PR for review"

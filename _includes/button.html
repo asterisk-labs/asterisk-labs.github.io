@@ -1,0 +1,13 @@
+{%- comment -%}
+Asterisk button — media-kit pill button. Styles live in assets/css/components.css.
+Params:
+  text     (required)  the label
+  href     (required)  link target
+  variant  (optional)  primary (default) | ghost | invert
+  target   (optional)  e.g. _blank (adds rel="noopener")
+  download (optional)  any truthy value adds the download attribute
+Example:
+  {% include button.html text="Read more" href="/projects.html" variant="primary" %}
+{%- endcomment -%}
+{%- assign v = include.variant | default: "primary" -%}
+<a class="a-btn a-btn-{{ v }}" href="{{ include.href }}"{% if include.target %} target="{{ include.target }}" rel="noopener"{% endif %}{% if include.download %} download{% endif %}>{{ include.text }}</a>

@@ -1,0 +1,46 @@
+/* Shared site components. Loaded on every page via _layouts/default.html.
+   Keep house style here so all pages (and all four contribution pathways)
+   inherit the same look. See docs/style-checklist.md. */
+
+/* Asterisk buttons — pill link buttons, lifted from the media kit
+   (brand/index.html: .bk-btn-primary / -ghost / -invert).
+   Use via: {% include button.html text="…" href="…" variant="primary" %} */
+.a-btn {
+  display: inline-block;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+  border-radius: 999px;          /* pill */
+  padding: 14px 24px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background-color .18s ease, color .18s ease, border-color .18s ease;
+}
+
+.a-btn-primary { color: #fff; background: #000; }
+.a-btn-primary:hover { background: #492ae8; color: #fff; }   /* brand purple */
+
+.a-btn-ghost { color: #000; background: #fff; border-color: #ddd; }
+.a-btn-ghost:hover { border-color: #000; color: #000; }
+
+.a-btn-invert { color: #000; background: #fff; padding: 15px 26px; }
+.a-btn-invert:hover { background: #c4ffc2; color: #000; }    /* brand mint */
+
+/* A row of buttons with consistent spacing. */
+.a-btn-row { display: flex; flex-wrap: wrap; gap: 12px; }
+
+/* Author's brief for missing copy. A human fills these in; never generated
+   prose. Greppable before merge: search "needs-copy". See the add-page skill. */
+.needs-copy {
+  display: block;
+  border: 2px dashed #492ae8;              /* brand purple */
+  background: rgba(73, 42, 232, 0.06);
+  color: #492ae8;
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin: 16px 0;
+  font-size: .95rem;
+  font-style: italic;
+}
