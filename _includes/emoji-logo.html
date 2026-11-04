@@ -1,0 +1,12 @@
+{%- comment -%}
+emoji-logo.html — temporary emoji stand-in for a missing project/tool logo.
+Params:
+  emoji  (required) the emoji character, e.g. "🤳"
+  label  (optional) accessible name; defaults to "logo"
+  fontsize (optional) CSS font-size; defaults to 3.2rem
+           (named `fontsize`, not `size`: Liquid's `include.size` returns the
+            parameter count, not a passed value)
+Set `emoji:` on a _data/*.yml entry to use it on the card; include it at the top
+of a detail page for the header. Temporary — swap for a real logo when there is one.
+{%- endcomment -%}
+<span class="emoji-logo" role="img" aria-label="{{ include.label | default: 'logo' }}" style="font-size: {{ include.fontsize | default: '3.2rem' }}; line-height: 1; display: inline-block;">{{ include.emoji }}</span>

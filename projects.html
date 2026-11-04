@@ -36,10 +36,13 @@ title: Projects at Asterisk
         <h2 class="proj-section">{{ labels[i] }}</h2>
         <div class="projects-grid">
             {% for p in group %}
-            {% if p.image %}{% assign img = p.image %}{% else %}{% assign img = "/assets/imgs/mark-construction.svg" %}{% endif %}
             {% if p.url %}{% assign link = p.url %}{% else %}{% capture link %}project-pages/under-construction.html?p={{ p.title | slugify }}{% endcapture %}{% endif %}
             <a class="proj-card" href="{{ link }}">
-                <div class="proj-preview"><img src="{{ img }}" alt="{{ p.title }}"/></div>
+                <div class="proj-preview">
+                    {% if p.image %}<img src="{{ p.image }}" alt="{{ p.title }}"/>
+                    {% elsif p.emoji %}{% include emoji-logo.html emoji=p.emoji label=p.title %}
+                    {% else %}<img src="/assets/imgs/mark-construction.svg" alt="{{ p.title }}"/>{% endif %}
+                </div>
                 <div class="proj-body">
                     <span class="proj-badge proj-badge-{{ p.status }}">{{ p.status }}</span>
                     <p class="proj-desc">{{ p.summary }}</p>
