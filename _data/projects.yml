@@ -63,3 +63,8 @@
   summary: A report for ESA summarising the state of AI for Earth Observation, with recommendations for the programme's future.
   url: project-pages/project-copernicus-report.html
   contact: { name: Miko, email: miko@asterisk.coop}
+- title: Sync Test - DELETE ME
+  status: upcoming
+  summary: Testing summary
+  url: project-pages/sync-test-delete-me.html
+  contact: { name: Miko, email: miko@asterisk.coop }
