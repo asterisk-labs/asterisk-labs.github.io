@@ -49,16 +49,39 @@ Save. From then on, every change lands through a reviewed PR.
 One-time, by an admin with the Cloudflare account. Gives every PR a live URL so
 the reviewer sees the change, not just the diff. Free tier is enough.
 
-On the Cloudflare dashboard: **Workers & Pages → Create → Pages → Connect to
-Git** → pick this repo:
+On the Cloudflare dashboard: **Workers & Pages → Create application**. The
+default create screen is the Workers flow (it shows `npx wrangler deploy`) —
+that is **not** what a static Jekyll site needs. Instead click the
+**"Need to use the legacy Pages workflow? Continue to Pages"** link at the bottom
+→ **Connect to Git** → pick this repo. ("Legacy" is just Cloudflare's label for
+the classic Pages flow; it is the right tool for a static site.)
 
+Settings:
+
+- **Production branch:** `main`.
 - **Framework preset:** Jekyll.
 - **Build command:** `bundle exec jekyll build`.
 - **Build output directory:** `_site`.
-- **Preview deployments:** on — this is the per-PR URL Cloudflare comments on
-  each pull request.
+- **Preview deployments:** **All non-production branches** (Settings → Builds &
+  deployments). This is what gives each PR its own `*.pages.dev` preview — the
+  URL the reviewer opens.
 
 **Keep GitHub Pages as production.** asterisk.coop stays served by GitHub Pages;
 Cloudflare Pages is preview-only. Do **not** point the custom domain at
-Cloudflare — leave its deployments on the generated `*.pages.dev` preview URLs so
-the two don't fight over the live domain.
+Cloudflare — leave its deployments on the generated `*.pages.dev` URLs so the two
+don't fight over the live domain. (Cloudflare's own "production" build of `main`
+is just a copy on `*.pages.dev`; if it is red, that does not affect asterisk.coop.)
+
+### File size limit (gotcha)
+
+Cloudflare Pages rejects **any single file over 25 MiB** — the build succeeds but
+the deploy fails at "Validating asset output directory". GitHub Pages allows up
+to 100 MB, so a file can be fine on the live site yet break every Cloudflare
+preview. Keep assets — especially GIFs and video — under 25 MiB. To find offenders:
+
+```
+find . -path ./.git -prune -o -type f -size +24M -print
+```
+
+A large GIF is usually the culprit; downscale it with ffmpeg (e.g. `scale=720`)
+or convert it to an MP4/WebM `<video>`.
