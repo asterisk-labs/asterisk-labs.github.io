@@ -66,14 +66,14 @@ async function main() {
 
     const imgPaths = await downloadImages(f.images, slug);
 
-    // Card link + optional detail page. External URL wins; else build a page
-    // from the body and link the card to it; with neither, leave the url empty
-    // so the card uses the shared under-construction placeholder.
+    // An External URL means "link out instead of a page" (matching the form).
+    // Otherwise the submission gets its own detail page, with .needs-copy briefs
+    // for any missing copy — so the card always points somewhere real.
     const body = f.url ? "" : await fetchBody(f.pageId);
-    const entryUrl = f.url || (body ? `${SECTIONS[f.section].pages}/${slug}.html` : "");
+    const entryUrl = f.url || `${SECTIONS[f.section].pages}/${slug}.html`;
 
     appendDataEntry(f.section, buildYamlBlock(f, imgPaths, entryUrl));
-    if (body) writeDetailPage(f, slug, body);
+    if (!f.url) writeDetailPage(f, slug, body);
 
     await commitPushOpenPR(f, slug);
     if (!DRY_RUN) await markOnSite(row.id);
@@ -227,7 +227,10 @@ function writeDetailPage(f, slug, body) {
   const summary = f.summary
     ? f.summary
     : `<p class="needs-copy">WRITE: a one- or two-sentence summary of what this is.</p>`;
-  const page = `${front}\n${summary}\n\n${body}\n`;
+  const content = body
+    ? body
+    : `<p class="needs-copy">WRITE: the full description for this page.</p>`;
+  const page = `${front}\n${summary}\n\n${content}\n`;
 
   if (DRY_RUN) {
     console.log(`  would write detail page → ${dest} (${page.length} chars)`);
