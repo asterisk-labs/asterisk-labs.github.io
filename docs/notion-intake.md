@@ -58,9 +58,11 @@ detail page from the body, and open one branch + PR per submission. The human
 review stays — it is the PR. On merge, set the row's Status to "On site" (the
 Action does this automatically).
 
-**Run it:** Actions tab → **notion-sync** → **Run workflow**. Leave
-**dry_run = true** first — it logs every file it would write and PR it would open,
-without touching anything. Set `dry_run = false` (or let the daily schedule run)
-once the dry-run log looks right. Prerequisites: secret `NOTION_TOKEN`, variable
-`NOTION_DB_ID`, and the database shared with the integration. Property names must
-match [`notion-db-spec.md`](notion-db-spec.md).
+**It runs on its own** twice a day (07:00 and 19:00 UTC) — a real run that picks
+up any `Ready for site` row and opens its PR. No manual trigger needed; a member
+marks a row ready, and within ~12 hours the PR appears. To run it on demand
+(e.g. to test), use the Actions tab → **notion-sync** → **Run workflow**, and
+leave **dry_run = true** to log what it *would* do without touching anything.
+Prerequisites: secret `NOTION_TOKEN`, variable `NOTION_DB_ID`, and the database
+shared with the integration. Property names must match
+[`notion-db-spec.md`](notion-db-spec.md).
