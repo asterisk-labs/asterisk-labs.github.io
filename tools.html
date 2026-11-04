@@ -1,19 +1,19 @@
 ---
 layout: default
-title: magic
+title: tools
 description: Open-source tools, datasets and models built by Asterisk Labs
 ---
 
 <style>
-    /* "magic" listing — card grid built from _data/magic.yml.
+    /* "tools" listing — card grid built from _data/tools.yml.
        Mirrors the projects-page cards (no status badges here).
        This <style> only ships on this page, so widening the container is safe. */
     .cover-container { max-width: 1000px !important; }
     main.mb-auto { text-align: left; }
 
-    .magic-intro { margin: 8px 0 34px; }
-    .magic-intro h1 { font-size: 28px; font-weight: 600; letter-spacing: -.01em; margin: 0 0 12px; }
-    .magic-intro p { font-size: 16px; line-height: 1.65; color: #cfcfcf; max-width: 640px; margin: 0; }
+    .tools-intro { margin: 8px 0 34px; }
+    .tools-intro h1 { font-size: 28px; font-weight: 600; letter-spacing: -.01em; margin: 0 0 12px; }
+    .tools-intro p { font-size: 16px; line-height: 1.65; color: #cfcfcf; max-width: 640px; margin: 0; }
 
     .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
     .proj-card { display: flex; flex-direction: column; border: 1px solid #e7e7e3; border-radius: 14px; overflow: hidden; background: #fff; text-decoration: none; color: #000; transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease; }
@@ -22,17 +22,17 @@ description: Open-source tools, datasets and models built by Asterisk Labs
     .proj-preview img { max-width: 84%; max-height: 74px; width: auto; height: auto; display: block; }
     .proj-body { padding: 20px 24px 22px; }
     .proj-desc { margin: 0; font-size: 15px; line-height: 1.62; color: #555; }
-    #magic-wrap { margin-bottom: 60px; }
+    #tools-wrap { margin-bottom: 60px; }
 </style>
 
 <main class="mb-auto">
-    <div id="magic-wrap">
-        <div class="magic-intro">
-            <h1>magic</h1>
-            <p>science deserves a hint of magic. at asterisk, we simply enjoy building things in the open.</p>
+    <div id="tools-wrap">
+        <div class="tools-intro">
+            <h1>tools</h1>
+            <p>we like to build things in the open and we hope you find them useful</p>
         </div>
         <div class="projects-grid">
-            {% for m in site.data.magic %}
+            {% for m in site.data.tools %}
             {% if m.image %}{% assign img = m.image %}{% else %}{% assign img = "/assets/imgs/mark-construction.svg" %}{% endif %}
             {% if m.url %}{% assign link = m.url %}{% else %}{% capture link %}project-pages/under-construction.html?p={{ m.title | slugify }}{% endcapture %}{% endif %}
             <a class="proj-card" href="{{ link }}">

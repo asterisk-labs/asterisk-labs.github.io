@@ -19,15 +19,15 @@ This repo is a Jekyll static site deployed by GitHub Pages to asterisk.coop.
 
 ## Where things live
 
-- `_data/projects.yml`, `_data/magic.yml` — the listings (cards are generated from these)
-- `project-pages/`, `magic-pages/` — detail pages, each with its own README
+- `_data/projects.yml`, `_data/tools.yml` — the listings (cards are generated from these)
+- `project-pages/`, `tools-pages/` — detail pages, each with its own README
 - `_layouts/project.html` — the detail-page layout (Markdown or HTML, `theme:` colour)
 - `_includes/` — shared components · `assets/` — CSS and images
 - `/brand` — the media kit · `docs/style-checklist.md` — the short style rules
 
 ## How to work
 
-1. Read the relevant README (`project-pages/` or `magic-pages/`) and the style checklist.
+1. Read the relevant README (`project-pages/` or `tools-pages/`) and the style checklist.
 2. Build and preview locally **before committing**:
    `bundle exec jekyll serve --port 4000` → open the page → `bundle exec jekyll build`
    (must exit 0).

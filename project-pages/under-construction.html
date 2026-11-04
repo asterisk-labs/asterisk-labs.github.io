@@ -11,11 +11,11 @@ title: Under Construction
 </main>
 
 <script type="text/javascript">
-    // Projects and magic items (from _data/projects.yml and _data/magic.yml) so
+    // Projects and tools items (from _data/projects.yml and _data/tools.yml) so
     // this shared page can name the right item and its guardian, from ?p=<slug>.
     window.AL_ITEMS = [
     {% for p in site.data.projects %}{ slug: {{ p.title | slugify | jsonify }}, title: {{ p.title | jsonify }}, area: "projects"{% if p.contact %}, contact: { name: {{ p.contact.name | jsonify }}, email: {{ p.contact.email | default: "hello@asterisk.coop" | jsonify }} }{% endif %} },
-    {% endfor %}{% for m in site.data.magic %}{ slug: {{ m.title | slugify | jsonify }}, title: {{ m.title | jsonify }}, area: "magic"{% if m.contact %}, contact: { name: {{ m.contact.name | jsonify }}, email: {{ m.contact.email | default: "hello@asterisk.coop" | jsonify }} }{% endif %} },
+    {% endfor %}{% for m in site.data.tools %}{ slug: {{ m.title | slugify | jsonify }}, title: {{ m.title | jsonify }}, area: "tools"{% if m.contact %}, contact: { name: {{ m.contact.name | jsonify }}, email: {{ m.contact.email | default: "hello@asterisk.coop" | jsonify }} }{% endif %} },
     {% endfor %}];
 
     (function () {
@@ -33,10 +33,10 @@ title: Under Construction
             'For more information or urgent questions, email ' +
             '<a href="mailto:' + email + '" style="color:#492ae8ff;">' + email + '</a>.';
 
-        if (item.area === 'magic') {
+        if (item.area === 'tools') {
             var back = document.getElementById('uc-back');
-            back.setAttribute('href', '/magic.html');
-            back.textContent = '← back to magic';
+            back.setAttribute('href', '/tools.html');
+            back.textContent = '← back to tools';
         }
     })();
 </script>
