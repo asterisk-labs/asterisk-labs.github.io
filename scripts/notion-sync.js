@@ -206,7 +206,8 @@ function appendDataEntry(section, block) {
 /** Build a Markdown detail page from the row's body, via _template.md shape. */
 async function buildDetailPage(f, slug) {
   const mdBlocks = await n2m.pageToMarkdown(f.pageId);
-  const body = n2m.toMarkdownString(mdBlocks).parent.trim();
+  // An empty Notion page yields an object with no `.parent`; treat as no body.
+  const body = (n2m.toMarkdownString(mdBlocks)?.parent || "").trim();
   const dest = `${SECTIONS[f.section].pages}/${slug}.md`;
 
   const front = [
@@ -221,7 +222,10 @@ async function buildDetailPage(f, slug) {
   const summary = f.summary
     ? f.summary
     : `<p class="needs-copy">WRITE: a one- or two-sentence summary of what this is.</p>`;
-  const page = `${front}\n${summary}\n\n${body || ""}\n`;
+  const main = body
+    ? body
+    : `<p class="needs-copy">WRITE: the full description for this page.</p>`;
+  const page = `${front}\n${summary}\n\n${main}\n`;
 
   if (DRY_RUN) {
     console.log(`  would write detail page → ${dest} (${page.length} chars)`);
