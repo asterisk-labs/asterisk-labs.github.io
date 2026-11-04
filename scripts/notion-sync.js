@@ -39,8 +39,16 @@ const STATUS_DONE = "On site";
 const DEFAULT_EMAIL = "hello@asterisk.coop";
 
 async function main() {
-  if (!DB_ID || !process.env.NOTION_TOKEN) {
-    throw new Error("NOTION_DB_ID and NOTION_TOKEN must be set.");
+  const missing = [];
+  if (!process.env.NOTION_TOKEN) missing.push("NOTION_TOKEN (add as an Actions secret)");
+  if (!DB_ID) missing.push("NOTION_DB_ID (add as an Actions variable)");
+  if (missing.length) {
+    throw new Error(
+      `Missing ${missing.join(" and ")}. Set these under the repo's ` +
+        "Settings → Secrets and variables → Actions — the token goes on the Secrets tab, " +
+        "the database id on the Variables tab. Check the names match exactly and they are " +
+        "repo-level (not scoped to an Environment)."
+    );
   }
   const rows = await queryReady();
   console.log(`Found ${rows.length} row(s) with Status = "${STATUS_READY}".`);
