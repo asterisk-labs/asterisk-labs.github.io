@@ -11,7 +11,7 @@ Never commit to `main` directly.
 
 1. **No-code — submission form.** Fill in the form and a website mod turns it
    into a page for you. _(Form link: coming soon.)_ Best if you don't want to
-   touch the repo at all.
+   touch the repo at all. Mods: [`docs/notion-intake.md`](docs/notion-intake.md).
 
 2. **Markdown.** Copy a starter and write in Markdown — prose, lists, links,
    images.
