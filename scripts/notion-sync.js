@@ -65,11 +65,15 @@ async function main() {
     }
 
     const imgPaths = await downloadImages(f.images, slug);
-    appendDataEntry(f.section, buildYamlBlock(f, imgPaths));
 
-    if (f.body && !f.url) {
-      await buildDetailPage(f, slug);
-    }
+    // Card link + optional detail page. External URL wins; else build a page
+    // from the body and link the card to it; with neither, leave the url empty
+    // so the card uses the shared under-construction placeholder.
+    const body = f.url ? "" : await fetchBody(f.pageId);
+    const entryUrl = f.url || (body ? `${SECTIONS[f.section].pages}/${slug}.html` : "");
+
+    appendDataEntry(f.section, buildYamlBlock(f, imgPaths, entryUrl));
+    if (body) writeDetailPage(f, slug, body);
 
     await commitPushOpenPR(f, slug);
     if (!DRY_RUN) await markOnSite(row.id);
@@ -107,9 +111,7 @@ function parseRow(page) {
     guardian: guardian(p["Guardian"]),
     projectStatus: selectName(p["Project status"]),
     images: files(p["Images"]),
-    // Body copy is the row's page content; property fallback handled in buildDetailPage.
-    body: true, // presence decided later via notion-to-md; kept truthy so the gate runs
-    pageId: page.id,
+    pageId: page.id, // body copy is the row's page content, fetched via fetchBody()
   };
 }
 
@@ -178,14 +180,14 @@ async function downloadImages(urls, slug) {
 }
 
 /** Compose a listing-entry YAML block for _data/<section>.yml. */
-function buildYamlBlock(f, imgPaths) {
+function buildYamlBlock(f, imgPaths, url) {
   const lines = [`- title: ${yamlStr(f.title)}`];
   if (f.section === "projects" && f.projectStatus) {
     lines.push(`  status: ${yamlStr(f.projectStatus.toLowerCase())}`);
   }
   lines.push(`  summary: ${yamlStr(f.summary || "Details coming soon.")}`);
   if (imgPaths[0]) lines.push(`  image: ${imgPaths[0]}`);
-  if (f.url) lines.push(`  url: ${f.url}`);
+  if (url) lines.push(`  url: ${url}`);
   if (f.guardian) {
     lines.push(`  contact: { name: ${yamlStr(f.guardian.name)}, email: ${f.guardian.email} }`);
   }
@@ -203,13 +205,16 @@ function appendDataEntry(section, block) {
   console.log(`  appended entry → ${file}`);
 }
 
-/** Build a Markdown detail page from the row's body, via _template.md shape. */
-async function buildDetailPage(f, slug) {
-  const mdBlocks = await n2m.pageToMarkdown(f.pageId);
+/** The row's page content as trimmed Markdown ("" if the page is empty). */
+async function fetchBody(pageId) {
+  const mdBlocks = await n2m.pageToMarkdown(pageId);
   // An empty Notion page yields an object with no `.parent`; treat as no body.
-  const body = (n2m.toMarkdownString(mdBlocks)?.parent || "").trim();
-  const dest = `${SECTIONS[f.section].pages}/${slug}.md`;
+  return (n2m.toMarkdownString(mdBlocks)?.parent || "").trim();
+}
 
+/** Write a Markdown detail page from the row's body, in the _template.md shape. */
+function writeDetailPage(f, slug, body) {
+  const dest = `${SECTIONS[f.section].pages}/${slug}.md`;
   const front = [
     "---",
     "layout: project",
@@ -222,10 +227,7 @@ async function buildDetailPage(f, slug) {
   const summary = f.summary
     ? f.summary
     : `<p class="needs-copy">WRITE: a one- or two-sentence summary of what this is.</p>`;
-  const main = body
-    ? body
-    : `<p class="needs-copy">WRITE: the full description for this page.</p>`;
-  const page = `${front}\n${summary}\n\n${main}\n`;
+  const page = `${front}\n${summary}\n\n${body}\n`;
 
   if (DRY_RUN) {
     console.log(`  would write detail page → ${dest} (${page.length} chars)`);
