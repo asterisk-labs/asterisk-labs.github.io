@@ -36,7 +36,7 @@ jobs:
       - name: Sync ready submissions
         env:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
-          NOTION_DB_ID: ${{ vars.NOTION_DB_ID }}
+          NOTION_DB_ID: ${{ vars.NOTION_DB_ID || secrets.NOTION_DB_ID }}  # either tab
           GH_TOKEN: ${{ github.token }}
           DRY_RUN: ${{ inputs.dry_run }}   # empty on schedule -> real run
         run: node scripts/notion-sync.js

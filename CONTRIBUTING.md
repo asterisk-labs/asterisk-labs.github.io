@@ -9,9 +9,11 @@ Never commit to `main` directly.
 
 ## Four ways to add or edit a page
 
-1. **No-code — submission form.** Fill in the form and a website mod turns it
-   into a page for you. _(Form link: coming soon.)_ Best if you don't want to
-   touch the repo at all. Mods: [`docs/notion-intake.md`](docs/notion-intake.md).
+1. **No-code — submission form** (Asterisk members). Fill in the
+   [Notion submission form](https://app.notion.com/p/6f5f0f615dbd49da8f5b5c55fc15d1a8)
+   and a website mod turns it into a page for you. Needs Asterisk workspace
+   access. Best if you don't want to touch the repo at all. Mods:
+   [`docs/notion-intake.md`](docs/notion-intake.md).
 
 2. **Markdown.** Copy a starter and write in Markdown — prose, lists, links,
    images.
