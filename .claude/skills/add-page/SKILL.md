@@ -20,6 +20,10 @@ title · ~100-word summary · ~500-word body · image(s) · contact.
 - **Where copy is missing, insert a brief, not prose:**
   `<p class="needs-copy">WRITE: one line on what X does and who it's for.</p>`
   Never write the paragraph yourself.
+- **No logo supplied? Suggest a cute, on-topic emoji** as a temporary stand-in
+  and let the contributor choose (e.g. 🤳 for a citizen-science cloud-photo
+  project). Set it as `emoji:` on the `_data/*.yml` entry — never leave a broken
+  `image:` path pointing at a file that doesn't exist.
 
 ## 3. Pick the pathway
 - **Listing only** — just a `_data/*.yml` entry (card → under-construction placeholder).
@@ -33,6 +37,9 @@ title · ~100-word summary · ~500-word body · image(s) · contact.
   `layout: project` with an optional `theme:` hex colour.
 - Drop the supplied text and images in; put `.needs-copy` briefs in the gaps.
 - Buttons via `{% include button.html text="…" href="…" variant="primary" %}`.
+- Temporary emoji logo: `emoji:` on the `_data/*.yml` entry (card fallback is
+  image → emoji → construction mark), and `{% include emoji-logo.html emoji="…" %}`
+  at the top of the detail page.
 - Any new reusable component → `_includes/`.
 
 ## 5. Offer visuals
