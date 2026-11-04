@@ -36,7 +36,7 @@
   status: upcoming
   summary: Asterisk Labs and The Clouds Appreciation Society are working together to understand clouds from above and below
   contact: { name: Jacqueline, email: jacqueline@asterisk.coop}
-  url: projects-pages/UCAB.html
+  url: project-pages/UCAB.html
   image: /assets/imgs/UCAB-logo.png
 
 - title: RainCheck
