@@ -1,9 +1,10 @@
 # Notion intake (manual)
 
-How a website mod turns a no-code form submission into a page by hand. This
-works today and needs nothing external. The automated version
-([`notion-sync`](../.github/workflows/notion-sync.yml.disabled)) will replace
-steps 2–4 once the database exists — see the end of this doc.
+How a website mod turns a no-code form submission into a page by hand — the
+fallback when you don't want to run the automation. The
+[`notion-sync`](../.github/workflows/notion-sync.yml) workflow now does steps 2–4
+for you (one PR per submission); this manual path still works if you prefer it or
+the Action is unavailable. See the end of this doc.
 
 ## When to use
 
@@ -48,11 +49,18 @@ A no-code contributor filled in the Notion submission form and set its
 6. **Close the loop.** Once the PR merges, set the Notion row's **Status** to
    **"On site"** so it is not picked up again.
 
-## What the automation will change
+## The automation
 
-Steps 2–4 are exactly what the `notion-sync` GitHub Action automates: pull rows
-where Status = "Ready for site", convert the body to Markdown, download images,
-and open the branch + PR for you. The human review stays — it is the PR. That
-workflow is stubbed and disabled until the database (3b) exists; see
-[`notion-db-spec.md`](notion-db-spec.md) and the stub at
-`.github/workflows/notion-sync.yml.disabled`.
+Steps 2–4 above are what [`.github/workflows/notion-sync.yml`](../.github/workflows/notion-sync.yml)
+(script: [`scripts/notion-sync.js`](../scripts/notion-sync.js)) does: pull rows
+where Status = "Ready for site", append the data entry, download images, build a
+detail page from the body, and open one branch + PR per submission. The human
+review stays — it is the PR. On merge, set the row's Status to "On site" (the
+Action does this automatically).
+
+**Run it:** Actions tab → **notion-sync** → **Run workflow**. Leave
+**dry_run = true** first — it logs every file it would write and PR it would open,
+without touching anything. Set `dry_run = false` (or let the daily schedule run)
+once the dry-run log looks right. Prerequisites: secret `NOTION_TOKEN`, variable
+`NOTION_DB_ID`, and the database shared with the integration. Property names must
+match [`notion-db-spec.md`](notion-db-spec.md).

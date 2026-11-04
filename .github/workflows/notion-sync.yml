@@ -1,0 +1,42 @@
+# Pulls "Ready for site" rows from the Notion submission database and opens one
+# PR per submission. See scripts/notion-sync.js and docs/notion-intake.md.
+#
+# Prerequisites (one-time): secret NOTION_TOKEN, variable NOTION_DB_ID, and the
+# database shared with the integration. A manual run defaults to dry-run.
+name: notion-sync
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "List what would change, without pushing or opening PRs"
+        type: boolean
+        default: true
+  schedule:
+    - cron: "0 7 * * *"          # daily 07:00 UTC
+
+permissions:
+  contents: write                # push branches
+  pull-requests: write           # open PRs
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0         # full history so new branches push cleanly
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - run: npm install
+
+      - name: Sync ready submissions
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_DB_ID: ${{ vars.NOTION_DB_ID }}
+          GH_TOKEN: ${{ github.token }}
+          DRY_RUN: ${{ inputs.dry_run }}   # empty on schedule -> real run
+        run: node scripts/notion-sync.js

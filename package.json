@@ -1,0 +1,10 @@
+{
+  "name": "asterisk-notion-sync",
+  "private": true,
+  "type": "module",
+  "description": "Pulls 'Ready for site' submissions from the Notion database into branches + PRs. Run by .github/workflows/notion-sync.yml; not part of the Jekyll site.",
+  "dependencies": {
+    "@notionhq/client": "2.2.15",
+    "notion-to-md": "3.1.1"
+  }
+}

@@ -51,6 +51,10 @@ exclude:
   - CLAUDE.md  # repo instructions for Claude, not web content
   - CONTRIBUTING.md  # contributor front door, not web content
   - docs/      # contributor docs (style checklist etc.), not web content
+  - scripts/   # build/automation scripts (notion-sync etc.), not web content
+  - package.json       # Node deps for notion-sync, not web content
+  - package-lock.json
+  - node_modules/
 #   - .sass-cache/
 #   - .jekyll-cache/
 #   - gemfiles/
