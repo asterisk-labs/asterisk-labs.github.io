@@ -10,6 +10,9 @@ theme: "#492ae8"
 
 Started at ESA Φ-lab; a community project that Asterisk Labs supports and co-develops.
 
+<!-- EXPLAINER SLOT: the button-gated, scroll-driven "Show me how Major TOM works"
+     diagram (real grid + crop-and-map) will be inserted here, produced separately. -->
+
 ## What it is
 
 Major TOM is a standard for developing AI-ready datasets with environmental raster data. By defining a common grid of points, independent developers of datasets can produce samples that natively overlap over the same cells.
@@ -31,6 +34,12 @@ The initial Core release is a set of near-global, open datasets built on one sha
 | [Core-VIIRS-Nighttime-Light](https://huggingface.co/datasets/Major-TOM/Core-VIIRS-Nighttime-Light) | VIIRS night lights | 2.11 M | ~400 GB |
 
 On the same grid, ten **embedding datasets** encode these patches with published models — SSL4EO (Sentinel-2 and Sentinel-1), DINOv2, SigLIP, DeCUR, MMEarth, UniverSat, and the AlphaEarth satellite embeddings — so embeddings from different models line up patch-for-patch.
+
+## Explore the data
+
+Browse the Core datasets in your browser:
+
+<iframe src="https://major-tom-majortom-raster-viewer.hf.space" title="Major TOM Raster Viewer" width="100%" height="640" style="border:1px solid #e7e7e3; border-radius:12px;" loading="lazy" allowfullscreen></iframe>
 
 ## Usage
 
