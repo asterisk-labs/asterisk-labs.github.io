@@ -8,6 +8,12 @@ theme: "#492ae8"
 
 <p class="lead">Open-Source Emulator of AlphaEarth Embedding Product</p>
 
+<div class="a-btn-row">
+{% include button.html text="🚀 Open the demo" href="https://huggingface.co/spaces/asterisk-labs/betaearth" variant="primary" target="_blank" %}
+{% include button.html text="🤗 Models" href="https://huggingface.co/collections/asterisk-labs/beta-earth" variant="ghost" target="_blank" %}
+{% include button.html text="💻 Code" href="https://github.com/asterisk-labs/beta-earth" variant="ghost" target="_blank" %}
+</div>
+
 <style>
   /* Carrot pointer across the whole BetaEarth page (the diagram iframe sets its own) */
   body { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Ctext y='27' font-size='26'%3E🥕%3C/text%3E%3C/svg%3E") 5 27, auto; }
@@ -60,7 +66,3 @@ BetaEarth ships **8 variants** trading off quality, size, and which inputs they 
   <img src="https://img.youtube.com/vi/1jfJjXWmoto/maxresdefault.jpg" alt="BetaEarth video">
   <span class="yt-play" aria-hidden="true">▶</span>
 </a>
-
-{% include button.html text="🚀 Open the demo" href="https://huggingface.co/spaces/asterisk-labs/betaearth" variant="primary" target="_blank" %}
-{% include button.html text="🤗 Models" href="https://huggingface.co/collections/asterisk-labs/beta-earth" variant="ghost" target="_blank" %}
-{% include button.html text="💻 Code" href="https://github.com/asterisk-labs/beta-earth" variant="ghost" target="_blank" %}
