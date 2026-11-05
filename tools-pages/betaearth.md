@@ -4,11 +4,9 @@ title: BetaEarth
 theme: "#492ae8"
 ---
 
-{% include emoji-logo.html emoji="🥕" label="BetaEarth" fontsize="4rem" %}
+<img src="/assets/imgs/betaearth-logo.png" alt="BetaEarth" class="project-header-img">
 
-# BetaEarth
-
-*Open-Source Emulator of AlphaEarth Embedding Product*
+<p class="lead">Open-Source Emulator of AlphaEarth Embedding Product</p>
 
 ## What it is
 

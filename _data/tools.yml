@@ -24,7 +24,7 @@
   status: experimental
   summary: Emulator of AlphaEarth.
   url: tools-pages/betaearth.html
-  emoji: 🥕
+  image: /assets/imgs/betaearth-logo.png
   contact: { name: Mikolaj Czerkawski, email: miko@asterisk.coop }
 
 - title: GeoZL
