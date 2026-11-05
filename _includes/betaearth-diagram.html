@@ -9,9 +9,16 @@
 <script>
   (function () {
     var f = document.getElementById("be-diagram-frame");
+    var last = 0;
     window.addEventListener("message", function (e) {
       var h = e.data && e.data.beDiagramHeight;
-      if (f && typeof h === "number" && h > 200) f.style.height = (h + 6) + "px";
+      if (!f || typeof h !== "number" || h <= 200) return;
+      var target = Math.round(h + 6);
+      if (Math.abs(target - last) < 2) return;      // ignore no-op resizes
+      last = target;
+      var y = window.scrollY;                        // keep the page from jumping to the frame
+      f.style.height = target + "px";
+      window.scrollTo(0, y);
     });
   })();
 </script>
