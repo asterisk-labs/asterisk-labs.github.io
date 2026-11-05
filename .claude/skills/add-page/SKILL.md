@@ -27,6 +27,13 @@ title · ~100-word summary · ~500-word body · image(s) · contact.
   back to a cute, on-topic **emoji** (`emoji:` on the `_data/*.yml` entry, e.g. 🤳
   for a cloud-photo project) and let the contributor choose. Never leave a broken
   `image:` pointing at a file that doesn't exist.
+- **Paste a link → scaffold placeholders, don't write prose.** The contributor
+  may paste a GitHub repo or the project's own page. Fetch it to shape the page
+  STRUCTURE only — sensible section headings, the real repo/site as
+  `button.html` links, the logo as the `image:` — and turn what you learn into
+  *specific* `.needs-copy` briefs (e.g. `WRITE: one line on what <the actual
+  feature> does`). Never synthesise body copy: every sentence a reader would read
+  stays a brief for a human author. The golden rule holds — no generated prose.
 
 ## 3. Pick the pathway
 - **Listing only** — just a `_data/*.yml` entry (card → under-construction placeholder).
