@@ -10,29 +10,9 @@
   (function () {
     var f = document.getElementById("be-diagram-frame");
     if (!f) return;
-    var last = 0;
-    // While the iframe settles to its real height on load, the browser may try to
-    // scroll to it (anchor/focus). Pin the page scroll for a moment after each
-    // resize, but only during the initial boot window so it never fights the user.
-    var bootUntil = Date.now() + 2500;
-    var lockY = 0, lockUntil = 0, ticking = false;
-    function tick() {
-      if (Date.now() < lockUntil) {
-        if (window.scrollY !== lockY) window.scrollTo(0, lockY);
-        requestAnimationFrame(tick);
-      } else { ticking = false; }
-    }
     window.addEventListener("message", function (e) {
       var h = e.data && e.data.beDiagramHeight;
-      if (typeof h !== "number" || h <= 200) return;
-      var target = Math.round(h + 6);
-      if (Math.abs(target - last) < 2) return;       // ignore no-op resizes
-      last = target;
-      f.style.height = target + "px";
-      if (Date.now() < bootUntil) {                  // pin scroll only during the settle
-        lockY = window.scrollY; lockUntil = Date.now() + 350;
-        if (!ticking) { ticking = true; requestAnimationFrame(tick); }
-      }
+      if (typeof h === "number" && h > 200) f.style.height = Math.round(h + 6) + "px";
     });
   })();
 </script>
