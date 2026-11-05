@@ -22,8 +22,10 @@
 
 - title: BetaEarth
   status: experimental
-  summary: Details coming soon.
-  contact: { email: hello@asterisk.coop }   # add guardian: { name: ..., email: ... }
+  summary: Emulator of AlphaEarth.
+  url: tools-pages/betaearth.html
+  image: /assets/imgs/betaearth-logo.png
+  contact: { name: Mikolaj Czerkawski, email: miko@asterisk.coop }
 
 - title: GeoZL
   status: hot code
@@ -43,5 +45,17 @@
 
 - title: Major TOM
   status: stable
-  summary: Details coming soon.
+  summary: A standard for curating, sharing and combining large-scale EO datasets.
+  url: tools-pages/major-tom.html
+  image: /assets/imgs/major-tom-logo.png
+  # Community EO-dataset standard, started at ESA Phi-lab; Asterisk co-develops it
+  # (co-founders Alistair Francis & Mikolaj Czerkawski). Link-out for now; a full
+  # detail page can credit ESA + the community framing later.
+  contact: { name: Mikolaj Czerkawski, email: miko@asterisk.coop }
+
+- title: cozip
+  status: stable
+  summary: Open a ZIP like table!
+  url: https://asterisk.coop/cozip/
+  image: /assets/imgs/cozip-logo.svg
   contact: { email: hello@asterisk.coop }   # add guardian: { name: ..., email: ... }

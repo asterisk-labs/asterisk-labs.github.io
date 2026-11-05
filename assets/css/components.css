@@ -44,3 +44,56 @@
   font-size: .95rem;
   font-style: italic;
 }
+
+/* Code in detail pages — Markdown ``` fences (Rouge-highlighted). Dark panel on
+   the white .project-desc; inline code in brand indigo. */
+.project-desc .highlight {
+  background: #0f1420;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin: 18px 0;
+  overflow-x: auto;
+}
+.project-desc .highlight pre,
+.project-desc .highlight code {
+  margin: 0;
+  background: none;
+  color: #d6deeb;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: .92rem;
+  line-height: 1.55;
+}
+.project-desc :not(pre) > code {
+  background: #eceaf6;
+  color: #492ae8;
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: .88em;
+}
+/* Rouge token palette (subset) — Night Owl-ish */
+.project-desc .highlight .c,
+.project-desc .highlight .c1,
+.project-desc .highlight .cm { color: #637777; font-style: italic; }
+.project-desc .highlight .k,
+.project-desc .highlight .kn,
+.project-desc .highlight .kd { color: #c792ea; }
+.project-desc .highlight .s,
+.project-desc .highlight .s1,
+.project-desc .highlight .s2,
+.project-desc .highlight .sb { color: #c3e88d; }
+.project-desc .highlight .mi,
+.project-desc .highlight .mf,
+.project-desc .highlight .m { color: #f78c6c; }
+.project-desc .highlight .nf { color: #82aaff; }
+.project-desc .highlight .nb { color: #ffcb6b; }
+.project-desc .highlight .o,
+.project-desc .highlight .p { color: #7fdbca; }
+
+/* Tables in detail pages */
+.project-desc table { border-collapse: collapse; width: 100%; margin: 22px 0; font-size: 15px; }
+.project-desc thead th { text-align: left; padding: 10px 14px; border-bottom: 2px solid #492ae8; font-weight: 700; color: #000; white-space: nowrap; }
+.project-desc tbody td { padding: 10px 14px; border-bottom: 1px solid #e7e7e3; vertical-align: top; }
+.project-desc tbody tr:last-child td { border-bottom: none; }
+.project-desc tbody tr:hover { background: rgba(73, 42, 232, 0.04); }
+.project-desc table a { color: #492ae8; font-weight: 600; }
