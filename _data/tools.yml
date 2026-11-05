@@ -25,13 +25,15 @@
 - title: GeoZL
   summary: Spatial predictors, stream transforms and bounded-error quantizers expose raster structure to OpenZL compression graphs.
   url: https://asterisk.coop/geozl/
-  emoji: 🗜️
+  image: /assets/imgs/geozl-logo.svg
+  emoji: 🗜️                     # fallback only; image above wins
   contact: { email: hello@asterisk.coop }   # add guardian: { name: ..., email: ... }
 
 - title: rumi
   summary: Stateless raster storage for AI4EO.
   url: https://asterisk.coop/rumi/
-  emoji: 🗄️
+  image: /assets/imgs/rumi-logo.svg
+  emoji: 🗄️                     # fallback only; image above wins
   contact: { email: hello@asterisk.coop }   # add guardian: { name: ..., email: ... }
 
 - title: Major TOM
