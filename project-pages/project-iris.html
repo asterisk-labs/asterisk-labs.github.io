@@ -46,6 +46,20 @@ theme: "#492ae8"
         height: 100%;
         border: 0;
     }
+    .iris-survey {
+        width: 100%;
+        max-width: 900px;
+        margin: 10px auto 0 auto;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
+    }
+    .iris-survey iframe {
+        display: block;
+        width: 100%;
+        height: 600px;
+        border: 0;
+    }
 
     /* Orbit diagram: four theme cards circling the tool; hover a card to
        read its description. On narrow screens the cards are listed instead. */
@@ -195,15 +209,17 @@ theme: "#492ae8"
         <div class="iris-title gradual-reveal">IRIS</div>
 
         <img src='/assets/imgs/iris-segmentation.png' class='iris-hero gradual-reveal' alt='The IRIS segmentation view: a Sentinel-2 scene with its views side by side and the annotation tools'/>
-        <p class="iris-caption gradual-reveal">The IRIS annotation view: paint a few pixels, let the model fill in the rest, correct, repeat.</p>
+        <p class="iris-caption gradual-reveal">
+            The IRIS annotation view: paint a few pixels, use the model to fill in the rest, correct the results, repeat.
+        </p>
 
         <p class="project-p gradual-reveal">
-            IRIS is a browser-based, collaborative tool for massively accelerating the labelling of satellite imagery with segmentation masks. It was first built at ESA <a href="https://philab.esa.int/" style="color: var(--theme);">Φ-lab</a> in 2019 to speed up the annotation of cloudy Sentinel-2 scenes, and it has since become a popular tool that has been used for a range of other tasks. The user paints a few pixels of each class, an ML model is trained on those pixels and predicts the rest of the image, and the user corrects the prediction and trains again. This iterative loop helps a user annotate a whole image accurately in a much shorter time than manually painting it.
+            IRIS is a browser-based, collaborative tool for massively accelerating the labelling of raster data with segmentation masks. It was first built at ESA <a href="https://philab.esa.int/" style="color: var(--theme);">Φ-lab</a> in 2019 to speed up the annotation of cloudy Sentinel-2 scenes, and it has since become a popular tool that has been used for a range of other tasks. The user paints a few pixels of each class, an ML model is trained on those pixels and predicts the rest of the image, and the user corrects the prediction and trains again. This iterative loop helps a user annotate an image accurately in a much shorter time than it would take to manually paint it.
         </p>
 
         <h2 class='gradual-reveal'>Previous versions</h2>
         <p class="project-p gradual-reveal">
-            The original IRIS, built for the Sentinel-2 cloud mask catalogue, explained in a few minutes.
+            The original IRIS. Many of the core features remain the same, despite the updated look.
         </p>
         <div class="iris-video gradual-reveal">
             <iframe src="https://www.youtube-nocookie.com/embed/ERJA2-fTW6k" title="IRIS: Intelligently Reinforced Image Segmentation" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -214,7 +230,7 @@ theme: "#492ae8"
 
         <h2 class='gradual-reveal'>New developments</h2>
         <p class="project-p gradual-reveal">
-            IRIS retrains its model from scratch for every image, which keeps labelling errors from spreading between images but also means that nothing learnt on one image helps with the next. That design made sense when the point of annotation was a dataset for training a convolutional model. Now that pre-computed embeddings are available for the whole planet, a linear model on AlphaEarth or TESSERA embeddings can separate many classes from a handful of examples, and the goal of an annotation project becomes a mapping from classes to regions of embedding space that can be applied anywhere. Over six months, with the support of ESA <a href="https://philab.esa.int/" style="color: var(--theme);">Φ-lab</a>, we are extending IRIS along four lines to make the most of that.
+            IRIS retrains its model from scratch for every image, which keeps labelling errors from spreading between images but also means that nothing learnt on one image helps with the next. That design made sense when the point of annotation was to build a labelled dataset for training a convolutional model. Now that pre-computed embeddings are available for the whole planet, a linear model on AlphaEarth or TESSERA embeddings can separate many classes from a handful of examples, and the goal of an annotation project becomes a mapping from classes to regions of a latent space, that can be applied anywhere. Over six months, with the support of ESA <a href="https://philab.esa.int/" style="color: var(--theme);">Φ-lab</a>, we are extending IRIS along four lines to bring it up to date with modern embeddings-first workflows.
         </p>
 
         <div class="iris-orbit gradual-reveal" id="iris-orbit" aria-label="The four themes of the project, circling the tool">
@@ -226,7 +242,7 @@ theme: "#492ae8"
             <div class="iris-orbit-item" data-theme="embeddings" tabindex="0">Embeddings workflows<small>linear models, shared annotations</small></div>
             <div class="iris-orbit-item" data-theme="agentic" tabindex="0">Agentic setup<small>describe a task, get a project</small></div>
             <div class="iris-orbit-item" data-theme="timeseries" tabindex="0">Time-series annotation<small>label a place across dates</small></div>
-            <div class="iris-orbit-item" data-theme="visualisation" tabindex="0">Visualisation &amp; speed<small>many bands, cloud-native data</small></div>
+            <div class="iris-orbit-item" data-theme="visualisation" tabindex="0">Visualisation &amp; speed<small>cloud-native data and client-side rendering</small></div>
 
             <div class="iris-popover" id="iris-popover" role="dialog" aria-live="polite">
                 <h3 id="iris-popover-title"></h3>
@@ -244,30 +260,35 @@ theme: "#492ae8"
             </div>
             <div data-theme="agentic">
                 <h3>Agentic setup</h3>
-                <p>Building a dataset is still the slowest part of starting a project. We are adding a catalogue of data sources and an assistant that turns a description of the task, the region and the data you want into a ready IRIS project, with views and classes chosen to suit the job. Setting up by hand stays exactly as it is.</p>
+                <p>Building a dataset is still the slowest part of starting a project. We are adding a catalogue of data sources and an assistant that turns a description of the task, the region and the data you want into an IRIS project, with views and classes chosen to suit the job. This will lower the barrier-to-entry so that anyone can use IRIS.</p>
             </div>
             <div data-theme="timeseries">
                 <h3>Time-series annotation</h3>
-                <p>Many questions are about change rather than a single date. IRIS will step through the dates available for a place and keep a mask for each, so annual embedding products and seasonal imagery can be labelled over time rather than one scene at a time.</p>
+                <p>Many tasks need labels that change through time. IRIS will have a new mode that can step through the dates available for a place and keep a mask for each, so annual embedding products and seasonal imagery can be labelled over time rather than one scene at a time.</p>
             </div>
             <div data-theme="visualisation">
                 <h3>Visualisation and speed</h3>
-                <p>Embedding products carry 64 or 128 bands and hyperspectral sensors many more. We are reworking how IRIS stores, loads and displays imagery so that views over many bands are quick to make and quick to draw, with cloud-native formats that let the browser read only what it needs.</p>
+                <p>Embedding products and hyperspectral data can carry hundreds of bands. We are reworking how IRIS stores, loads and displays imagery so that views over many bands are quick to make and quick to draw, with cloud-native formats that let the browser read only what it needs.</p>
             </div>
         </div>
 
         <h2 class='gradual-reveal'>User community</h2>
         <p class="project-p gradual-reveal">
-            IRIS has been downloaded and forked many times, but as an open source project with a permissive licence we have little idea what it has been used for or what its users would change. We will be conducting a user survey and setting up a forum where development can be discussed. From that group we will pick two champion use cases, build their datasets with them whilst the new features are being written, and release both datasets at the end of the project. The results and the tool will be presented at a webinar in early 2027.
+            IRIS has been downloaded and forked many times, but as an open source project with a permissive licence we have little idea what it has been used for or what its users would change. We are conducting a <a href="#survey" style="color: var(--theme);">user survey</a> and setting up a forum where development can be discussed. From that group we will pick two champion use cases, build their datasets with them whilst the new features are being written, and release both datasets at the end of the project. The results and the tool will be presented at a webinar in early 2027.
         </p>
         <p class="project-p gradual-reveal">
             Anyone who has used IRIS and would like to be involved is welcome to <a href="mailto:hello@asterisk.coop" style="color: var(--theme);">get in touch</a>.
         </p>
 
+        <h2 class='gradual-reveal' id="survey">User survey</h2>
+        <div class="iris-survey gradual-reveal">
+            <iframe src="https://agate-salto-93b.notion.site/ebd//40cef6bddcd98014a346da707a067784" title="IRIS user survey" loading="lazy" allowfullscreen></iframe>
+        </div>
+
         <h2 class='gradual-reveal'>Links</h2>
         <div class="a-btn-row gradual-reveal" style="margin: 6px 0 10px 0;">
             {% include button.html text="IRIS on GitHub" href="https://github.com/ESA-PhiLab/iris" variant="primary" target="_blank" %}
-            {% include button.html text="Configuration guide" href="https://github.com/ESA-PhiLab/iris/blob/master/docs/config.md" variant="ghost" target="_blank" %}
+            {% include button.html text="User survey" href="https://agate-salto-93b.notion.site/ebd//40cef6bddcd98014a346da707a067784" variant="ghost" target="_blank" %}
             {% include button.html text="Original IRIS video" href="https://www.youtube.com/watch?v=ERJA2-fTW6k" variant="ghost" target="_blank" %}
         </div>
 
