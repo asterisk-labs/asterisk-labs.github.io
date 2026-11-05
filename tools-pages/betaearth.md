@@ -56,7 +56,22 @@ BetaEarth ships **8 variants** trading off quality, size, and which inputs they 
 
 ## Try it
 
-<iframe src="https://asterisk-labs-betaearth.hf.space" title="BetaEarth demo" style="width:100%; height:90vh; min-height:720px; border:1px solid #e7e7e3; border-radius:12px;" loading="lazy" allowfullscreen></iframe>
+<iframe id="be-demo-frame" data-src="https://asterisk-labs-betaearth.hf.space" title="BetaEarth demo" style="width:100%; height:90vh; min-height:720px; border:1px solid #e7e7e3; border-radius:12px;" allowfullscreen></iframe>
+<script>
+  // Load the demo only when it scrolls into view, so its on-load focus can't
+  // yank the page down to it while you're reading the top of the page.
+  (function () {
+    var f = document.getElementById("be-demo-frame");
+    if (!f) return;
+    function load() { if (!f.src) f.src = f.getAttribute("data-src"); }
+    if ("IntersectionObserver" in window) {
+      var io = new IntersectionObserver(function (entries) {
+        if (entries.some(function (e) { return e.isIntersecting; })) { load(); io.disconnect(); }
+      }, { rootMargin: "0px" });
+      io.observe(f);
+    } else { load(); }
+  })();
+</script>
 
 ## Watch
 
