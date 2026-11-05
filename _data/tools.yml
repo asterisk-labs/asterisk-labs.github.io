@@ -25,7 +25,7 @@
   summary: Emulator of AlphaEarth.
   url: https://huggingface.co/spaces/asterisk-labs/betaearth
   emoji: 🥕
-  contact: { email: hello@asterisk.coop }   # add guardian: { name: ..., email: ... }
+  contact: { name: Mikolaj Czerkawski, email: miko@asterisk.coop }
 
 - title: GeoZL
   status: hot code
@@ -51,4 +51,4 @@
   # Community EO-dataset standard, started at ESA Phi-lab; Asterisk co-develops it
   # (co-founders Alistair Francis & Mikolaj Czerkawski). Link-out for now; a full
   # detail page can credit ESA + the community framing later.
-  contact: { email: hello@asterisk.coop }   # add guardian: { name: ..., email: ... }
+  contact: { name: Mikolaj Czerkawski, email: miko@asterisk.coop }
