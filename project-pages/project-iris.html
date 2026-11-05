@@ -86,6 +86,7 @@ thumbnail: /assets/imgs/iris-segmentation.png
         background: var(--theme, #5B9AA9);
         clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
         pointer-events: none;
+        z-index: 2;
     }
     .iris-orbit-centre strong {
         font-size: 1.6rem;
@@ -368,7 +369,12 @@ thumbnail: /assets/imgs/iris-segmentation.png
             items.forEach((item, i) => {
                 const a = angle + (i * Math.PI * 2) / items.length;
                 const x = Math.cos(a) * rx, y = Math.sin(a) * ry;
-                item.style.transform = `translate(${x}px, ${y}px)`;
+                // Top half of the ellipse is the far side: behind the centre and
+                // a little smaller; bottom half is the near side, in front.
+                const depth = (y / ry + 1) / 2;            // 0 far ... 1 near
+                const scale = 0.9 + 0.1 * depth;
+                item.style.transform = `translate(${x}px, ${y}px) scale(${scale})`;
+                item.style.zIndex = y < 0 ? 1 : 3;
                 item.dataset.x = x; item.dataset.y = y;
                 const line = sticks[i];
                 if (line) {
