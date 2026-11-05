@@ -23,11 +23,15 @@
   contact: { email: hello@asterisk.coop }   # add guardian: { name: ..., email: ... }
 
 - title: GeoZL
-  summary: Details coming soon.
+  summary: Spatial predictors, stream transforms and bounded-error quantizers expose raster structure to OpenZL compression graphs.
+  url: /geozl/
+  emoji: 🗜️
   contact: { email: hello@asterisk.coop }   # add guardian: { name: ..., email: ... }
 
 - title: rumi
-  summary: Details coming soon.
+  summary: Stateless raster storage for AI4EO.
+  url: /rumi/
+  emoji: 🗄️
   contact: { email: hello@asterisk.coop }   # add guardian: { name: ..., email: ... }
 
 - title: Major TOM
