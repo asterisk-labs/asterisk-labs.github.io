@@ -33,10 +33,12 @@
   contact: { name: Ali, email: ali@asterisk.coop}
 
 # ── Upcoming ─────────────────────────────────────────────────────────────────
-- title: Clouds from Above and Below
+- title: Understanding Clouds from Above and Below
   status: upcoming
-  summary: Details coming soon.
+  summary: Asterisk Labs and The Clouds Appreciation Society are working together to understand clouds from above and below
   contact: { name: Jacqueline, email: jacqueline@asterisk.coop}
+  url: project-pages/UCAB.html
+  emoji: 🤳                     # temporary logo until a real UCAB-logo image exists
 
 - title: RainCheck
   status: upcoming

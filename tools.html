@@ -1,0 +1,70 @@
+---
+layout: default
+title: tools
+description: Open-source tools, datasets and models built by Asterisk Labs
+---
+
+<style>
+    /* "tools" listing — card grid built from _data/tools.yml.
+       Mirrors the projects-page cards (no status badges here).
+       This <style> only ships on this page, so widening the container is safe. */
+    .cover-container { max-width: 1000px !important; }
+    main.mb-auto { text-align: left; }
+
+    .tools-intro { margin: 8px 0 34px; }
+    .tools-intro h1 { font-size: 28px; font-weight: 600; letter-spacing: -.01em; margin: 0 0 12px; }
+    .tools-intro p { font-size: 16px; line-height: 1.65; color: #cfcfcf; max-width: 640px; margin: 0; }
+
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+    .proj-card { display: flex; flex-direction: column; border: 1px solid #e7e7e3; border-radius: 14px; overflow: hidden; background: #fff; text-decoration: none; color: #000; transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease; }
+    .proj-card:hover { transform: translateY(-3px); }  /* colour set per-hover in JS */
+    .proj-preview { height: 150px; display: flex; align-items: center; justify-content: center; padding: 28px; background: #fff; border-bottom: 1px solid #eee; }
+    .proj-preview img { max-width: 84%; max-height: 74px; width: auto; height: auto; display: block; }
+    .proj-body { padding: 20px 24px 22px; }
+    .proj-desc { margin: 0; font-size: 15px; line-height: 1.62; color: #555; }
+    #tools-wrap { margin-bottom: 60px; }
+</style>
+
+<main class="mb-auto">
+    <div id="tools-wrap">
+        <div class="tools-intro">
+            <h1>tools</h1>
+            <p>we like to build things in the open and we hope you find them useful</p>
+        </div>
+        <div class="projects-grid">
+            {% for m in site.data.tools %}
+            {% if m.image %}{% assign img = m.image %}{% else %}{% assign img = "/assets/imgs/mark-construction.svg" %}{% endif %}
+            {% if m.url %}{% assign link = m.url %}{% else %}{% capture link %}project-pages/under-construction.html?p={{ m.title | slugify }}{% endcapture %}{% endif %}
+            <a class="proj-card" href="{{ link }}">
+                <div class="proj-preview"><img src="{{ img }}" alt="{{ m.title }}"/></div>
+                <div class="proj-body">
+                    <p class="proj-desc">{{ m.summary }}</p>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</main>
+
+<script type="text/javascript">
+    // Highlight each card with a random asterisk member colour on hover
+    // (same palette and behaviour as the projects page).
+    (function () {
+        var colours = ['#c4ffc2', '#492ae8', '#f7cc09', '#bfe8f3', '#860050', '#ff6b35'];
+        function glow(hex, a) {
+            var n = parseInt(hex.slice(1), 16);
+            return 'rgba(' + (n >> 16 & 255) + ',' + (n >> 8 & 255) + ',' + (n & 255) + ',' + a + ')';
+        }
+        document.querySelectorAll('.proj-card').forEach(function (card) {
+            card.addEventListener('mouseenter', function () {
+                var c = colours[Math.floor(Math.random() * colours.length)];
+                card.style.borderColor = c;
+                card.style.boxShadow = '0 10px 30px ' + glow(c, 0.18);
+            });
+            card.addEventListener('mouseleave', function () {
+                card.style.borderColor = '';
+                card.style.boxShadow = '';
+            });
+        });
+    })();
+</script>

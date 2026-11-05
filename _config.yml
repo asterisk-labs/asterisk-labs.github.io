@@ -47,6 +47,17 @@ plugins:
 exclude:
   - dist/
   - archive/   # retired page snapshots kept for reference, not published
+  - .claude/   # Claude Code skills / config, not web content
+  - CLAUDE.md  # repo instructions for Claude, not web content
+  - README.md  # repo front page, not web content
+  - CONTRIBUTING.md  # contributor front door, not web content
+  - docs/      # contributor docs (style checklist etc.), not web content
+  - project-pages/README.md   # contributor guide, not a web page
+  - tools-pages/README.md     # contributor guide, not a web page
+  - scripts/   # build/automation scripts (notion-sync etc.), not web content
+  - package.json       # Node deps for notion-sync, not web content
+  - package-lock.json
+  - node_modules/
 #   - .sass-cache/
 #   - .jekyll-cache/
 #   - gemfiles/

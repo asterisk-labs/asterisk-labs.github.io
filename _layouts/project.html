@@ -1,0 +1,13 @@
+---
+layout: default
+---
+<!-- Layout for Markdown (or HTML) detail pages. Write the body in Markdown and
+     set `layout: project` in the front matter; an optional `theme:` hex colour
+     drives the heading accent bars. See project-pages/README.md. -->
+<link href="/project-pages/project.css" rel="stylesheet">
+
+<div class="d-flex flex-column container-fluid" style="--theme:{{ page.theme | default: '#492ae8' }}">
+  <div class="project-desc">
+    {{ content }}
+  </div>
+</div>
