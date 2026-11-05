@@ -22,7 +22,9 @@
 
 - title: BetaEarth
   status: experimental
-  summary: Details coming soon.
+  summary: Emulator of AlphaEarth.
+  url: https://huggingface.co/spaces/asterisk-labs/betaearth
+  emoji: 🥕
   contact: { email: hello@asterisk.coop }   # add guardian: { name: ..., email: ... }
 
 - title: GeoZL
@@ -43,5 +45,10 @@
 
 - title: Major TOM
   status: stable
-  summary: Details coming soon.
+  summary: A standard for curating, sharing and combining large-scale EO datasets.
+  url: https://huggingface.co/Major-TOM
+  image: /assets/imgs/major-tom-logo.png
+  # Community EO-dataset standard, started at ESA Phi-lab; Asterisk co-develops it
+  # (co-founders Alistair Francis & Mikolaj Czerkawski). Link-out for now; a full
+  # detail page can credit ESA + the community framing later.
   contact: { email: hello@asterisk.coop }   # add guardian: { name: ..., email: ... }
