@@ -126,7 +126,7 @@
              background:rgba(0,0,0,.5); padding:3px 8px; border-radius:7px; }
   .cmp .tag.l{ left:8px } .cmp .tag.r{ right:8px }
   .cmp .empty{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; text-align:center;
-               color:var(--muted); font-size:.85rem; padding:20px; }
+               background:var(--surface); color:var(--ink); font-weight:600; font-size:.9rem; padding:20px; }
   .outdims{ font-family:var(--mono); font-size:.68rem; color:var(--muted); margin-top:8px; text-align:center; }
   .outdims b{ color:var(--indigo); }
 
@@ -156,7 +156,7 @@
 
 <div class="wrap">
   <h1>BetaEarth encoders <span class="proto">4 locations · real data</span></h1>
-  <p class="intro">BetaEarth encodes each sensor separately. Sentinel-2, Sentinel-1 and DEM each become a 64-dimension vector per pixel. Toggle a sensor to add or drop it from the average. Drag the slider to compare the average with AlphaEarth. Every tile shares one set of PCA colours, fit on AlphaEarth.</p>
+  <p class="intro">BetaEarth encodes Sentinel-2, Sentinel-1 and DEM separately, each into a 64-dimension vector per pixel. A separate step averages them. The average and the matching AlphaEarth tile are shown for four Major TOM locations, with one PCA colour basis fit on AlphaEarth across every tile.</p>
 
   <div class="locs" id="locs"></div>
 

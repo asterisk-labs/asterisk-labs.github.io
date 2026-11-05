@@ -8,13 +8,19 @@ theme: "#492ae8"
 
 <p class="lead">Open-Source Emulator of AlphaEarth Embedding Product</p>
 
-## How it works
-
-{% include betaearth-diagram.html %}
+<style>
+  /* Carrot pointer across the whole BetaEarth page (the diagram iframe sets its own) */
+  body { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Ctext y='27' font-size='26'%3E🥕%3C/text%3E%3C/svg%3E") 5 27, auto; }
+  a, button, .btn, summary, input, label, select { cursor: pointer; }
+</style>
 
 ## What it is
 
 AlphaEarth satellite embedding product is a powerful summary of information derived from several sensors (Sentinel-2, Sentinel-1, Landsat). Yet the model used to generate them is not available for further experimentation or more fine-grained control (for instance to create embeddings that summarise custom temporal range). BetaEarth changes that by training to emulate the embedding product from a single timestamp. The original release supports encoders for Sentinel-2, Sentinel-1, and DEM. While not as performant as the original annual product, BetaEarth can get pretty close in some scenarios. The code is fully open-source so training emulators with different architectures or other modalities is entirely possible.
+
+## How it works
+
+{% include betaearth-diagram.html %}
 
 ## Use it
 
