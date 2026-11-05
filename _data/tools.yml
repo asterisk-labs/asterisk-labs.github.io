@@ -14,7 +14,7 @@
 
 - title: TACO
   summary: Transparent Access to Cloud Optimized Datasets.
-  url: /taco/
+  url: https://asterisk.coop/taco/
   emoji: 🌮
   contact: { name: Cesar Aybar, email: cesar@asterisk.coop }
 
@@ -24,13 +24,13 @@
 
 - title: GeoZL
   summary: Spatial predictors, stream transforms and bounded-error quantizers expose raster structure to OpenZL compression graphs.
-  url: /geozl/
+  url: https://asterisk.coop/geozl/
   emoji: 🗜️
   contact: { email: hello@asterisk.coop }   # add guardian: { name: ..., email: ... }
 
 - title: rumi
   summary: Stateless raster storage for AI4EO.
-  url: /rumi/
+  url: https://asterisk.coop/rumi/
   emoji: 🗄️
   contact: { email: hello@asterisk.coop }   # add guardian: { name: ..., email: ... }
 
