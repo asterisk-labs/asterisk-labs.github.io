@@ -33,10 +33,13 @@ description: Open-source tools, datasets and models built by Asterisk Labs
         </div>
         <div class="projects-grid">
             {% for m in site.data.tools %}
-            {% if m.image %}{% assign img = m.image %}{% else %}{% assign img = "/assets/imgs/mark-construction.svg" %}{% endif %}
             {% if m.url %}{% assign link = m.url %}{% else %}{% capture link %}project-pages/under-construction.html?p={{ m.title | slugify }}{% endcapture %}{% endif %}
             <a class="proj-card" href="{{ link }}">
-                <div class="proj-preview"><img src="{{ img }}" alt="{{ m.title }}"/></div>
+                <div class="proj-preview">
+                    {% if m.image %}<img src="{{ m.image }}" alt="{{ m.title }}"/>
+                    {% elsif m.emoji %}{% include emoji-logo.html emoji=m.emoji label=m.title %}
+                    {% else %}<img src="/assets/imgs/mark-construction.svg" alt="{{ m.title }}"/>{% endif %}
+                </div>
                 <div class="proj-body">
                     <p class="proj-desc">{{ m.summary }}</p>
                 </div>

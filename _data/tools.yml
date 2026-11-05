@@ -5,15 +5,18 @@
 # Fields
 #   title    required   name on the card (also used for alt text and the slug)
 #   summary  required   one or two lines shown on the card
-#   image    optional   logo path in assets/imgs/; omit -> under-construction mark
+#   image    optional   logo path in assets/imgs/; omit -> emoji, else under-construction mark
+#   emoji    optional   a single emoji used as a temporary card logo (image wins if both set)
 #   url      optional   detail page or external repo link; omit -> under-construction page
 #   contact  optional   guardian shown on the placeholder: { name: ..., email: ... }
 #
 # Order on the page follows the order below.
 
 - title: TACO
-  summary: Details coming soon.
-  contact: { email: hello@asterisk.coop }   # add guardian: { name: ..., email: ... }
+  summary: Transparent Access to Cloud Optimized Datasets.
+  url: /taco/
+  emoji: 🌮
+  contact: { name: Cesar Aybar, email: cesar@asterisk.coop }
 
 - title: BetaEarth
   summary: Details coming soon.
