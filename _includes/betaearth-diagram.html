@@ -1,0 +1,17 @@
+<!-- Interactive BetaEarth encoder diagram. Self-contained asset in assets/betaearth-diagram/,
+     embedded in an iframe so its styles/cursor/animations stay scoped. Auto-sizes to content. -->
+<iframe id="be-diagram-frame"
+        src="{{ '/assets/betaearth-diagram/' | relative_url }}"
+        title="BetaEarth encoder diagram"
+        loading="lazy"
+        scrolling="no"
+        style="width:100%; border:0; height:760px; display:block;"></iframe>
+<script>
+  (function () {
+    var f = document.getElementById("be-diagram-frame");
+    window.addEventListener("message", function (e) {
+      var h = e.data && e.data.beDiagramHeight;
+      if (f && typeof h === "number" && h > 200) f.style.height = (h + 6) + "px";
+    });
+  })();
+</script>

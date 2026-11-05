@@ -97,3 +97,9 @@
 .project-desc tbody tr:last-child td { border-bottom: none; }
 .project-desc tbody tr:hover { background: rgba(73, 42, 232, 0.04); }
 .project-desc table a { color: #492ae8; font-weight: 600; }
+
+/* YouTube thumbnail with play overlay */
+.yt-thumb { position: relative; display: block; max-width: 560px; border-radius: 12px; overflow: hidden; border: 1px solid #e7e7e3; line-height: 0; }
+.yt-thumb img { width: 100%; display: block; }
+.yt-thumb .yt-play { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 46px; color: #fff; background: rgba(0,0,0,0.22); transition: background 0.15s ease; }
+.yt-thumb:hover .yt-play { background: rgba(73,42,232,0.38); }

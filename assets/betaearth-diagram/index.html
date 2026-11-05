@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BetaEarth Encoders</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;600;700&display=swap">
+<style>
+  /* Flow: inputs -> BetaEarth encoder (carrot DNN) -> per-modality embeddings
+     -> a separate average module -> combined output, drag-compared vs AlphaEarth. */
+  :root{
+    --bg:#ffffff; --surface:#ffffff; --panel:#faf9fd;
+    --ink:#17171a; --muted:#6b6b72;
+    --indigo:#492ae8; --yellow:#f7cc09; --mint:#c4ffc2;
+    --edge:#e6e5ef; --wire:#c7c3dd;
+    --disp:"League Spartan",system-ui,sans-serif;
+    --body:-apple-system,system-ui,"Segoe UI",Roboto,sans-serif;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    color-scheme:light;
+  }
+  @media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
+    --bg:#121216; --surface:#1c1c22; --panel:#17171d;
+    --ink:#f1f1ef; --muted:#9b9ba6; --edge:#2e2e38; --wire:#3f3f52;
+    --indigo:#9484ff; color-scheme:dark;
+  }}
+  :root[data-theme="dark"]{
+    --bg:#121216; --surface:#1c1c22; --panel:#17171d;
+    --ink:#f1f1ef; --muted:#9b9ba6; --edge:#2e2e38; --wire:#3f3f52;
+    --indigo:#9484ff; color-scheme:dark;
+  }
+  *{ box-sizing:border-box }
+  body{ margin:0; background:var(--bg); color:var(--ink); font-family:var(--body);
+        padding-left:max(16px,env(safe-area-inset-left,0px));
+        padding-right:max(16px,env(safe-area-inset-right,0px));
+        padding-block:24px; line-height:1.5; }
+  .wrap{ max-width:1100px; margin:0 auto; }
+  h1{ font-family:var(--disp); font-weight:700; font-size:1.5rem; margin:0 0 4px; letter-spacing:-.01em; text-wrap:balance; }
+  .intro{ color:var(--muted); font-size:.92rem; max-width:66ch; margin:0 0 16px; }
+  .proto{ display:inline-block; background:var(--yellow); color:#5a4600; font-family:var(--disp);
+          font-weight:700; font-size:.7rem; padding:3px 9px; border-radius:999px; vertical-align:middle; margin-left:6px; }
+
+  .locs{ display:flex; flex-wrap:wrap; align-items:center; gap:9px; margin:0 0 22px; }
+  .loc{ display:flex; align-items:center; gap:8px; border:1px solid var(--edge); background:var(--surface);
+        color:var(--ink); font-family:var(--body); font-size:.86rem; font-weight:600;
+        padding:4px 11px 4px 4px; border-radius:999px; cursor:pointer; }
+  .loc img{ width:28px; height:28px; border-radius:50%; object-fit:cover; display:block; }
+  .loc small{ color:var(--muted); font-weight:400; }
+  .loc[aria-pressed="true"]{ border-color:var(--indigo); box-shadow:0 0 0 1px var(--indigo); }
+
+  /* stage: inputs | model | embeddings | average | compare */
+  .stage{ position:relative; display:grid; gap:18px 26px; align-items:center;
+          grid-template-columns:auto auto auto auto minmax(230px,1.1fr); }
+  .wires{ position:absolute; inset:0; width:100%; height:100%; z-index:0; pointer-events:none; overflow:visible; }
+  .col{ position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; gap:12px; }
+
+  /* column eyebrow */
+  .ceil{ font-family:var(--mono); font-size:.58rem; text-transform:uppercase; letter-spacing:.07em; color:var(--muted); }
+
+  /* input node (toggle lives here) */
+  .innode{ background:var(--surface); border:1px solid var(--edge); border-radius:12px; padding:8px 9px; width:136px;
+           transition:opacity .18s ease, border-color .18s ease; }
+  .innode.off{ opacity:.4; }
+  .innode.on{ border-color:var(--indigo); }
+  .ihead{ display:flex; align-items:center; justify-content:space-between; gap:6px; margin-bottom:6px; }
+  .ihead .nm{ font-family:var(--disp); font-weight:700; font-size:.82rem; display:flex; align-items:center; gap:5px; }
+  .ihead .ico{ font-size:.95rem; line-height:1; }
+  .innode img{ width:100%; height:62px; object-fit:cover; border-radius:7px; border:1px solid var(--edge);
+               background:var(--panel); display:block; }
+  .innode .dim{ font-family:var(--mono); font-size:.58rem; color:var(--muted); margin-top:5px; text-align:center; }
+  .innode .dim b{ color:var(--indigo); }
+
+  /* toggle switch */
+  .sw{ --h:22px; width:40px; height:var(--h); border-radius:999px; border:none; flex:none; cursor:pointer;
+       background:var(--edge); position:relative; transition:background .18s ease; padding:0; }
+  .sw::after{ content:""; position:absolute; top:3px; left:3px; width:16px; height:16px; border-radius:50%;
+              background:#fff; box-shadow:0 1px 2px rgba(0,0,0,.3); transition:transform .18s ease; }
+  .sw[aria-pressed="true"]{ background:var(--indigo); }
+  .sw[aria-pressed="true"]::after{ transform:translateX(18px); }
+
+  /* BetaEarth model (carrot DNN) */
+  .model .dnn{ width:138px; height:auto; overflow:visible; }
+  .dnn line{ stroke:var(--wire); stroke-width:1; }
+  .dnn .node{ fill:var(--surface); stroke:var(--indigo); stroke-width:1.6; }
+  .dnn .carrot-node{ fill:var(--mint); stroke:var(--indigo); stroke-width:2.2; }
+  .dnn .carrot-emoji{ font-size:18px; transform-box:fill-box; transform-origin:center;
+                      animation:spin 6s linear infinite; }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+  .model .mlabel{ font-family:var(--disp); font-weight:700; font-size:.9rem; }
+  .model .msub{ font-family:var(--mono); font-size:.56rem; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; }
+
+  /* per-modality embeddings (model output side) */
+  .embfig{ margin:0; text-align:center; transition:opacity .18s ease; }
+  .embfig.off{ opacity:.4; }
+  .embfig img{ width:72px; height:72px; object-fit:cover; border-radius:9px; border:1px solid var(--edge);
+               background:var(--panel); display:block; }
+  .embfig.off img{ filter:grayscale(1); }
+  .embfig figcaption{ font-family:var(--mono); font-size:.58rem; color:var(--muted); margin-top:4px; }
+  .embfig figcaption b{ color:var(--indigo); }
+
+  /* average module (separate from the model) */
+  .avgbox{ width:66px; height:66px; border-radius:14px; border:2px solid var(--indigo); background:var(--surface);
+           display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1px; }
+  .avgbox .sig{ font-family:var(--disp); font-weight:700; font-size:1.25rem; color:var(--indigo); line-height:1; }
+  .avgbox .den{ font-family:var(--mono); font-size:.58rem; color:var(--muted); }
+  .avg .alabel{ font-family:var(--disp); font-weight:700; font-size:.88rem; }
+  .avg .acount{ font-family:var(--mono); font-size:.56rem; color:var(--muted); }
+
+  /* compare */
+  .compare-col{ align-items:stretch; }
+  .compare-col h2{ font-family:var(--disp); font-weight:600; font-size:.7rem; text-transform:uppercase;
+                   letter-spacing:.07em; color:var(--muted); margin:0; text-align:center; }
+  .cmp{ position:relative; width:100%; max-width:340px; aspect-ratio:1; margin:0 auto; border-radius:14px; overflow:hidden;
+        border:1px solid var(--edge); user-select:none; touch-action:none; background:var(--panel); cursor:ew-resize; }
+  .cmp img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;
+            pointer-events:none; -webkit-user-drag:none; user-drag:none; }
+  .cmp .top{ clip-path:inset(0 50% 0 0); }
+  .cmp .divider,.cmp .handle,.cmp .tag,.cmp .empty{ pointer-events:none; }
+  .cmp .divider{ position:absolute; top:0; bottom:0; left:50%; width:2px; background:#fff; box-shadow:0 0 0 1px rgba(0,0,0,.25); }
+  .cmp .handle{ position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:32px; height:32px;
+                border-radius:50%; background:#fff; box-shadow:0 1px 6px rgba(0,0,0,.35); display:flex;
+                align-items:center; justify-content:center; font-size:14px; color:var(--indigo); font-weight:700; }
+  .cmp .tag{ position:absolute; bottom:9px; font-family:var(--disp); font-size:.66rem; font-weight:700; color:#fff;
+             background:rgba(0,0,0,.5); padding:3px 8px; border-radius:7px; }
+  .cmp .tag.l{ left:8px } .cmp .tag.r{ right:8px }
+  .cmp .empty{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; text-align:center;
+               color:var(--muted); font-size:.85rem; padding:20px; }
+  .outdims{ font-family:var(--mono); font-size:.68rem; color:var(--muted); margin-top:8px; text-align:center; }
+  .outdims b{ color:var(--indigo); }
+
+  .foot{ color:var(--muted); font-size:.8rem; margin-top:24px; max-width:68ch; }
+
+  @media (max-width:820px){
+    .stage{ grid-template-columns:1fr; gap:18px; }
+    .innode{ width:170px; }
+  }
+  /* carrot cursor everywhere (interactive controls keep their own cursor below) */
+  body{ cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Ctext y='27' font-size='26'%3E🥕%3C/text%3E%3C/svg%3E") 5 27, auto; }
+  .model{ cursor: inherit; }
+  /* floating carrot particles emitted on model hover */
+  .carrot-p{ position:fixed; z-index:9999; pointer-events:none; line-height:1; will-change:transform,opacity;
+             animation:carrotFloat .95s ease-out forwards; }
+  @keyframes carrotFloat{
+    from{ transform:translate(-50%,-50%) scale(.5) rotate(0deg); opacity:1; }
+    to{ transform:translate(calc(-50% + var(--dx,0px)), calc(-50% - 155px)) scale(1.35) rotate(var(--rot,0deg)); opacity:0; }
+  }
+  /* single carrot flung across the screen on a toggle */
+  .carrot-throw{ position:fixed; left:0; top:0; z-index:10000; pointer-events:none; font-size:34px; line-height:1; will-change:transform; }
+  @media (prefers-reduced-motion:reduce){ *{ transition:none !important; animation:none !important } }
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+  <h1>BetaEarth encoders <span class="proto">4 locations · real data</span></h1>
+  <p class="intro">BetaEarth encodes each sensor separately. Sentinel-2, Sentinel-1 and DEM each become a 64-dimension vector per pixel. Toggle a sensor to add or drop it from the average. Drag the slider to compare the average with AlphaEarth. Every tile shares one set of PCA colours, fit on AlphaEarth.</p>
+
+  <div class="locs" id="locs"></div>
+
+  <div class="stage" id="stage">
+    <svg class="wires" id="wires" aria-hidden="true"></svg>
+
+    <div class="col inputs">
+      <div class="ceil">inputs</div>
+      <div id="inputs" style="display:flex;flex-direction:column;gap:12px;align-items:center"></div>
+    </div>
+
+    <div class="col model">
+      <div class="ceil">encode</div>
+      <svg class="dnn" id="dnn" viewBox="0 0 130 92" aria-hidden="true"></svg>
+      <div class="mlabel">BetaEarth</div>
+      <div class="msub">encoder · DNN</div>
+    </div>
+
+    <div class="col embs">
+      <div class="ceil">embeddings</div>
+      <div id="embs" style="display:flex;flex-direction:column;gap:12px;align-items:center"></div>
+    </div>
+
+    <div class="col avg">
+      <div class="ceil">combine</div>
+      <div class="avgbox"><span class="sig">Σ</span><span class="den" id="aden">÷3</span></div>
+      <div class="alabel">average</div>
+      <div class="acount" id="acount">3 embeddings</div>
+    </div>
+
+    <div class="col compare-col">
+      <h2>Average vs AlphaEarth</h2>
+      <div class="cmp" id="cmp">
+        <img id="cmpBase" alt="AlphaEarth reference">
+        <img id="cmpTop" class="top" alt="BetaEarth average">
+        <div class="divider" id="div"></div>
+        <div class="handle" id="handle">⇄</div>
+        <span class="tag l">BetaEarth</span><span class="tag r">AlphaEarth</span>
+        <div class="empty" id="empty" hidden>Switch on at least one encoder</div>
+      </div>
+      <div class="outdims">drag to compare · <b id="odims">H × W × 64</b> · <span id="oname">Loch Lomond</span></div>
+    </div>
+  </div>
+
+  <p class="foot">Data from Major TOM: lowest-cloud Sentinel-2 (L2A and L1C), Sentinel-1 RTC (VV and VH), and Copernicus DEM. Each sensor is encoded by the default model, <span style="font-family:var(--mono)">segformer-film-robust</span>. The average is the per-pixel mean of the selected embeddings, L2-normalised.</p>
+</div>
+
+<script>
+  var MODS = {
+    s2:{ label:"Sentinel-2", ico:"🛰", in:"9 × H × W", note:"optical" },
+    s1:{ label:"Sentinel-1", ico:"📡", in:"2 × H × W", note:"radar" },
+    dem:{ label:"DEM",       ico:"⛰", in:"1 × H × W", note:"elevation" }
+  };
+  var ORDER = ["s2","s1","dem"];
+  var LOCS = [
+    { cell:"624U_29L",  name:"Loch Lomond", where:"Scotland", has:["s2","s1","dem"] },
+    { cell:"485U_641L", name:"Toronto",     where:"Canada",   has:["s2","s1","dem"] },
+    { cell:"466U_103R", name:"Rome",        where:"Italy",    has:["s2","s1","dem"] },
+    { cell:"569U_119R", name:"Wrocław",     where:"Poland",   has:["s2","s1","dem"] }
+  ];
+  var cur = 0, active = {};
+
+  function src(name){ return "fig/" + LOCS[cur].cell + "/" + name + ".jpg"; }
+  function activeList(){ return ORDER.filter(function(m){ return active[m]; }); }
+  function key(){ return activeList().slice().sort().join("-"); }   // matches sub_<key>.jpg
+
+  // build input nodes + embedding figures
+  var inputsEl = document.getElementById("inputs"), embsEl = document.getElementById("embs");
+  ORDER.forEach(function(m){
+    var md = MODS[m];
+    var n = document.createElement("div");
+    n.className = "innode"; n.id = "innode-" + m;
+    n.innerHTML =
+      '<div class="ihead"><span class="nm"><span class="ico">'+md.ico+'</span>'+md.label+'</span>' +
+      '<button class="sw" id="sw-'+m+'" aria-label="toggle '+md.label+'"></button></div>' +
+      '<img id="in-'+m+'" alt="'+md.label+' input">' +
+      '<div class="dim"><b>'+md.in+'</b> · '+md.note+'</div>';
+    inputsEl.appendChild(n);
+    n.querySelector(".sw").addEventListener("click", function(e){
+      active[m] = !active[m];
+      var x = e.clientX, y = e.clientY;
+      if(!x && !y){ var r = this.getBoundingClientRect(); x = r.left + r.width/2; y = r.top + r.height/2; }
+      throwCarrot(x, y);
+      render();
+    });
+
+    var f = document.createElement("figure");
+    f.className = "embfig"; f.id = "embfig-" + m;
+    f.innerHTML = '<img id="emb-'+m+'" alt="'+md.label+' embedding">' +
+                  '<figcaption>'+md.label+'<br><b>H × W × 64</b></figcaption>';
+    embsEl.appendChild(f);
+  });
+
+  // location pills
+  var locsEl = document.getElementById("locs");
+  LOCS.forEach(function(L,i){
+    var b = document.createElement("button");
+    b.className = "loc";
+    b.innerHTML = '<img src="fig/'+L.cell+'/input.jpg" alt=""><span>'+L.name+' <small>'+L.where+'</small></span>';
+    b.addEventListener("click", function(){ selectLoc(i); });
+    locsEl.appendChild(b);
+  });
+
+  function selectLoc(i){
+    cur = i; active = {};
+    LOCS[i].has.forEach(function(m){ active[m] = true; });
+    document.querySelectorAll(".loc").forEach(function(el,k){ el.setAttribute("aria-pressed", k===i); });
+    render();
+  }
+
+  function render(){
+    var L = LOCS[cur];
+    ORDER.forEach(function(m){
+      var avail = L.has.indexOf(m) >= 0;
+      var on = avail && !!active[m];
+      var innode = document.getElementById("innode-" + m);
+      var embfig = document.getElementById("embfig-" + m);
+      innode.hidden = !avail; embfig.hidden = !avail;
+      if(!avail) return;
+      document.getElementById("sw-" + m).setAttribute("aria-pressed", on);
+      document.getElementById("in-" + m).src  = src("in_" + m);
+      document.getElementById("emb-" + m).src = src("sub_" + m);
+      innode.classList.toggle("on", on); innode.classList.toggle("off", !on);
+      embfig.classList.toggle("off", !on);
+    });
+    var list = activeList();
+    document.getElementById("aden").textContent = list.length ? "÷" + list.length : "—";
+    document.getElementById("acount").textContent =
+      list.length ? list.length + (list.length===1 ? " embedding" : " embeddings") : "none selected";
+    var cmpTop = document.getElementById("cmpTop"), empty = document.getElementById("empty");
+    document.getElementById("cmpBase").src = src("aef");
+    if(list.length){ cmpTop.src = src("sub_" + key()); cmpTop.hidden = false; empty.hidden = true; }
+    else { cmpTop.hidden = true; empty.hidden = false; }
+    document.getElementById("oname").textContent = L.name;
+    requestAnimationFrame(drawWires);
+  }
+
+  // ---- SVG wires ----
+  var svg = document.getElementById("wires");
+  function center(el, host){
+    var r = el.getBoundingClientRect(), h = host.getBoundingClientRect();
+    return { x: r.left - h.left + r.width/2, y: r.top - h.top + r.height/2 };
+  }
+  function wire(a, b, on, main){
+    var dx = Math.abs(b.x-a.x), dy = Math.abs(b.y-a.y), d;
+    if(dx >= dy){ var mx = (a.x+b.x)/2; d = "M "+a.x+" "+a.y+" C "+mx+" "+a.y+", "+mx+" "+b.y+", "+b.x+" "+b.y; }
+    else { var my = (a.y+b.y)/2; d = "M "+a.x+" "+a.y+" C "+a.x+" "+my+", "+b.x+" "+my+", "+b.x+" "+b.y; }
+    return '<path d="'+d+'" fill="none" stroke="'+(on?"var(--indigo)":"var(--wire)")+'" ' +
+           'stroke-width="'+(on?(main?2.6:2.2):1.4)+'" stroke-linecap="round"'+(on?"":' stroke-dasharray="4 5"')+'/>';
+  }
+  function drawWires(){
+    var stage = document.getElementById("stage"), L = LOCS[cur];
+    var dnn = document.getElementById("dnn"), avg = document.querySelector(".avgbox"), cmp = document.getElementById("cmp");
+    if(!dnn || !avg || !cmp) return;
+    var dC = center(dnn, stage), aC = center(avg, stage), cC = center(cmp, stage);
+    var s = "";
+    ORDER.forEach(function(m){
+      if(L.has.indexOf(m) < 0) return;
+      var on = !!active[m];
+      var iC = center(document.getElementById("in-" + m), stage);
+      var eC = center(document.getElementById("emb-" + m), stage);
+      s += wire(iC, dC, on);        // input  -> BetaEarth
+      s += wire(dC, eC, on);        // BetaEarth -> embedding
+      s += wire(eC, aC, on);        // embedding -> average
+    });
+    s += wire(aC, cC, activeList().length > 0, true);   // average -> compare
+    svg.innerHTML = s;
+  }
+
+  // mini DNN with the carrot as the central neuron
+  (function buildDNN(){
+    var cols = [16,65,114], ys = [18,46,74], s = "";
+    for(var c=0;c<2;c++) for(var a=0;a<3;a++) for(var b=0;b<3;b++)
+      s += '<line x1="'+cols[c]+'" y1="'+ys[a]+'" x2="'+cols[c+1]+'" y2="'+ys[b]+'"/>';
+    for(var c=0;c<3;c++) for(var i=0;i<3;i++){
+      if(c===1 && i===1) continue;
+      s += '<circle class="node" cx="'+cols[c]+'" cy="'+ys[i]+'" r="5"/>';
+    }
+    s += '<circle class="carrot-node" cx="65" cy="46" r="16"/>' +
+         '<text class="carrot-emoji" x="65" y="46" text-anchor="middle" dominant-baseline="central">🥕</text>';
+    document.getElementById("dnn").innerHTML = s;
+  })();
+
+  // ---- drag to compare ----
+  var cmpEl = document.getElementById("cmp"), topImg = document.getElementById("cmpTop"),
+      divE = document.getElementById("div"), handle = document.getElementById("handle");
+  function setX(clientX){
+    var r = cmpEl.getBoundingClientRect();
+    var p = Math.max(0, Math.min(1, (clientX - r.left)/r.width));
+    topImg.style.clipPath = "inset(0 "+((1-p)*100)+"% 0 0)";
+    divE.style.left = handle.style.left = (p*100)+"%";
+  }
+  var drag = false;
+  cmpEl.addEventListener("pointerdown", function(e){ drag = true; try{ cmpEl.setPointerCapture(e.pointerId); }catch(_){ } setX(e.clientX); e.preventDefault(); });
+  cmpEl.addEventListener("pointermove", function(e){ if(drag) setX(e.clientX); });
+  cmpEl.addEventListener("pointerup", function(){ drag = false; });
+  cmpEl.addEventListener("pointercancel", function(){ drag = false; });
+
+  var REDUCED = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // single carrot flung from the pointer when a toggle is flipped
+  function throwCarrot(x, y){
+    if(REDUCED) return;
+    var s = document.createElement("span");
+    s.className = "carrot-throw"; s.textContent = "🥕";
+    document.body.appendChild(s);
+    var dir = Math.random() < 0.5 ? -1 : 1;
+    var tgtX = window.innerWidth * (0.40 + Math.random() * 0.20);    // launch roughly toward mid-screen
+    var vx = (tgtX - x) / 55;                                        // horizontal drift
+    var vy = -(10 + Math.random() * 7);                              // initial upward toss
+    var g  = 0.45 + Math.random() * 0.15;                            // gravity per frame
+    var dRot = dir * (3 + Math.random() * 6);
+    var px = x, py = y, rot = 0, t = 0;
+    (function step(){
+      vy += g; px += vx; py += vy; rot += dRot; t++;
+      s.style.transform = "translate(-50%,-50%) translate(" + px.toFixed(1) + "px," + py.toFixed(1) + "px) rotate(" + rot.toFixed(1) + "deg)";
+      if(py < window.innerHeight + 100 && t < 500) requestAnimationFrame(step);
+      else s.remove();
+    })();
+  }
+
+  // carrot stream when hovering the BetaEarth model
+  (function carrotStream(){
+    if(REDUCED) return;
+    var model = document.querySelector(".model");
+    if(!model) return;
+    var px = 0, py = 0, timer = null;
+    function spawn(){
+      var s = document.createElement("span");
+      s.className = "carrot-p"; s.textContent = "🥕";
+      s.style.left = (px + (Math.random()*24 - 12)) + "px";
+      s.style.top  = (py + (Math.random()*16 - 8)) + "px";
+      s.style.fontSize = (13 + Math.random()*13).toFixed(0) + "px";
+      s.style.setProperty("--dx", (Math.random()*90 - 45).toFixed(0) + "px");
+      s.style.setProperty("--rot", (Math.random()*150 - 75).toFixed(0) + "deg");
+      document.body.appendChild(s);
+      s.addEventListener("animationend", function(){ s.remove(); });
+    }
+    model.addEventListener("pointerenter", function(e){ px = e.clientX; py = e.clientY; spawn(); if(!timer) timer = setInterval(spawn, 48); });
+    model.addEventListener("pointermove",  function(e){ px = e.clientX; py = e.clientY; });
+    model.addEventListener("pointerleave", function(){ clearInterval(timer); timer = null; });
+  })();
+
+  window.addEventListener("resize", function(){ requestAnimationFrame(drawWires); });
+  selectLoc(0);
+  window.addEventListener("load", function(){ requestAnimationFrame(drawWires); });
+</script>
+
+<script>
+(function(){function h(){try{parent.postMessage({beDiagramHeight:document.body.scrollHeight},'*');}catch(e){}}window.addEventListener('load',h);window.addEventListener('resize',h);if(window.ResizeObserver)new ResizeObserver(h).observe(document.body);setTimeout(h,300);setTimeout(h,1200);})();
+</script>
+</body>
+</html>

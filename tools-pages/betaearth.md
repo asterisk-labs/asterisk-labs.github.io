@@ -8,6 +8,10 @@ theme: "#492ae8"
 
 <p class="lead">Open-Source Emulator of AlphaEarth Embedding Product</p>
 
+## How it works
+
+{% include betaearth-diagram.html %}
+
 ## What it is
 
 AlphaEarth satellite embedding product is a powerful summary of information derived from several sensors (Sentinel-2, Sentinel-1, Landsat). Yet the model used to generate them is not available for further experimentation or more fine-grained control (for instance to create embeddings that summarise custom temporal range). BetaEarth changes that by training to emulate the embedding product from a single timestamp. The original release supports encoders for Sentinel-2, Sentinel-1, and DEM. While not as performant as the original annual product, BetaEarth can get pretty close in some scenarios. The code is fully open-source so training emulators with different architectures or other modalities is entirely possible.
@@ -44,7 +48,17 @@ embedding = model.predict(
 
 BetaEarth ships **8 variants** trading off quality, size, and which inputs they need. The default, **SegFormer curriculum (flagship)** (`betaearth-segformer-film-robust`), is the only one that stays usable on a single modality (e.g. S1-only or DEM-only). The peak-quality SegFormer+FiLM variants reach the highest fidelity but need all four modalities; **DINOv3 ViT-S/16** (24M params) is the lightweight option; **RGB-only+FiLM** runs from Sentinel-2 RGB alone. Full list and weights on the models page.
 
-{% include button.html text="🚀 Try the demo" href="https://huggingface.co/spaces/asterisk-labs/betaearth" variant="primary" target="_blank" %}
+## Try it
+
+<iframe src="https://asterisk-labs-betaearth.hf.space" title="BetaEarth demo" style="width:100%; height:90vh; min-height:720px; border:1px solid #e7e7e3; border-radius:12px;" loading="lazy" allowfullscreen></iframe>
+
+## Watch
+
+<a class="yt-thumb" href="https://www.youtube.com/watch?v=1jfJjXWmoto" target="_blank" rel="noopener">
+  <img src="https://img.youtube.com/vi/1jfJjXWmoto/maxresdefault.jpg" alt="BetaEarth video">
+  <span class="yt-play" aria-hidden="true">▶</span>
+</a>
+
+{% include button.html text="🚀 Open the demo" href="https://huggingface.co/spaces/asterisk-labs/betaearth" variant="primary" target="_blank" %}
 {% include button.html text="🤗 Models" href="https://huggingface.co/collections/asterisk-labs/beta-earth" variant="ghost" target="_blank" %}
 {% include button.html text="💻 Code" href="https://github.com/asterisk-labs/beta-earth" variant="ghost" target="_blank" %}
-{% include button.html text="🎬 Video" href="https://www.youtube.com/watch?v=1jfJjXWmoto" variant="ghost" target="_blank" %}
