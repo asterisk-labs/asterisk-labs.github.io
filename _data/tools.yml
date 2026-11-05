@@ -23,7 +23,7 @@
 - title: BetaEarth
   status: experimental
   summary: Emulator of AlphaEarth.
-  url: https://huggingface.co/spaces/asterisk-labs/betaearth
+  url: tools-pages/betaearth.html
   emoji: 🥕
   contact: { name: Mikolaj Czerkawski, email: miko@asterisk.coop }
 

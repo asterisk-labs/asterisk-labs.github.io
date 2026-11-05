@@ -44,3 +44,48 @@
   font-size: .95rem;
   font-style: italic;
 }
+
+/* Code in detail pages — Markdown ``` fences (Rouge-highlighted). Dark panel on
+   the white .project-desc; inline code in brand indigo. */
+.project-desc .highlight {
+  background: #0f1420;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin: 18px 0;
+  overflow-x: auto;
+}
+.project-desc .highlight pre,
+.project-desc .highlight code {
+  margin: 0;
+  background: none;
+  color: #d6deeb;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: .92rem;
+  line-height: 1.55;
+}
+.project-desc :not(pre) > code {
+  background: #eceaf6;
+  color: #492ae8;
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: .88em;
+}
+/* Rouge token palette (subset) — Night Owl-ish */
+.project-desc .highlight .c,
+.project-desc .highlight .c1,
+.project-desc .highlight .cm { color: #637777; font-style: italic; }
+.project-desc .highlight .k,
+.project-desc .highlight .kn,
+.project-desc .highlight .kd { color: #c792ea; }
+.project-desc .highlight .s,
+.project-desc .highlight .s1,
+.project-desc .highlight .s2,
+.project-desc .highlight .sb { color: #c3e88d; }
+.project-desc .highlight .mi,
+.project-desc .highlight .mf,
+.project-desc .highlight .m { color: #f78c6c; }
+.project-desc .highlight .nf { color: #82aaff; }
+.project-desc .highlight .nb { color: #ffcb6b; }
+.project-desc .highlight .o,
+.project-desc .highlight .p { color: #7fdbca; }
