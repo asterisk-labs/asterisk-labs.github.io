@@ -59,10 +59,11 @@ title · ~100-word summary · ~500-word body · image(s) · contact.
   hero image), on-brand and WITH the contributor. Confirm usage rights before
   embedding a third party's image; save any approved asset to `assets/imgs/`.
 
-Proactively suggest graphics, diagrams or animations that would help the page
-(a method diagram, an animated hero, an explanatory figure) and build them WITH
-the contributor. On-brand: the three main colours, SVG where possible, respect
-`prefers-reduced-motion`.
+**Always propose at least one on-brand visual** — a method/mechanism diagram, an
+animated hero, an explanatory or interactive figure — and build it WITH the
+contributor. This is required, not optional: a page of copy with no visual
+proposed is not finished. On-brand: the three main colours, SVG where possible,
+respect `prefers-reduced-motion`.
 
 ## 6a. Test — before committing
     bundle exec jekyll serve --port 4000
@@ -77,4 +78,5 @@ review. A Cloudflare Pages preview on the PR lets them see it live.
 
 ## Done when
 The card shows on the listing, the page renders, there are no accidental
-`.needs-copy` gaps, and it is on a branch as a PR.
+`.needs-copy` gaps, **at least one visual was proposed** (built with the
+contributor, or explicitly declined by them), and it is on a branch as a PR.

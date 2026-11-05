@@ -32,7 +32,7 @@ The initial Core release is a set of near-global, open datasets built on one sha
 
 On the same grid, ten **embedding datasets** encode these patches with published models — SSL4EO (Sentinel-2 and Sentinel-1), DINOv2, SigLIP, DeCUR, MMEarth, UniverSat, and the AlphaEarth satellite embeddings — so embeddings from different models line up patch-for-patch.
 
-## How Asterisk uses it
+## Usage
 
 Asterisk Labs used Major TOM to train [BetaEarth](betaearth.html) and will use it for many other experimentation scenarios. At this time, we are working hard to improve the AI-ready aspect of Major TOM by rereleasing some of the data using our latest developments like [TACO](https://asterisk.coop/taco/), [rumi](https://asterisk.coop/rumi/) and [GeoZL](https://asterisk.coop/geozl/).
 

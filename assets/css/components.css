@@ -89,3 +89,11 @@
 .project-desc .highlight .nb { color: #ffcb6b; }
 .project-desc .highlight .o,
 .project-desc .highlight .p { color: #7fdbca; }
+
+/* Tables in detail pages */
+.project-desc table { border-collapse: collapse; width: 100%; margin: 22px 0; font-size: 15px; }
+.project-desc thead th { text-align: left; padding: 10px 14px; border-bottom: 2px solid #492ae8; font-weight: 700; color: #000; white-space: nowrap; }
+.project-desc tbody td { padding: 10px 14px; border-bottom: 1px solid #e7e7e3; vertical-align: top; }
+.project-desc tbody tr:last-child td { border-bottom: none; }
+.project-desc tbody tr:hover { background: rgba(73, 42, 232, 0.04); }
+.project-desc table a { color: #492ae8; font-weight: 600; }
