@@ -52,3 +52,10 @@
   # (co-founders Alistair Francis & Mikolaj Czerkawski). Link-out for now; a full
   # detail page can credit ESA + the community framing later.
   contact: { name: Mikolaj Czerkawski, email: miko@asterisk.coop }
+
+- title: cozip
+  status: stable
+  summary: Open a ZIP like table!
+  url: https://asterisk.coop/cozip/
+  image: /assets/imgs/cozip-logo.svg
+  contact: { email: hello@asterisk.coop }   # add guardian: { name: ..., email: ... }

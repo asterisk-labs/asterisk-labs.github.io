@@ -39,7 +39,7 @@ On the same grid, ten **embedding datasets** encode these patches with published
 
 Browse the Core datasets in your browser:
 
-<iframe src="https://major-tom-majortom-raster-viewer.hf.space" title="Major TOM Raster Viewer" width="100%" height="640" style="border:1px solid #e7e7e3; border-radius:12px;" loading="lazy" allowfullscreen></iframe>
+<iframe src="https://major-tom-majortom-raster-viewer.static.hf.space" title="Major TOM Raster Viewer" width="100%" height="640" style="border:1px solid #e7e7e3; border-radius:12px;" loading="lazy" allowfullscreen></iframe>
 
 ## Usage
 
