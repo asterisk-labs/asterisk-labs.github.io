@@ -46,7 +46,7 @@
 - title: Major TOM
   status: stable
   summary: A standard for curating, sharing and combining large-scale EO datasets.
-  url: https://huggingface.co/Major-TOM
+  url: tools-pages/major-tom.html
   image: /assets/imgs/major-tom-logo.png
   # Community EO-dataset standard, started at ESA Phi-lab; Asterisk co-develops it
   # (co-founders Alistair Francis & Mikolaj Czerkawski). Link-out for now; a full

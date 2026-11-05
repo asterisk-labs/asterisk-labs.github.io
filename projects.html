@@ -17,6 +17,7 @@ title: Projects at Asterisk
     .proj-preview { height: 150px; display: flex; align-items: center; justify-content: center; padding: 28px; background: #fff; border-bottom: 1px solid #eee; }
     .proj-preview img { max-width: 84%; max-height: 74px; width: auto; height: auto; display: block; }
     .proj-body { padding: 20px 24px 22px; }
+    .proj-title { margin: 0 0 8px; font-size: 18px; font-weight: 700; color: #000; line-height: 1.25; }
     .proj-badge { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 3px 9px; border-radius: 999px; margin-bottom: 12px; }
     .proj-badge-ongoing  { background: #c4ffc2; color: #16511a; }
     .proj-badge-upcoming { background: #f7cc09; color: #5a4600; }
@@ -44,6 +45,7 @@ title: Projects at Asterisk
                     {% else %}<img src="/assets/imgs/mark-construction.svg" alt="{{ p.title }}"/>{% endif %}
                 </div>
                 <div class="proj-body">
+                    <h3 class="proj-title">{{ p.title }}</h3>
                     <span class="proj-badge proj-badge-{{ p.status }}">{{ p.status }}</span>
                     <p class="proj-desc">{{ p.summary }}</p>
                 </div>
