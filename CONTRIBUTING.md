@@ -7,7 +7,7 @@ way that suits you below. Whichever you choose, the path is the same:
 
 Never commit to `main` directly.
 
-## Four ways to add or edit a page
+## Five ways to add or edit a page
 
 1. **No-code — submission form** (Asterisk members). Fill in the
    [Notion submission form](https://app.notion.com/p/6f5f0f615dbd49da8f5b5c55fc15d1a8)
@@ -28,10 +28,40 @@ Never commit to `main` directly.
 
 4. **With Claude.** Let Claude Code build the entry and page from your content.
    Run the **add-page** skill (`.claude/skills/add-page/`); the house rules it
-   follows are in [`CLAUDE.md`](CLAUDE.md).
+   follows are in [`CLAUDE.md`](CLAUDE.md). You can also paste a GitHub repo or
+   your project's page — Claude scaffolds the page structure (headings, links,
+   logo) with `WRITE:` placeholders for you to fill, and never writes the prose
+   itself.
 
-All four produce the same thing: an entry in `_data/projects.yml` or
-`_data/tools.yml`, and an optional detail page — on a branch, for review.
+5. **Bring your own page.** Built a page in its own repo, served at
+   `asterisk.coop/<name>/` (like TACO)? List it with a `url:` entry in
+   `_data/tools.yml` (or `projects.yml`), and add one line so it carries the
+   Asterisk nav — see [Nav bar for external pages](#nav-bar-for-external-pages)
+   below.
+
+Ways 1–4 produce the same thing: an entry in `_data/projects.yml` or
+`_data/tools.yml`, and an optional detail page — on a branch, for review. Way 5
+links a page that lives in its own repo.
+
+## Card logo and status
+
+- **Logo:** set `image:` to a file in `assets/imgs/`. No logo? Claude pulls your
+  project's own logo from its page or links if there is one, otherwise drops in a
+  temporary `emoji:` placeholder.
+- **Status (tools):** set `status:` to one of 🧪 `experimental`, 🔥 `hot code`,
+  ✅ `stable`, 📦 `archived`. It shows as a colour badge on the tools card, and —
+  on a page that embeds the nav bar — as a label at the top-left.
+
+## Nav bar for external pages
+
+A page built in its own repo (served under `asterisk.coop/<name>/`) doesn't get
+the site nav automatically. Add one line near the end of its `<body>`:
+
+    <script src="https://asterisk.coop/assets/asterisk-bar.js" defer data-status="hot code"></script>
+
+It injects a slim Asterisk bar (logo + nav, matching the main site) and, from
+`data-status`, a status label at the top-left. The bar lives in this repo
+(`assets/asterisk-bar.js`), so it updates centrally — you add the line once.
 
 ## Style
 
@@ -64,4 +94,5 @@ preview setup are in [`docs/review-gate.md`](docs/review-gate.md).
 | `_layouts/project.html` | the detail-page layout (`theme:` sets the accent colour) |
 | `_includes/` | shared components (buttons, viewers) |
 | `assets/` | CSS and images |
+| `assets/asterisk-bar.js` | the drop-in nav bar embedded by external project pages |
 | `/brand`, `docs/style-checklist.md` | the media kit and the short style rules |
