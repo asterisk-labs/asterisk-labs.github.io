@@ -22,11 +22,16 @@ description: Open-source tools, datasets and models built by Asterisk Labs
     .proj-preview img { max-width: 84%; max-height: 74px; width: auto; height: auto; display: block; }
     .proj-body { padding: 20px 24px 22px; }
     .proj-desc { margin: 0; font-size: 15px; line-height: 1.62; color: #555; }
-    .tool-badge { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 3px 9px; border-radius: 999px; margin-bottom: 12px; }
+    .tool-badge { display: inline-flex; align-items: center; font-size: 13px; font-weight: 600; letter-spacing: .01em; padding: 4px 12px; border-radius: 999px; margin-bottom: 12px; }
+    .tool-badge::before { margin-right: 6px; }
     .tool-badge-experimental { background: #f7cc09; color: #5a4600; }
-    .tool-badge-hot-code     { background: #492ae8; color: #fff; }
+    .tool-badge-experimental::before { content: "🧪"; }
+    .tool-badge-hot-code     { background: #ffd7d1; color: #9e2a17; }   /* warning red */
+    .tool-badge-hot-code::before { content: "🔥"; }
     .tool-badge-stable       { background: #c4ffc2; color: #16511a; }
+    .tool-badge-stable::before { content: "✅"; }
     .tool-badge-archived     { background: #ededea; color: #666; }
+    .tool-badge-archived::before { content: "📦"; }
     #tools-wrap { margin-bottom: 60px; }
 </style>
 

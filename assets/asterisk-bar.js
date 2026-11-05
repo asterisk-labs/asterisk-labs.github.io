@@ -46,13 +46,14 @@
     return '<a href="' + ORIGIN + l[1] + '">' + l[0] + "</a>";
   }).join("");
 
-  // Optional status chip, from data-status on the embedding <script> tag.
+  // Optional status label (top-left, under the bar), from data-status on the
+  // embedding <script> tag.
   var self = document.currentScript || document.querySelector('script[src*="asterisk-bar.js"]');
   var status = self && self.getAttribute("data-status");
-  var meta = "";
+  var statusLabel = "";
   if (status) {
     var slug = status.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
-    meta = '<span class="chip chip-' + slug + '">' + status + "</span>";
+    statusLabel = '<div class="status-under status-' + slug + '">' + status + "</div>";
   }
 
   root.innerHTML =
@@ -72,19 +73,18 @@
     ".links{display:flex;align-items:center;gap:1rem;justify-self:center}" +
     ".links a{text-decoration:none;font-weight:400;font-size:1rem;color:rgba(25,25,25,.5);line-height:1.2;transition:color .15s}" +
     ".links a:hover{color:#492ae8}" +
-    ".meta{justify-self:end}" +
-    ".chip{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:999px;white-space:nowrap}" +
-    ".chip-experimental{background:#f7cc09;color:#5a4600}" +
-    ".chip-hot-code{background:#492ae8;color:#fff}" +
-    ".chip-stable{background:#c4ffc2;color:#16511a}" +
-    ".chip-archived{background:#ededea;color:#666}" +
+    '.status-under{display:inline-flex;align-items:center;margin:10px 0 0 18px;font-family:"League Spartan","Arial Narrow",system-ui,sans-serif;font-size:14px;font-weight:600;padding:4px 13px;border-radius:999px;white-space:nowrap}' +
+    '.status-under::before{margin-right:6px}' +
+    '.status-experimental{background:#f7cc09;color:#5a4600}.status-experimental::before{content:"🧪"}' +
+    '.status-hot-code{background:#ffd7d1;color:#9e2a17}.status-hot-code::before{content:"🔥"}' +
+    '.status-stable{background:#c4ffc2;color:#16511a}.status-stable::before{content:"✅"}' +
+    '.status-archived{background:#ededea;color:#666}.status-archived::before{content:"📦"}' +
     "@media(max-width:560px){.inner{grid-template-columns:1fr;justify-items:center;gap:4px}.brand{font-size:1.15rem}.brand img{height:24px}.links a{font-size:.9rem}.links{gap:.7rem}.abar{padding:5px 12px}}" +
     "</style>" +
     '<div class="abar"><div class="inner">' +
       '<a class="brand" href="' + ORIGIN + '/"><img src="' + ORIGIN + '/assets/imgs/logo-asterisk-alt.png" alt="">asterisk labs</a>' +
       '<nav class="links">' + nav + "</nav>" +
-      '<div class="meta">' + meta + "</div>" +
-    "</div></div>";
+    "</div></div>" + statusLabel;
 
   function mount() { document.body.insertBefore(host, document.body.firstChild); }
   if (document.body) mount();
