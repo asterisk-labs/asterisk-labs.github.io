@@ -22,6 +22,16 @@ description: Open-source tools, datasets and models built by Asterisk Labs
     .proj-preview img { max-width: 84%; max-height: 74px; width: auto; height: auto; display: block; }
     .proj-body { padding: 20px 24px 22px; }
     .proj-desc { margin: 0; font-size: 15px; line-height: 1.62; color: #555; }
+    .tool-badge { display: inline-flex; align-items: center; font-size: 13px; font-weight: 600; letter-spacing: .01em; padding: 4px 12px; border-radius: 999px; margin-bottom: 12px; }
+    .tool-badge::before { margin-right: 6px; }
+    .tool-badge-experimental { background: #f7cc09; color: #5a4600; }
+    .tool-badge-experimental::before { content: "🧪"; }
+    .tool-badge-hot-code     { background: #ffd7d1; color: #9e2a17; }   /* warning red */
+    .tool-badge-hot-code::before { content: "🔥"; }
+    .tool-badge-stable       { background: #c4ffc2; color: #16511a; }
+    .tool-badge-stable::before { content: "✅"; }
+    .tool-badge-archived     { background: #ededea; color: #666; }
+    .tool-badge-archived::before { content: "📦"; }
     #tools-wrap { margin-bottom: 60px; }
 </style>
 
@@ -33,11 +43,15 @@ description: Open-source tools, datasets and models built by Asterisk Labs
         </div>
         <div class="projects-grid">
             {% for m in site.data.tools %}
-            {% if m.image %}{% assign img = m.image %}{% else %}{% assign img = "/assets/imgs/mark-construction.svg" %}{% endif %}
             {% if m.url %}{% assign link = m.url %}{% else %}{% capture link %}project-pages/under-construction.html?p={{ m.title | slugify }}{% endcapture %}{% endif %}
             <a class="proj-card" href="{{ link }}">
-                <div class="proj-preview"><img src="{{ img }}" alt="{{ m.title }}"/></div>
+                <div class="proj-preview">
+                    {% if m.image %}<img src="{{ m.image }}" alt="{{ m.title }}"/>
+                    {% elsif m.emoji %}{% include emoji-logo.html emoji=m.emoji label=m.title %}
+                    {% else %}<img src="/assets/imgs/mark-construction.svg" alt="{{ m.title }}"/>{% endif %}
+                </div>
                 <div class="proj-body">
+                    {% if m.status %}<span class="tool-badge tool-badge-{{ m.status | slugify }}">{{ m.status }}</span>{% endif %}
                     <p class="proj-desc">{{ m.summary }}</p>
                 </div>
             </a>

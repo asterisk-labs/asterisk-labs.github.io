@@ -1,32 +1,47 @@
 # "tools" — open-source tools, datasets and models shown on /tools.html.
-# One block per item. Same shape as _data/projects.yml, minus `status`
-# (these are not staged ongoing/upcoming/complete).
+# One block per item. Same shape as _data/projects.yml, but `status` here is a
+# maturity label (experimental | hot code | stable | archived), not a project stage.
 #
 # Fields
 #   title    required   name on the card (also used for alt text and the slug)
 #   summary  required   one or two lines shown on the card
-#   image    optional   logo path in assets/imgs/; omit -> under-construction mark
+#   status   optional   experimental | hot code | stable | archived — shown as a card badge
+#   image    optional   logo path in assets/imgs/; omit -> emoji, else under-construction mark
+#   emoji    optional   a single emoji used as a temporary card logo (image wins if both set)
 #   url      optional   detail page or external repo link; omit -> under-construction page
 #   contact  optional   guardian shown on the placeholder: { name: ..., email: ... }
 #
 # Order on the page follows the order below.
 
 - title: TACO
-  summary: Details coming soon.
-  contact: { email: hello@asterisk.coop }   # add guardian: { name: ..., email: ... }
+  status: hot code
+  summary: Transparent Access to Cloud Optimized Datasets.
+  url: https://asterisk.coop/taco/
+  emoji: 🌮
+  contact: { name: Cesar Aybar, email: cesar@asterisk.coop }
 
 - title: BetaEarth
+  status: experimental
   summary: Details coming soon.
   contact: { email: hello@asterisk.coop }   # add guardian: { name: ..., email: ... }
 
 - title: GeoZL
-  summary: Details coming soon.
+  status: hot code
+  summary: Spatial predictors, stream transforms and bounded-error quantizers expose raster structure to OpenZL compression graphs.
+  url: https://asterisk.coop/geozl/
+  image: /assets/imgs/geozl-logo.svg
+  emoji: 🗜️                     # fallback only; image above wins
   contact: { email: hello@asterisk.coop }   # add guardian: { name: ..., email: ... }
 
 - title: rumi
-  summary: Details coming soon.
+  status: hot code
+  summary: Stateless raster storage for AI4EO.
+  url: https://asterisk.coop/rumi/
+  image: /assets/imgs/rumi-logo.svg
+  emoji: 🗄️                     # fallback only; image above wins
   contact: { email: hello@asterisk.coop }   # add guardian: { name: ..., email: ... }
 
 - title: Major TOM
+  status: stable
   summary: Details coming soon.
   contact: { email: hello@asterisk.coop }   # add guardian: { name: ..., email: ... }
