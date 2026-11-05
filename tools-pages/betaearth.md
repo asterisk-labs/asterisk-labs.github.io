@@ -12,6 +12,8 @@ theme: "#492ae8"
   /* Carrot pointer across the whole BetaEarth page (the diagram iframe sets its own) */
   body { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Ctext y='27' font-size='26'%3E🥕%3C/text%3E%3C/svg%3E") 5 27, auto; }
   a, button, .btn, summary, input, label, select { cursor: pointer; }
+  /* Stop the browser scrolling to the diagram when its iframe grows to full height on load */
+  html, body { overflow-anchor: none; }
 </style>
 
 ## What it is
