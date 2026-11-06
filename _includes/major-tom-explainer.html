@@ -67,7 +67,7 @@ Use: {% include major-tom-explainer.html %}
 .mtx-still { width: 100%; aspect-ratio: 1 / 1; display: block; margin-bottom: .5rem; }
 .mtx-still-caption { font-size: 14px; margin: 0 0 1rem; }
 @media (max-width: 760px) {
-  .mtx-body { width: auto; margin: 1rem 0 0; grid-template-columns: minmax(0, 1fr); padding: 0 .5rem; }
+  .mtx-body { --mtx-w: calc(100vw - 32px); grid-template-columns: minmax(0, 1fr); padding: 0; }   /* 16 px gutters */
   .mtx-card p { font-size: 16px; }
   .mtx-visual { top: 0; height: 58vh; z-index: 1; background: #fff; }
   .mtx-steps { padding: 10vh 0 30vh; position: relative; z-index: 2; }
