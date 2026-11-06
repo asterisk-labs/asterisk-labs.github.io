@@ -17,4 +17,9 @@ theme: "#3aa1a1"          # optional: heading accent colour (hex)
 
 <!-- A button, when you need one:
      {% raw %}{% include button.html text="Read more" href="/x.html" variant="primary" %}{% endraw %}
+     Several buttons must sit inside a row wrapper, or they stack vertically:
+     {% raw %}<div class="a-btn-row">
+     {% include button.html text="…" href="…" variant="primary" %}
+     {% include button.html text="…" href="…" variant="ghost" %}
+     </div>{% endraw %}
      Need something custom (a canvas, a widget)? Add raw HTML here. -->

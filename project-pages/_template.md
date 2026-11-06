@@ -20,4 +20,9 @@ theme: "#3aa1a1"          # accent colour for the heading underlines (hex)
 <!-- When you have the real copy, replace each .needs-copy line with Markdown:
      prose, **bold**, _italics_, [links](…), lists, images. A button:
      {% raw %}{% include button.html text="Read more" href="/x.html" %}{% endraw %}
+     Several buttons must sit inside a row wrapper, or they stack vertically:
+     {% raw %}<div class="a-btn-row">
+     {% include button.html text="…" href="…" variant="primary" %}
+     {% include button.html text="…" href="…" variant="ghost" %}
+     </div>{% endraw %}
      Need something custom (a canvas, a widget)? Drop raw HTML here. -->

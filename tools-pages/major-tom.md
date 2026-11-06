@@ -45,7 +45,9 @@ Browse the Core datasets in your browser:
 
 Asterisk Labs used Major TOM to train [BetaEarth](betaearth.html) and will use it for many other experimentation scenarios. At this time, we are working hard to improve the AI-ready aspect of Major TOM by rereleasing some of the data using our latest developments like [TACO](https://asterisk.coop/taco/), [rumi](https://asterisk.coop/rumi/) and [GeoZL](https://asterisk.coop/geozl/).
 
+<div class="a-btn-row">
 {% include button.html text="🤗 Datasets" href="https://huggingface.co/Major-TOM" variant="primary" target="_blank" %}
 {% include button.html text="📄 Paper" href="https://arxiv.org/abs/2402.12095" variant="ghost" target="_blank" %}
 {% include button.html text="💻 Code" href="https://github.com/ESA-PhiLab/Major-TOM" variant="ghost" target="_blank" %}
 {% include button.html text="🔭 Viewer" href="https://huggingface.co/spaces/Major-TOM/MajorTOM-Core-Viewer" variant="ghost" target="_blank" %}
+</div>
