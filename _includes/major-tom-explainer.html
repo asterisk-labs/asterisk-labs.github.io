@@ -14,7 +14,7 @@
 Use: {% include major-tom-explainer.html %}
 {%- endcomment -%}
 <section class="mtx" id="mtx" data-base="/assets/imgs/major-tom-explainer/">
-  <button class="a-btn a-btn-primary mtx-toggle" type="button" aria-expanded="false" aria-controls="mtx-body">Show me how Major TOM works</button>
+  <button class="a-btn a-btn-primary mtx-toggle" type="button" aria-expanded="false" aria-controls="mtx-body">🗺️ Show me how Major TOM works</button>
   <div class="mtx-body" id="mtx-body" hidden>
     <div class="mtx-visual" aria-hidden="true">
       <canvas class="mtx-canvas"></canvas>
@@ -345,7 +345,7 @@ Use: {% include major-tom-explainer.html %}
     const open = body.hidden;
     body.hidden = !open;
     toggle.setAttribute('aria-expanded', String(open));
-    toggle.textContent = open ? 'Hide how Major TOM works' : 'Show me how Major TOM works';
+    toggle.textContent = open ? 'Hide how Major TOM works' : '🗺️ Show me how Major TOM works';
     if (!open || started) { if (open) resize(); return; }
     started = true;
     try { await load(); } catch (err) { caption.textContent = `Could not load the explainer: ${err.message}`; return; }
