@@ -10,8 +10,7 @@ theme: "#492ae8"
 
 Started at ESA Φ-lab; a community project that Asterisk Labs supports and co-develops.
 
-<!-- EXPLAINER SLOT: the button-gated, scroll-driven "Show me how Major TOM works"
-     diagram (real grid + crop-and-map) will be inserted here, produced separately. -->
+{% include major-tom-explainer.html %}
 
 ## What it is
 

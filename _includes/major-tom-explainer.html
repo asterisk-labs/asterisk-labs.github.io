@@ -1,0 +1,355 @@
+{%- comment -%}
+"How Major TOM works": a button-gated, scroll-driven explainer for tools-pages/major-tom.md.
+
+  button -> expands the explainer -> scroll drives three steps (sticky canvas on one side, text steps on the other)
+    1. the grid: real 10 km cells from the Major TOM formulas (majortom/cells.py), rows built up at the equator,
+       then a flight north to the whole globe
+    2. one cell: 624U_29L (Loch Lomond) and its 10,680 m footprint (the Core v1 window)
+    3. crop and map: the Sentinel-2 scene under the footprint, cropped, then Sentinel-1, DEM and AlphaEarth for the
+       same footprint
+  Images and data: /assets/imgs/major-tom-explainer/ (made by docs/evidence/explainer_assets.py in
+  github.com/ESA-PhiLab/Major-TOM). No libraries. prefers-reduced-motion: the three steps as still panels.
+  Step text written by Miko (2026-11-06); no LLM-written prose (docs/style-checklist.md).
+
+Use: {% include major-tom-explainer.html %}
+{%- endcomment -%}
+<section class="mtx" id="mtx" data-base="/assets/imgs/major-tom-explainer/">
+  <button class="a-btn a-btn-primary mtx-toggle" type="button" aria-expanded="false" aria-controls="mtx-body">🗺️ Show me how Major TOM works</button>
+  <div class="mtx-body" id="mtx-body" hidden>
+    <div class="mtx-visual" aria-hidden="true">
+      <canvas class="mtx-canvas"></canvas>
+      <div class="mtx-caption"></div>
+    </div>
+    <div class="mtx-steps">
+      <article class="mtx-step" data-step="0">
+        <div class="mtx-card">
+          <div class="mtx-num">1</div>
+          <h3>The grid</h3>
+          <p>AI models like square chips of rasters. Mostly. We define a grid, starting from the equator and dividing our planet into strips of 10 km. In each row (one strip), we divide the circumference of that circle of latitude into 10 km segments, to create approximately square cells. There are 4,008 of them at the equator, but only 2,472 of them at 51.9°N. In total, Earth is covered by 5,113,745 cells of Major TOM at 10 km spacing.</p>
+        </div>
+      </article>
+      <article class="mtx-step" data-step="1">
+        <div class="mtx-card">
+          <div class="mtx-num">2</div>
+          <h3>One cell</h3>
+          <p>We index cells by indicating how many rows up or down (U/D) and how far to the left or right (L/R) a given segment is. For example, you can find the Bonnie Banks o' Loch Lomond if you go 624 rows up from the equator, and move 29 cells to the left of the Greenwich meridian in that row. This leaves us with a code of 624U_29L. You can see that on top of that, we define a 10.68 km footprint for a chip in order to cover the cell in a product with UTM projection. Newer Major TOM products often use 10.56 km chips, centred on the cell, for optimised chunking. The underlying 10.00 km grid remains the same in both cases.</p>
+        </div>
+      </article>
+      <article class="mtx-step" data-step="2">
+        <div class="mtx-card">
+          <div class="mtx-num">3</div>
+          <h3>Crop and map</h3>
+          <p>This is how a larger (about 110 km on each side) Sentinel-2 product gets cropped into a Major TOM sample. We can do this to any source, in any projection, although it is best when it is in UTM. See 4 examples of Major TOM products over the same cell. Most of them can be easily built using <code>majortom.build</code> functionality in our code.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+.mtx { --mtx-yellow: #f7cc09; --mtx-mint: #c4ffc2; --mtx-indigo: #492ae8; margin: 1.5rem 0 2rem; }
+/* wider than the page column (up to 1240 px, 24 px inside the window), centred on it, so the text column is ~540 px */
+.mtx-body { --mtx-w: min(1240px, calc(100vw - 48px)); width: var(--mtx-w); margin: 1rem 0 0 calc((100% - var(--mtx-w)) / 2);
+  background: #fff; color: #000; border-radius: 16px; display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 0 3rem; padding: 0 1rem; box-sizing: border-box; }
+.mtx-body[hidden] { display: none; }
+.mtx-visual { position: sticky; top: 8vh; height: 84vh; align-self: start; display: flex; flex-direction: column; }
+.mtx-canvas { width: 100%; flex: 1; min-height: 0; display: block; }
+.mtx-caption { font-size: 14px; line-height: 1.3; min-height: 2.6em; padding: .4rem 0 .8rem; color: #000; }
+.mtx-steps { padding: 30vh 0 40vh; }
+.mtx-step { min-height: 95vh; display: flex; align-items: flex-start; }
+.mtx-card { background: #fff; border-left: 4px solid var(--mtx-mint); padding: .6rem 0 .6rem 1rem;
+  transition: border-color .3s ease, opacity .3s ease; opacity: .45; }
+.mtx-step.is-active .mtx-card { border-left-color: var(--mtx-indigo); opacity: 1; }
+.mtx-num { font-weight: 700; font-size: 14px; color: var(--mtx-indigo); }
+.mtx-card h3 { margin: .1rem 0 .6rem; font-size: 1.5rem; }
+.mtx-card p { font-size: 17.5px; line-height: 1.6; margin: 0; max-width: 36em; }
+.mtx-still { width: 100%; aspect-ratio: 1 / 1; display: block; margin-bottom: .5rem; }
+.mtx-still-caption { font-size: 14px; margin: 0 0 1rem; }
+@media (max-width: 760px) {
+  .mtx-body { --mtx-w: calc(100vw - 32px); grid-template-columns: minmax(0, 1fr); padding: 0; }   /* 16 px gutters */
+  .mtx-card p { font-size: 16px; }
+  .mtx-visual { top: 0; height: 58vh; z-index: 1; background: #fff; }
+  .mtx-steps { padding: 10vh 0 30vh; position: relative; z-index: 2; }
+  .mtx-step { min-height: 85vh; align-items: flex-end; }
+  .mtx-card { box-shadow: 0 0 0 1px #eee; border-radius: 8px; padding: .8rem 1rem; opacity: 1; }
+}
+.mtx.is-static .mtx-body { grid-template-columns: minmax(0, 1fr); }
+.mtx.is-static .mtx-visual { display: none; }
+.mtx.is-static .mtx-steps { padding: 1rem 0; }
+.mtx.is-static .mtx-step { min-height: 0; display: block; }
+.mtx.is-static .mtx-card { opacity: 1; border-left-color: var(--mtx-indigo); }
+@media (prefers-reduced-motion: reduce) { .mtx-card { transition: none; } }
+</style>
+
+<script>
+(() => {
+  const root = document.getElementById('mtx');
+  if (!root) return;
+  const BASE = root.dataset.base;
+  const toggle = root.querySelector('.mtx-toggle'), body = root.querySelector('.mtx-body');
+  const canvas = root.querySelector('.mtx-canvas'), caption = root.querySelector('.mtx-caption');
+  const steps = [...root.querySelectorAll('.mtx-step')];
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const YELLOW = '#f7cc09', MINT = '#c4ffc2', INDIGO = '#492ae8';
+  const FONT = '"League Spartan", system-ui, sans-serif';
+
+  // The grid, from the Major TOM formulas (majortom/cells.py): rows of constant latitude, each with its own columns.
+  const R = 6378.137, D = 10, NROWS = Math.ceil(Math.PI * R / D), DLAT = 180 / NROWS, RAD = Math.PI / 180;
+  const ROW_MIN = -Math.floor(NROWS / 2), ROW_MAX = NROWS - 1 - Math.floor(NROWS / 2);
+  const nCols = row => Math.max(Math.ceil(2 * Math.PI * R * Math.cos(row * DLAT * RAD) / D), 1);
+  const cellName = (row, col) => `${Math.abs(row)}${row >= 0 ? 'U' : 'D'}_${Math.abs(col)}${col >= 0 ? 'R' : 'L'}`;
+  const fmt = n => n.toLocaleString('en-GB');
+
+  // Orthographic projection: camera {lon, lat, scale (px per Earth radius)} -> screen [x, y, visible].
+  function projector(cam, w, h) {
+    const l0 = cam.lon * RAD, p0 = cam.lat * RAD, sp0 = Math.sin(p0), cp0 = Math.cos(p0);
+    return (lon, lat) => {
+      const l = lon * RAD - l0, p = lat * RAD, cp = Math.cos(p), sp = Math.sin(p);
+      let x = cp * Math.sin(l), y = cp0 * sp - sp0 * cp * Math.cos(l);
+      const vis = sp0 * sp + cp0 * cp * Math.cos(l) >= 0;
+      if (!vis) { const n = Math.hypot(x, y) || 1; x /= n; y /= n; }          // behind: onto the horizon
+      return [w / 2 + cam.scale * x, h / 2 - cam.scale * y, vis];
+    };
+  }
+
+  const lerp = (a, b, t) => a + (b - a) * t;
+  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+  const ease = t => t * t * (3 - 2 * t);
+  const camLerp = (a, b, t) => ({ lon: lerp(a.lon, b.lon, t), lat: lerp(a.lat, b.lat, t),
+                                  scale: Math.exp(lerp(Math.log(a.scale), Math.log(b.scale), t)) });
+
+  let data = null;                                            // info, land, img (scene, s2, s1, dem, alphaearth)
+
+  function drawLand(ctx, proj) {
+    ctx.fillStyle = MINT;
+    for (const ring of data.land) {
+      ctx.beginPath();
+      ring.forEach(([lon, lat], i) => { const [x, y] = proj(lon, lat); i ? ctx.lineTo(x, y) : ctx.moveTo(x, y); });
+      ctx.closePath(); ctx.fill();
+    }
+  }
+
+  // The cells in view. Cells under 6 px are drawn every k-th row and column (k a power of 2), with the column
+  // edges of each band of k rows taken from its first row; the caption then says so.
+  function drawGrid(ctx, proj, cam, w, h, opt = {}) {
+    const cellPx = cam.scale * D / R;
+    const k = cellPx >= 6 ? 1 : 2 ** Math.ceil(Math.log2(6 / cellPx));
+    const reach = Math.min(Math.PI / 2, Math.asin(Math.min(1, Math.hypot(w, h) / 2 / cam.scale))) / RAD;
+    const latLo = Math.max(-90, cam.lat - reach), latHi = Math.min(90, cam.lat + reach);
+    const polar = reach >= 89 || Math.abs(cam.lat) + reach >= 89;
+    let r0 = Math.max(ROW_MIN, Math.floor(latLo / DLAT)), r1 = Math.min(ROW_MAX, Math.floor(latHi / DLAT));
+    r0 = Math.floor(r0 / k) * k;
+    ctx.strokeStyle = INDIGO; ctx.lineWidth = k === 1 ? Math.min(1.5, Math.max(.5, cellPx / 40)) : .6;
+    ctx.globalAlpha = opt.alpha ?? 1;
+    const named = cellPx > 64;
+    if (named) { ctx.fillStyle = INDIGO; ctx.font = `600 ${Math.min(15, cellPx / 6)}px ${FONT}`;
+                 ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; }
+    // every row edge and column edge goes into one path, stroked once; names are drawn after it
+    const labels = [];
+    ctx.beginPath();
+    for (let row = r0; row <= r1; row += k) {
+      if (opt.rows && !opt.rows(row)) continue;
+      const lat = row * DLAT, n = nCols(row), dlon = 360 / n;
+      const half = polar ? 180 : Math.min(180, reach / Math.max(.05, Math.cos(Math.max(Math.abs(latLo), Math.abs(latHi)) * RAD)));
+      const lonLo = polar ? -180 : cam.lon - half, lonHi = polar ? 180 : cam.lon + half;
+      // the row's southern edge, a circle of latitude (64 segments across the view)
+      const step = Math.max((lonHi - lonLo) / 64, 1e-3);
+      let pen = false;
+      for (let lon = lonLo; lon <= lonHi + 1e-9; lon += step) {
+        const [x, y, v] = proj(lon, lat);
+        if (v) { pen ? ctx.lineTo(x, y) : ctx.moveTo(x, y); pen = true; } else pen = false;
+      }
+      // the column edges of this row (or band of k rows)
+      const top = Math.min(90, lat + k * DLAT);
+      const c0 = Math.ceil(lonLo / dlon / k) * k, c1 = Math.floor(lonHi / dlon);
+      for (let col = c0; col <= c1; col += k) {
+        const [x1, y1, v1] = proj(col * dlon, lat), [x2, y2, v2] = proj(col * dlon, top);
+        if (v1 && v2) { ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); }
+        if (named && v1 && col >= -Math.floor(n / 2) && col <= n - 1 - Math.floor(n / 2)) {
+          const [cx, cy, cv] = proj((col + .5) * dlon, lat + DLAT / 2);
+          if (cv && cx > -60 && cx < w + 60 && cy > -30 && cy < h + 30) labels.push([cellName(row, col), cx, cy]);
+        }
+      }
+    }
+    ctx.stroke();
+    for (const [text, x, y] of labels) ctx.fillText(text, x, y);
+    ctx.globalAlpha = 1;
+    return k;
+  }
+
+  function quad(ctx, proj, corners, fill, stroke, width = 2) {      // corners: [[lon, lat], ...]
+    ctx.beginPath();
+    corners.forEach(([lon, lat], i) => { const [x, y] = proj(lon, lat); i ? ctx.lineTo(x, y) : ctx.moveTo(x, y); });
+    ctx.closePath();
+    if (fill) { ctx.fillStyle = fill; ctx.fill(); }
+    if (stroke) { ctx.strokeStyle = stroke; ctx.lineWidth = width; ctx.stroke(); }
+  }
+
+  // An image placed by three screen points: top-left, top-right, bottom-left.
+  function placed(ctx, img, p0, p1, p2, alpha = 1, dpr = 1) {
+    const W = img.naturalWidth, H = img.naturalHeight;
+    ctx.save(); ctx.globalAlpha = alpha;
+    ctx.setTransform(dpr * (p1[0] - p0[0]) / W, dpr * (p1[1] - p0[1]) / W, dpr * (p2[0] - p0[0]) / H,
+                     dpr * (p2[1] - p0[1]) / H, dpr * p0[0], dpr * p0[1]);
+    ctx.drawImage(img, 0, 0);
+    ctx.restore();
+  }
+
+  function cameras(w, h) {
+    const m = Math.min(w, h), info = data.info;
+    return {
+      equator: { lon: .16, lat: .12, scale: (w / 5.5) * R / D },          // about 5 cells across
+      globe: { lon: 0, lat: 52, scale: .44 * m },
+      cell: { lon: info.lon, lat: info.lat, scale: (m / 3.2) * R / D },     // the cell about a third of the view
+      tile: { lon: info.lon, lat: info.lat, scale: (m / 135) * R / 1 },     // the ~110 km scene in view
+      window: { lon: info.lon, lat: info.lat, scale: (m / 15) * R / 1 },    // the 10.68 km window large
+    };
+  }
+
+  // One frame: step s (0, 1, 2) at progress t (0..1). Returns the caption.
+  function frame(ctx, w, h, dpr, s, t) {
+    const cams = cameras(w, h), info = data.info;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, w, h);
+    let cam, caption = '';
+    if (s === 0) {
+      const fly = ease(clamp((t - .35) / .6));
+      cam = { lon: lerp(cams.equator.lon, cams.globe.lon, fly), lat: lerp(cams.equator.lat, cams.globe.lat, ease(clamp((t - .35) / .45))),
+              scale: Math.exp(lerp(Math.log(cams.equator.scale), Math.log(cams.globe.scale), fly ** 1.6)) };
+    } else if (s === 1) cam = camLerp(cams.globe, cams.cell, ease(clamp(t / .8)));
+    else cam = t < .45 ? camLerp(cams.cell, cams.tile, ease(clamp(t / .3))) : camLerp(cams.tile, cams.window, ease(clamp((t - .45) / .25)));
+    const proj = projector(cam, w, h);
+    // globe disc and land
+    if (cam.scale < Math.hypot(w, h)) {
+      ctx.beginPath(); ctx.arc(w / 2, h / 2, cam.scale, 0, 2 * Math.PI);
+      ctx.strokeStyle = INDIGO; ctx.lineWidth = 1.5; ctx.stroke();
+    }
+    drawLand(ctx, proj);
+    const sceneAlpha = s === 2 ? clamp(t / .3) : 0;
+    if (sceneAlpha > 0) {
+      const [a, b, c] = data.info.scene.corners.map(([lon, lat]) => proj(lon, lat));
+      placed(ctx, data.img.scene, a, b, c, sceneAlpha, dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    // grid: built up row by row at the equator (step 1 start), faded under the scene (step 3)
+    const reveal = s === 0 ? Math.floor(clamp(t / .3) * 9) : 99;
+    const rows = s === 0 && t < .3 ? row => (row >= 0 ? 2 * row : -2 * row - 1) <= reveal : null;
+    const k = drawGrid(ctx, proj, cam, w, h, { rows, alpha: s === 2 ? lerp(1, .25, sceneAlpha) : 1 });
+    const e = info.edges, cellCorners = [[e.west, e.north], [e.east, e.north], [e.east, e.south], [e.west, e.south]];
+    if (s === 0) {
+      const row = Math.min(ROW_MAX, Math.floor(cam.lat / DLAT));
+      caption = `Row ${Math.abs(row)}${row >= 0 ? 'U' : 'D'} (${(row * DLAT).toFixed(2)}°N): ${fmt(nCols(row))} cells. ` +
+                `Equator: ${fmt(nCols(0))} cells.` + (k > 1 ? ` Every ${k}th row and column drawn.` : '');
+    } else {
+      const show = s === 1 ? clamp((t - .55) / .25) : 1;
+      quad(ctx, proj, cellCorners, s === 1 ? `rgba(247, 204, 9, ${.55 * show})` : null, YELLOW, 2.5);
+      if (show > 0) quad(ctx, proj, info.scene.window, null, INDIGO, 3);
+      caption = s === 1 ? `Cell ${info.cell}, ${info.lat.toFixed(2)}°N ${Math.abs(info.lon).toFixed(2)}°W. ` +
+                          `Footprint (indigo): ${(info.window_m / 1000).toFixed(2)} x ${(info.window_m / 1000).toFixed(2)} km.`
+                        : `Sentinel-2 L2A, tile ${info.scene.item.split('_')[4].slice(1)}, ${info.dates.s2}.`;
+    }
+    if (s === 2 && t >= .45) {
+      // dim outside the window, then the four sources for the footprint
+      const win = info.scene.window.map(([lon, lat]) => proj(lon, lat));
+      const dim = clamp((t - .45) / .2);
+      ctx.save(); ctx.beginPath(); ctx.rect(0, 0, w, h);
+      win.forEach(([x, y], i) => (i ? ctx.lineTo(x, y) : ctx.moveTo(x, y))); ctx.closePath();
+      ctx.fillStyle = `rgba(255, 255, 255, ${.92 * dim})`; ctx.fill('evenodd'); ctx.restore();
+      const out = ease(clamp((t - .7) / .25));
+      if (out > 0) {
+        ctx.fillStyle = `rgba(255, 255, 255, ${out})`; ctx.fillRect(0, 0, w, h);
+        const names = [['s2', 'Sentinel-2 L2A, ' + info.dates.s2], ['s1', 'Sentinel-1 RTC, ' + info.dates.s1],
+                       ['dem', 'Copernicus DEM'], ['alphaearth', 'AlphaEarth, ' + info.dates.alphaearth]];
+        const gap = 14, label = 22, side = Math.min((w - gap) / 2, (h - gap - 2 * label) / 2);
+        const x0 = (w - 2 * side - gap) / 2, y0 = (h - 2 * (side + label) - gap) / 2;
+        names.forEach(([key, text], i) => {
+          const gx = x0 + (i % 2) * (side + gap), gy = y0 + Math.floor(i / 2) * (side + label + gap);
+          const tl = [lerp(win[0][0], gx, out), lerp(win[0][1], gy, out)];
+          const tr = [lerp(win[1][0], gx + side, out), lerp(win[1][1], gy, out)];
+          const bl = [lerp(win[3][0], gx, out), lerp(win[3][1], gy + side, out)];
+          placed(ctx, data.img[key], tl, tr, bl, i === 0 ? 1 : out, dpr);
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+          ctx.globalAlpha = out; ctx.fillStyle = '#000'; ctx.font = `500 13px ${FONT}`;
+          ctx.textAlign = 'left'; ctx.textBaseline = 'top'; ctx.fillText(text, gx, gy + side + 5); ctx.globalAlpha = 1;
+          ctx.strokeStyle = INDIGO; ctx.lineWidth = 2; ctx.strokeRect(tl[0], tl[1], tr[0] - tl[0], bl[1] - tl[1]);
+        });
+        caption = `Footprint of ${info.cell} from four sources, ${(info.window_m / 1000).toFixed(2)} km each.`;
+      } else caption = `Sentinel-2 L2A cropped to the footprint of ${info.cell}.`;
+    }
+    return caption;
+  }
+
+  function size(c) {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2), r = c.getBoundingClientRect();
+    c.width = Math.round(r.width * dpr); c.height = Math.round(r.height * dpr);
+    return [r.width, r.height, dpr];
+  }
+
+  // Scroll: the active step (IntersectionObserver) and its progress (how far its card has scrolled past).
+  // The drawn progress `shown` eases towards the scroll position, so a wheel step becomes a short glide;
+  // frames are requested until it arrives. A new step starts from its own scroll position.
+  let active = 0, pending = false, running = false, shown = 0, shownStep = -1;
+  function render() {
+    pending = false;
+    const el = steps[active], r = el.getBoundingClientRect(), vh = window.innerHeight;
+    const target = clamp((vh * .55 - r.top) / Math.max(1, r.height));
+    if (shownStep !== active) { shown = target; shownStep = active; }
+    else shown += (target - shown) * .18;
+    if (Math.abs(target - shown) < .001) shown = target;
+    const [w, h, dpr] = [canvas.width / (canvas._dpr || 1), canvas.height / (canvas._dpr || 1), canvas._dpr || 1];
+    caption.textContent = frame(canvas.getContext('2d'), w, h, dpr, active, shown);
+    if (shown !== target) schedule();
+  }
+  const schedule = () => { if (running && !pending) { pending = true; requestAnimationFrame(render); } };
+  function resize() { const [, , dpr] = size(canvas); canvas._dpr = dpr; schedule(); }
+
+  function startScroll() {
+    const io = new IntersectionObserver(entries => {
+      for (const e of entries) if (e.isIntersecting) {
+        active = steps.indexOf(e.target);
+        steps.forEach((s, i) => s.classList.toggle('is-active', i === active));
+        schedule();
+      }
+    }, { rootMargin: '-45% 0px -45% 0px' });
+    steps.forEach(s => io.observe(s));
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', resize);
+    running = true; resize();
+  }
+
+  // Reduced motion: each step gets still frames under its text.
+  function startStatic() {
+    root.classList.add('is-static');
+    const stills = [[[0, .2], [0, 1]], [[1, 1]], [[2, .3], [2, 1]]];
+    steps.forEach((el, s) => stills[s].forEach(([step, t]) => {
+      const c = document.createElement('canvas'), p = document.createElement('p');
+      c.className = 'mtx-still'; p.className = 'mtx-still-caption';
+      el.querySelector('.mtx-card').append(c, p);
+      const [w, h, dpr] = size(c);
+      p.textContent = frame(c.getContext('2d'), w, h, dpr, step, t);
+    }));
+  }
+
+  async function load() {
+    const get = p => fetch(BASE + p).then(r => { if (!r.ok) throw new Error(`${p}: HTTP ${r.status}`); return r.json(); });
+    const image = p => new Promise((ok, fail) => { const i = new Image(); i.onload = () => ok(i); i.onerror = fail; i.src = BASE + p; });
+    const [info, land, ...imgs] = await Promise.all([get('explainer.json'), get('land.json'),
+      ...['scene', 's2', 's1', 'dem', 'alphaearth'].map(k => image(`${k}.jpg`))]);
+    data = { info, land, img: Object.fromEntries(['scene', 's2', 's1', 'dem', 'alphaearth'].map((k, i) => [k, imgs[i]])) };
+    await document.fonts?.ready;
+  }
+
+  let started = false;
+  toggle.addEventListener('click', async () => {
+    const open = body.hidden;
+    body.hidden = !open;
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.textContent = open ? 'Hide how Major TOM works' : '🗺️ Show me how Major TOM works';
+    if (!open || started) { if (open) resize(); return; }
+    started = true;
+    try { await load(); } catch (err) { caption.textContent = `Could not load the explainer: ${err.message}`; return; }
+    reduced ? startStatic() : startScroll();
+  });
+})();
+</script>
