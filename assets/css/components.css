@@ -31,6 +31,11 @@
 /* A row of buttons with consistent spacing. */
 .a-btn-row { display: flex; flex-wrap: wrap; gap: 12px; }
 
+/* Fallback: kramdown wraps each bare button include in its own <p>, which would
+   stack them vertically. Lay consecutive button-only paragraphs out as a row
+   automatically, so a page that forgets .a-btn-row still reads right. */
+.project-desc p:has(> a.a-btn:only-child) { display: inline-block; margin: 0 10px 10px 0; }
+
 /* Author's brief for missing copy. A human fills these in; never generated
    prose. Greppable before merge: search "needs-copy". See the add-page skill. */
 .needs-copy {
