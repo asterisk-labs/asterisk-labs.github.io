@@ -47,6 +47,12 @@ title · ~100-word summary · ~500-word body · image(s) · contact.
   `layout: project` with an optional `theme:` hex colour.
 - Drop the supplied text and images in; put `.needs-copy` briefs in the gaps.
 - Buttons via `{% include button.html text="…" href="…" variant="primary" %}`.
+- **Share card:** after the `_data` entry exists, run
+  `python scripts/generate-og-cards.py`. It generates the page's 1200×630 social
+  card (logo / emoji / wordmark on the brand triangles) into
+  `assets/imgs/social/cards/` and updates `_data/og_cards.yml`, which the OG /
+  Twitter meta reads. Commit the new card(s). A page with no raster logo falls
+  back to the default Asterisk card.
 - Temporary emoji logo: `emoji:` on the `_data/*.yml` entry (card fallback is
   image → emoji → construction mark), and `{% include emoji-logo.html emoji="…" %}`
   at the top of the detail page.
