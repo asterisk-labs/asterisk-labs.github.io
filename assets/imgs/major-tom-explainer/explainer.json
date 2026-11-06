@@ -1,0 +1,60 @@
+{
+ "cell": "624U_29L",
+ "lon": -4.5824,
+ "lat": 56.0928,
+ "edges": {
+  "west": -4.662795891022777,
+  "south": 56.047904191616766,
+  "east": -4.502009825815096,
+  "north": 56.137724550898206
+ },
+ "window_m": 10680,
+ "crs": "EPSG:32630",
+ "dates": {
+  "s2": "2024-06-03",
+  "s1": "2024-06-16",
+  "alphaearth": "2024"
+ },
+ "sources": {
+  "s2": "Sentinel-2 L2A (Copernicus)",
+  "s1": "Sentinel-1 RTC (Copernicus; Planetary Computer)",
+  "dem": "Copernicus DEM GLO-30",
+  "alphaearth": "AlphaEarth embeddings (tge-labs/aef, CC-BY 4.0)"
+ },
+ "scene": {
+  "item": "S2A_MSIL2A_20240603T114351_R123_T30VUH_20240603T182051",
+  "tile_km": 109.8,
+  "corners": [
+   [
+    -6.275535,
+    56.800817
+   ],
+   [
+    -4.478358,
+    56.83506
+   ],
+   [
+    -6.192235,
+    55.815891
+   ]
+  ],
+  "window": [
+   [
+    -4.672272,
+    56.140694
+   ],
+   [
+    -4.500466,
+    56.1429
+   ],
+   [
+    -4.49674,
+    56.046975
+   ],
+   [
+    -4.66812,
+    56.044777
+   ]
+  ]
+ }
+}
