@@ -257,7 +257,12 @@
     var b = document.createElement("button");
     b.className = "loc";
     b.innerHTML = '<img src="fig/'+L.cell+'/input.jpg" alt=""><span>'+L.name+' <small>'+L.where+'</small></span>';
-    b.addEventListener("click", function(){ selectLoc(i); });
+    b.addEventListener("click", function(e){
+      var x = e.clientX, y = e.clientY;
+      if(!x && !y){ var r = this.getBoundingClientRect(); x = r.left + r.width/2; y = r.top + r.height/2; }
+      throwCarrot(x, y);
+      selectLoc(i);
+    });
     locsEl.appendChild(b);
   });
 
