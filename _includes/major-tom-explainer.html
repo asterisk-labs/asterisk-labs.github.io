@@ -48,8 +48,10 @@ Use: {% include major-tom-explainer.html %}
 
 <style>
 .mtx { --mtx-yellow: #f7cc09; --mtx-mint: #c4ffc2; --mtx-indigo: #492ae8; margin: 1.5rem 0 2rem; }
-.mtx-body { background: #fff; color: #000; border-radius: 16px; margin-top: 1rem; display: grid;
-  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 0 2rem; padding: 0 1rem; }
+/* wider than the page column (up to 1240 px, 24 px inside the window), centred on it, so the text column is ~540 px */
+.mtx-body { --mtx-w: min(1240px, calc(100vw - 48px)); width: var(--mtx-w); margin: 1rem 0 0 calc((100% - var(--mtx-w)) / 2);
+  background: #fff; color: #000; border-radius: 16px; display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 0 3rem; padding: 0 1rem; box-sizing: border-box; }
 .mtx-body[hidden] { display: none; }
 .mtx-visual { position: sticky; top: 8vh; height: 84vh; align-self: start; display: flex; flex-direction: column; }
 .mtx-canvas { width: 100%; flex: 1; min-height: 0; display: block; }
@@ -60,11 +62,13 @@ Use: {% include major-tom-explainer.html %}
   transition: border-color .3s ease, opacity .3s ease; opacity: .45; }
 .mtx-step.is-active .mtx-card { border-left-color: var(--mtx-indigo); opacity: 1; }
 .mtx-num { font-weight: 700; font-size: 14px; color: var(--mtx-indigo); }
-.mtx-card h3 { margin: .1rem 0 .5rem; font-size: 1.4rem; }
+.mtx-card h3 { margin: .1rem 0 .6rem; font-size: 1.5rem; }
+.mtx-card p { font-size: 17.5px; line-height: 1.6; margin: 0; max-width: 36em; }
 .mtx-still { width: 100%; aspect-ratio: 1 / 1; display: block; margin-bottom: .5rem; }
 .mtx-still-caption { font-size: 14px; margin: 0 0 1rem; }
 @media (max-width: 760px) {
-  .mtx-body { grid-template-columns: minmax(0, 1fr); padding: 0 .5rem; }
+  .mtx-body { width: auto; margin: 1rem 0 0; grid-template-columns: minmax(0, 1fr); padding: 0 .5rem; }
+  .mtx-card p { font-size: 16px; }
   .mtx-visual { top: 0; height: 58vh; z-index: 1; background: #fff; }
   .mtx-steps { padding: 10vh 0 30vh; position: relative; z-index: 2; }
   .mtx-step { min-height: 85vh; align-items: flex-end; }
