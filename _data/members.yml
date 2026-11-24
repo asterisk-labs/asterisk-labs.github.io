@@ -33,3 +33,9 @@
   image: "/assets/imgs/profiles/cesar-transparent.png"
   color: "#ff6b35" # Cesar colour theme
   bio: "Cesar is a remote sensing researcher obsessed with how we store, structure, and serve satellite data for AI. His work focuses on making satellite imagery more accessible and useful, from enhancing spatial resolution to detecting clouds and atmospheric gases from space. He holds a BSc from UNMSM (Peru), an Erasmus Mundus MSc from the University of Salzburg, and a PhD from the University of Valencia's Image Processing Laboratory, where he collaborated with ESA and published on super-resolution, cloud detection, onboard processing, and AI-ready datasets for Earth observation."
+
+- name: "Alex Saoulis"
+  role: "Partner Scientist"
+  image: "/assets/imgs/profiles/alex-transparent.png"
+  color: "#c2abf8" # Alex colour theme
+  bio: "Alex is an ML-for-physics researcher. He completed his undergraduate degree in physics at Oxford, and had a brief stint as a software and ML engineer at a particle accelerator. His PhD at UCL applied ML to problems in seismology, cosmology, and the climate sciences: better characterising earthquakes, measuring the fractions of dark matter and dark energy in the Universe, and downscaling climate data and satellite imagery with super-resolution models. At Asterisk Labs, his first focus will be ML-based compression of Earth observation data for the Earth Compress project, and filibustering the co-operative decision-making process to maximise time spent together at conferences!"
