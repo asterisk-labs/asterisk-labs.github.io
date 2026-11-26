@@ -1,5 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <ellipse cx="16" cy="16" rx="15" ry="9.5" fill="none" stroke="#9AA0A8" stroke-width="2.2" transform="rotate(-20 16 16)"/>
-  <circle cx="16" cy="16" r="11.5" fill="#276DC3"/>
-  <path transform="translate(16 16) scale(1.3) translate(-16.75 -16)" d="M12.6 21.5V10.5h4.6c2.3 0 3.7 1.3 3.7 3.2 0 1.5-.9 2.6-2.3 3l2.7 4.8h-2.6l-2.4-4.5h-1.5v4.5zm2.2-6.4h2.2c1.1 0 1.7-.5 1.7-1.4s-.6-1.4-1.7-1.4h-2.2z" fill="#fff"/>
-</svg>

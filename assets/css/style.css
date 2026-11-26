@@ -533,14 +533,16 @@ main:has(> .home-hero) {
 }
 
 .home-hero {
-  --globe: min(74cqw, 40cqh);
+  --ring: min(94cqw, 70cqh);
+  --title: clamp(0.95rem, min(6.8cqw, 5.4cqh), 2.4rem);
+  --gap: clamp(0.5rem, 2.5cqh, 1.75rem);
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: clamp(0.5rem, 3cqh, 2rem);
-  padding: 0 4%;
+  gap: var(--gap);
+  padding: 0 3%;
 }
 
 /* Compact one-line footer on the home page only */
@@ -583,15 +585,16 @@ main:has(> .home-hero) {
   margin: 0 3px;
 }
 
-/* Globe */
+/* Globe with the two lines of copy set on its curve.
+   The text lives in the SVG, so it scales with the globe and keeps the same
+   distance from it at every size. One spacing unit, --gap, everywhere else. */
 .home-globe {
   position: relative;
-  width: var(--globe);
+  width: var(--ring);
   aspect-ratio: 1;
   flex: none;
   display: grid;
   place-items: center;
-  animation: home-float 9s ease-in-out infinite;
 }
 
 .home-globe > * {
@@ -601,14 +604,14 @@ main:has(> .home-hero) {
 .home-earth {
   position: relative;
   z-index: 1;
-  width: 86%;
+  width: 64%;
   height: auto;
-  animation: home-rise 900ms cubic-bezier(.2,.7,.2,1) both;
+  animation: home-rise 900ms cubic-bezier(.2,.7,.2,1) both, home-float 9s 1s ease-in-out infinite;
 }
 
 .home-glow {
-  position: absolute;
-  inset: 10%;
+  width: 60%;
+  aspect-ratio: 1;
   border-radius: 50%;
   background: radial-gradient(circle, #c4ffc2 0%, #c4ffc200 70%);
   filter: blur(10px);
@@ -616,70 +619,71 @@ main:has(> .home-hero) {
   animation: home-breathe 7s ease-in-out infinite;
 }
 
-.home-copy {
-  /* One type scale: the title sets --h, the subtitles are fixed fractions of it.
-     Unregistered, so cqi/cqh resolve on each child, against this column. */
-  --h: clamp(1.2rem, min(7.9cqi, 7cqh), 3.4rem);
-  container-type: inline-size;
+.home-ring {
+  position: relative;
+  z-index: 2;
   width: 100%;
-  max-width: 40rem;
-  text-align: center;
+  height: 100%;
+  overflow: visible;
 }
 
-.home-copy h1 {
-  font-size: var(--h);
+.home-ring-text {
+  font-family: "League Spartan", sans-serif;
+  font-size: 33px;
+  font-weight: 400;
+  letter-spacing: 0.6px;
+  fill: #222;
+  animation: home-fade 900ms 400ms ease both;
+}
+
+.home-ring-text + .home-ring-text {
+  fill: #6b6b6b;
+  animation-delay: 600ms;
+}
+
+/* Links on the curve: no underline, they grow on hover */
+.home-link {
+  cursor: pointer;
+}
+
+.home-link tspan {
+  fill: #492ae8;
   font-weight: 500;
-  line-height: 1.1;
+  transition: font-size 220ms cubic-bezier(.3,1.4,.5,1), font-weight 220ms ease;
+}
+
+.home-link:hover tspan,
+.home-link:focus-visible tspan {
+  font-size: 42px;
+  font-weight: 600;
+}
+
+.home-link:focus-visible {
+  outline: none;
+}
+
+.home-title {
+  margin: 0;
+  font-size: var(--title);
+  font-weight: 500;
+  line-height: 1.12;
   letter-spacing: -0.01em;
-  margin: 0 0 calc(var(--h) * 0.4);
-  animation: home-up 700ms 150ms cubic-bezier(.2,.7,.2,1) both;
+  text-align: center;
+  white-space: nowrap;
+  animation: home-up 700ms 200ms cubic-bezier(.2,.7,.2,1) both;
 }
 
-/* Underline a key word */
-.home-mark {
-  text-decoration: underline;
-  text-decoration-color: #492ae8;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 0.18em;
-}
-
-.home-sub {
-  margin: 0 auto;
-  max-width: 32rem;
-  font-size: max(0.95rem, calc(var(--h) * 0.6));
-  line-height: 1.3;
-  color: #222;
-  animation: home-up 700ms 300ms cubic-bezier(.2,.7,.2,1) both;
-}
-
-.home-sub-small {
-  margin-top: calc(var(--h) * 0.3);
-  font-size: max(0.85rem, calc(var(--h) * 0.5));
-  color: #666;
-  animation-delay: 450ms;
-}
-
-/* Landscape: globe and text side by side */
+/* Landscape: globe left, title right */
 @media (min-aspect-ratio: 1/1) and (min-width: 600px) {
   .home-hero {
-    --globe: min(44cqw, 86cqh, 640px);
+    --ring: min(54cqw, 94cqh, 720px);
+    --title: clamp(1rem, min(2.85cqw, 7.5cqh), 2.7rem);
+    --gap: clamp(1rem, 4cqw, 4rem);
     flex-direction: row;
-    gap: clamp(1.25rem, 5cqw, 5rem);
   }
 
-  .home-copy {
-    flex: 1 1 0;
-    min-width: 0;
-    max-width: 40rem;
+  .home-title {
     text-align: left;
-  }
-
-  .home-copy {
-    --h: clamp(1.1rem, min(7.9cqi, 9cqh), 3.6rem);
-  }
-
-  .home-sub {
-    margin: 0;
   }
 }
 
@@ -687,6 +691,7 @@ main:has(> .home-hero) {
 @keyframes home-breathe   { 50% { opacity: .55; transform: scale(1.06); } }
 @keyframes home-rise      { from { opacity: 0; transform: scale(.94); } }
 @keyframes home-up        { from { opacity: 0; transform: translateY(12px); } }
+@keyframes home-fade      { from { opacity: 0; } }
 
 @media (prefers-reduced-motion: reduce) {
   .home-hero *,
