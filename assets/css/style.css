@@ -467,3 +467,36 @@ footer .text-center {
   right: 0px; /* Adjust position for overlap */
 }
 
+
+/*
+ * Page transitions (View Transitions API, cross-document)
+ */
+@view-transition {
+  navigation: auto;
+}
+
+header.mb-auto {
+  view-transition-name: site-header;
+}
+
+/* Keep the header still: swap it instantly instead of morphing it */
+::view-transition-group(site-header),
+::view-transition-old(site-header),
+::view-transition-new(site-header) {
+  animation: none;
+}
+
+::view-transition-old(site-header) {
+  display: none;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 250ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @view-transition {
+    navigation: none;
+  }
+}

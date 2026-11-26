@@ -3,7 +3,7 @@ layout: default
 title: Asterisk Labs
 ---
 
-<img src='assets/imgs/earth-hex.gif' class='main-gif'/>
+<img src='assets/imgs/earth-hex.webp' class='main-gif' fetchpriority='high' alt=''/>
 <h1>interdisciplinary research lab<br> making the most of open data</h1>
 
 <p class="lead">with the aid of deep learning, Earth observation and climate science</p>

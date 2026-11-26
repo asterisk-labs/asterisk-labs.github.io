@@ -63,6 +63,6 @@ BetaEarth ships **8 variants** trading off quality, size, and which inputs they 
 ## Watch
 
 <a class="yt-thumb" href="https://www.youtube.com/watch?v=1jfJjXWmoto" target="_blank" rel="noopener">
-  <img src="https://img.youtube.com/vi/1jfJjXWmoto/maxresdefault.jpg" alt="BetaEarth video">
+  <img loading="lazy" decoding="async" src="https://img.youtube.com/vi/1jfJjXWmoto/maxresdefault.jpg" alt="BetaEarth video">
   <span class="yt-play" aria-hidden="true">▶</span>
 </a>
