@@ -47,9 +47,9 @@ description: Open-source tools, datasets and models built by Asterisk Labs
             {% if m.url %}{% assign link = m.url %}{% else %}{% capture link %}project-pages/under-construction.html?p={{ m.title | slugify }}{% endcapture %}{% endif %}
             <a class="proj-card" href="{{ link }}">
                 <div class="proj-preview">
-                    {% if m.image %}<img src="{{ m.image }}" alt="{{ m.title }}"/>
+                    {% if m.image %}<img loading="lazy" decoding="async" src="{{ m.image }}" alt="{{ m.title }}"/>
                     {% elsif m.emoji %}{% include emoji-logo.html emoji=m.emoji label=m.title %}
-                    {% else %}<img src="/assets/imgs/mark-construction.svg" alt="{{ m.title }}"/>{% endif %}
+                    {% else %}<img loading="lazy" decoding="async" src="/assets/imgs/mark-construction.svg" alt="{{ m.title }}"/>{% endif %}
                 </div>
                 <div class="proj-body">
                     <h3 class="proj-title">{{ m.title }}</h3>

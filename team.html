@@ -13,7 +13,7 @@ title: Team of Asterisk Labs
           <div class="col-md-4 mb-4 partner-name">
           <div class="team-member">
             <div class="hexagon" style='background-color: {{ member.color }}'>
-              <img src="{{ member.image | relative_url }}" alt="{{ member.name }}" class="profile-img">
+              <img src="{{ member.image_web | default: member.image | relative_url }}" alt="{{ member.name }}" class="profile-img" width="150" height="150" loading="lazy" decoding="async">
             </div>
             <h4>{{ member.name }}</h4>
             <p class="description">{{ member.bio }}</p>
