@@ -10,12 +10,8 @@ title: Asterisk Labs
   </div>
 
   <div class="home-copy">
-    <h1>interdisciplinary research lab<br> making the most of <span class="home-mark home-mark-gold">open data</span></h1>
-
-    <ul class="home-points">
-      <li><span class="home-hex home-hex-gold"></span><span>with the aid of deep learning, Earth observation and climate science</span></li>
-      <li><span class="home-hex home-hex-mint"></span><span>asterisk labs is the UK’s first worker-owned <span class="home-mark home-mark-mint">co-operative</span> research laboratory</span></li>
-      <li><span class="home-hex home-hex-purple"></span><span><a href='project-pages/project-clouds-decoded.html'>learn more</a> about our first project, which uses data that's normally overlooked to understand Earth's climate</span></li>
-    </ul>
+    <h1>interdisciplinary research lab<br> making the most of open data</h1>
+    <p class="home-sub">with the aid of deep learning, Earth observation and climate science</p>
+    <p class="home-sub home-sub-small">asterisk labs is the UK’s first worker-owned <span class="home-mark home-mark-mint">co-operative</span> research laboratory</p>
   </div>
 </section>

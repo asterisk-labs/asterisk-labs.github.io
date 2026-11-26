@@ -653,47 +653,22 @@ main:has(> .home-hero) {
   animation: home-mark 650ms 950ms cubic-bezier(.6,.1,.2,1) forwards;
 }
 
-.home-mark-gold::before { background: #f7cc09; opacity: .85; }
-.home-mark-mint::before { background: #c4ffc2; height: 0.7em; animation-delay: 1250ms; }
+.home-mark-mint::before { background: #c4ffc2; height: 0.7em; }
 
-.home-points {
-  list-style: none;
+.home-sub {
   margin: 0 auto;
-  padding: 0;
-  display: grid;
-  gap: clamp(0.25rem, 1.5cqh, 0.9rem);
-  font-size: clamp(0.78rem, min(4cqi, 3.3cqh), 1.25rem);
-  line-height: 1.32;
-  text-align: left;
-  max-width: 34rem;
+  max-width: 32rem;
+  font-size: clamp(0.85rem, min(4.4cqi, 3.4cqh), 1.4rem);
+  line-height: 1.3;
+  color: #222;
+  animation: home-up 700ms 300ms cubic-bezier(.2,.7,.2,1) both;
 }
 
-.home-points li {
-  display: flex;
-  align-items: baseline;
-  gap: 0.7em;
-  animation: home-up 700ms cubic-bezier(.2,.7,.2,1) both;
-}
-
-.home-points li:nth-child(1) { animation-delay: 300ms; }
-.home-points li:nth-child(2) { animation-delay: 420ms; }
-.home-points li:nth-child(3) { animation-delay: 540ms; }
-
-.home-hex {
-  flex: none;
-  width: 0.75em;
-  height: 0.75em;
-  transform: translateY(0.05em);
-  clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
-}
-
-.home-hex-gold   { background: #f7cc09; }
-.home-hex-mint   { background: #c4ffc2; box-shadow: inset 0 0 0 2px #00000018; }
-.home-hex-purple { background: #492ae8; }
-
-.home-points a {
-  font-weight: 600;
-  border-bottom: 2px solid #f7cc09;
+.home-sub-small {
+  margin-top: clamp(0.4rem, 1.8cqh, 1rem);
+  font-size: clamp(0.75rem, min(3.4cqi, 2.6cqh), 1.05rem);
+  color: #666;
+  animation-delay: 450ms;
 }
 
 /* Landscape: globe and text side by side */
@@ -715,9 +690,14 @@ main:has(> .home-hero) {
     font-size: clamp(1rem, min(7.9cqi, 9cqh), 3.6rem);
   }
 
-  .home-points {
+  .home-sub {
     margin: 0;
-    font-size: clamp(0.72rem, min(3.3cqi, 3.6cqh), 1.3rem);
+    font-size: clamp(0.8rem, min(4.2cqi, 3.8cqh), 1.5rem);
+  }
+
+  .home-sub-small {
+    margin-top: clamp(0.4rem, 2cqh, 1.1rem);
+    font-size: clamp(0.7rem, min(3.2cqi, 2.8cqh), 1.1rem);
   }
 }
 
