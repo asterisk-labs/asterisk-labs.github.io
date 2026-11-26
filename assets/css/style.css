@@ -617,6 +617,9 @@ main:has(> .home-hero) {
 }
 
 .home-copy {
+  /* One type scale: the title sets --h, the subtitles are fixed fractions of it.
+     Unregistered, so cqi/cqh resolve on each child, against this column. */
+  --h: clamp(1.2rem, min(7.9cqi, 7cqh), 3.4rem);
   container-type: inline-size;
   width: 100%;
   max-width: 40rem;
@@ -624,11 +627,11 @@ main:has(> .home-hero) {
 }
 
 .home-copy h1 {
-  font-size: clamp(1.05rem, min(7.9cqi, 7cqh), 3.4rem);
+  font-size: var(--h);
   font-weight: 500;
   line-height: 1.1;
   letter-spacing: -0.01em;
-  margin: 0 0 clamp(0.4rem, 2.6cqh, 1.6rem);
+  margin: 0 0 calc(var(--h) * 0.4);
   animation: home-up 700ms 150ms cubic-bezier(.2,.7,.2,1) both;
 }
 
@@ -658,15 +661,15 @@ main:has(> .home-hero) {
 .home-sub {
   margin: 0 auto;
   max-width: 32rem;
-  font-size: clamp(0.85rem, min(4.4cqi, 3.4cqh), 1.4rem);
+  font-size: max(0.8rem, calc(var(--h) * 0.46));
   line-height: 1.3;
   color: #222;
   animation: home-up 700ms 300ms cubic-bezier(.2,.7,.2,1) both;
 }
 
 .home-sub-small {
-  margin-top: clamp(0.4rem, 1.8cqh, 1rem);
-  font-size: clamp(0.75rem, min(3.4cqi, 2.6cqh), 1.05rem);
+  margin-top: calc(var(--h) * 0.35);
+  font-size: max(0.72rem, calc(var(--h) * 0.36));
   color: #666;
   animation-delay: 450ms;
 }
@@ -686,18 +689,12 @@ main:has(> .home-hero) {
     text-align: left;
   }
 
-  .home-copy h1 {
-    font-size: clamp(1rem, min(7.9cqi, 9cqh), 3.6rem);
+  .home-copy {
+    --h: clamp(1.1rem, min(7.9cqi, 9cqh), 3.6rem);
   }
 
   .home-sub {
     margin: 0;
-    font-size: clamp(0.8rem, min(4.2cqi, 3.8cqh), 1.5rem);
-  }
-
-  .home-sub-small {
-    margin-top: clamp(0.4rem, 2cqh, 1.1rem);
-    font-size: clamp(0.7rem, min(3.2cqi, 2.8cqh), 1.1rem);
   }
 }
 
