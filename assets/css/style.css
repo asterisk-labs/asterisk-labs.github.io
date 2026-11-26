@@ -543,20 +543,20 @@ main:has(> .home-hero) {
   padding: 0 4%;
 }
 
-/* Compact one-line footer on the home page only */
-.cover-container:has(.home-hero) footer {
+/* Compact footer, one strip on every page */
+footer {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   gap: 0.35rem 1.4rem;
-  margin: 0 !important;
+  margin: 2rem 0 0 !important;
   padding: clamp(0.4rem, 1.4svh, 0.9rem) 0;
   font-size: clamp(0.62rem, 1.5svh, 0.78rem);
   line-height: 1.25;
 }
 
-.cover-container:has(.home-hero) footer > div {
+footer > div {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -565,22 +565,42 @@ main:has(> .home-hero) {
   margin: 0 !important;
 }
 
-.cover-container:has(.home-hero) footer p {
+footer p {
   margin: 0;
   font-size: inherit;
 }
 
-.cover-container:has(.home-hero) footer .social-link {
-  margin: 0 4px;
+footer > div:first-child {
+  gap: 0 clamp(14px, 1.6vw, 22px);
 }
 
-.cover-container:has(.home-hero) footer .social-link img {
-  height: clamp(16px, 2.6svh, 22px);
+footer .social-link {
+  display: inline-flex;
+  align-items: center;
+  margin: 0;
 }
 
-.cover-container:has(.home-hero) footer a > img[height='64px'] {
+footer .social-link img {
+  display: block;
+  height: clamp(22px, 3.4svh, 30px);
+  width: auto;
+}
+
+footer a > img[height='64px'] {
   height: clamp(22px, 3.6svh, 34px);
   margin: 0 3px;
+}
+
+footer .footer-coops { display: inline-flex; align-items: center; }
+
+@media (max-width: 600px) {
+  footer { flex-direction: column; }
+  footer > div + div { flex-direction: column; }
+}
+
+/* on the home page the footer sits right under the hero, no extra gap */
+.cover-container:has(.home-hero) footer {
+  margin: 0 !important;
 }
 
 /* Globe */
