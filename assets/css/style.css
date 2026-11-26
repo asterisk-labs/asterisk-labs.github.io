@@ -502,23 +502,88 @@ header.mb-auto {
 }
 
 /*
- * Home hero: everything fits in the first screen, at any size.
- * --home-chrome is the room taken by the header and page padding above it.
+ * Home: the whole page (header, hero, footer) is one screen, no scroll.
+ * The page is a 100svh grid; the hero is a size container, so the globe
+ * and type scale with the room that is actually left (cqw / cqh).
  */
+html:has(.home-hero),
+body:has(.home-hero) {
+  height: 100%;
+  overflow: hidden;
+}
+
+.cover-container:has(.home-hero) {
+  height: 100vh;
+  height: 100svh;
+  max-width: min(1400px, 100%);
+  display: grid !important;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  padding-top: 0.75rem !important;
+  padding-bottom: 0 !important;
+}
+
+.cover-container:has(.home-hero) header .nav {
+  margin-bottom: 0;
+}
+
+main:has(> .home-hero) {
+  container-type: size;
+  min-height: 0;
+  margin: 0 !important;
+}
+
 .home-hero {
-  --home-chrome: 9rem;
-  --globe: min(68vw, 36svh);
-  position: relative;
-  min-height: calc(100vh - var(--home-chrome));
-  min-height: calc(100svh - var(--home-chrome));
+  --globe: min(74cqw, 40cqh);
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: clamp(1rem, 3svh, 2.5rem);
-  padding: 0 0 clamp(0.5rem, 2svh, 1.5rem);
+  gap: clamp(0.5rem, 3cqh, 2rem);
+  padding: 0 4%;
 }
 
+/* Compact one-line footer on the home page only */
+.cover-container:has(.home-hero) footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem 1.4rem;
+  margin: 0 !important;
+  padding: clamp(0.4rem, 1.4svh, 0.9rem) 0;
+  font-size: clamp(0.62rem, 1.5svh, 0.78rem);
+  line-height: 1.25;
+}
+
+.cover-container:has(.home-hero) footer > div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem 1.2rem;
+  margin: 0 !important;
+}
+
+.cover-container:has(.home-hero) footer p {
+  margin: 0;
+  font-size: inherit;
+}
+
+.cover-container:has(.home-hero) footer .social-link {
+  margin: 0 4px;
+}
+
+.cover-container:has(.home-hero) footer .social-link img {
+  height: clamp(16px, 2.6svh, 22px);
+}
+
+.cover-container:has(.home-hero) footer a > img[height='64px'] {
+  height: clamp(22px, 3.6svh, 34px);
+  margin: 0 3px;
+}
+
+/* Globe */
 .home-globe {
   position: relative;
   width: var(--globe);
@@ -526,62 +591,29 @@ header.mb-auto {
   flex: none;
   display: grid;
   place-items: center;
+  animation: home-float 9s ease-in-out infinite;
+}
+
+.home-globe > * {
+  grid-area: 1 / 1;
 }
 
 .home-earth {
   position: relative;
-  width: 82%;
+  z-index: 1;
+  width: 86%;
   height: auto;
-  z-index: 2;
   animation: home-rise 900ms cubic-bezier(.2,.7,.2,1) both;
 }
 
 .home-glow {
   position: absolute;
-  inset: 12%;
+  inset: 10%;
   border-radius: 50%;
   background: radial-gradient(circle, #c4ffc2 0%, #c4ffc200 70%);
-  filter: blur(8px);
+  filter: blur(10px);
   z-index: 0;
-  animation: home-breathe 6s ease-in-out infinite;
-}
-
-.home-orbit {
-  position: absolute;
-  border-radius: 50%;
-  z-index: 1;
-}
-
-.home-orbit-outer {
-  inset: 0;
-  border: 1.5px dashed #492ae866;
-  animation: home-spin 38s linear infinite;
-}
-
-.home-orbit-inner {
-  inset: 6%;
-  border: 1px solid #f7cc0966;
-  transform: rotate(-35deg);
-  animation: home-spin-rev 24s linear infinite;
-}
-
-.home-sat {
-  position: absolute;
-  top: 50%;
-  left: -7px;
-  width: 14px;
-  height: 14px;
-  margin-top: -7px;
-  background: #492ae8;
-  clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
-}
-
-.home-sat-small {
-  left: -5px;
-  width: 10px;
-  height: 10px;
-  margin-top: -5px;
-  background: #f7cc09;
+  animation: home-breathe 7s ease-in-out infinite;
 }
 
 .home-copy {
@@ -592,22 +624,46 @@ header.mb-auto {
 }
 
 .home-copy h1 {
-  font-size: clamp(1.3rem, min(7.9cqi, 4.8svh), 3.2rem);
+  font-size: clamp(1.05rem, min(7.9cqi, 7cqh), 3.4rem);
   font-weight: 500;
-  line-height: 1.12;
-  margin: 0 0 clamp(0.75rem, 2.2svh, 1.6rem);
-  text-wrap: balance;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin: 0 0 clamp(0.4rem, 2.6cqh, 1.6rem);
   animation: home-up 700ms 150ms cubic-bezier(.2,.7,.2,1) both;
 }
+
+/* Hand-drawn marker strokes behind a few words */
+.home-mark {
+  position: relative;
+  white-space: nowrap;
+  isolation: isolate;
+}
+
+.home-mark::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: -0.12em;
+  right: -0.12em;
+  bottom: 0.02em;
+  height: 0.42em;
+  border-radius: 0.5em 0.2em 0.6em 0.25em;
+  transform: rotate(-1.2deg) scaleX(0);
+  transform-origin: left center;
+  animation: home-mark 650ms 950ms cubic-bezier(.6,.1,.2,1) forwards;
+}
+
+.home-mark-gold::before { background: #f7cc09; opacity: .85; }
+.home-mark-mint::before { background: #c4ffc2; height: 0.7em; animation-delay: 1250ms; }
 
 .home-points {
   list-style: none;
   margin: 0 auto;
   padding: 0;
   display: grid;
-  gap: clamp(0.45rem, 1.4svh, 0.9rem);
-  font-size: clamp(0.95rem, min(3.8vw, 2.3svh), 1.2rem);
-  line-height: 1.35;
+  gap: clamp(0.25rem, 1.5cqh, 0.9rem);
+  font-size: clamp(0.78rem, min(4cqi, 3.3cqh), 1.25rem);
+  line-height: 1.32;
   text-align: left;
   max-width: 34rem;
 }
@@ -632,7 +688,7 @@ header.mb-auto {
 }
 
 .home-hex-gold   { background: #f7cc09; }
-.home-hex-mint   { background: #c4ffc2; box-shadow: inset 0 0 0 2px #00000014; }
+.home-hex-mint   { background: #c4ffc2; box-shadow: inset 0 0 0 2px #00000018; }
 .home-hex-purple { background: #492ae8; }
 
 .home-points a {
@@ -640,58 +696,42 @@ header.mb-auto {
   border-bottom: 2px solid #f7cc09;
 }
 
-/* Wide screens: globe and text side by side */
-@media (min-width: 900px) and (min-aspect-ratio: 1/1) {
+/* Landscape: globe and text side by side */
+@media (min-aspect-ratio: 1/1) and (min-width: 600px) {
   .home-hero {
-    --globe: min(40vw, 62svh, 600px);
+    --globe: min(44cqw, 86cqh, 640px);
     flex-direction: row;
-    gap: clamp(2rem, 5vw, 5rem);
-  }
-
-  .cover-container:has(.home-hero) {
-    max-width: min(1400px, 94%);
+    gap: clamp(1.25rem, 5cqw, 5rem);
   }
 
   .home-copy {
     flex: 1 1 0;
     min-width: 0;
+    max-width: 40rem;
     text-align: left;
-    max-width: 38rem;
   }
 
   .home-copy h1 {
-    font-size: clamp(1.6rem, min(7.9cqi, 6svh), 3.4rem);
+    font-size: clamp(1rem, min(7.9cqi, 9cqh), 3.6rem);
   }
 
   .home-points {
     margin: 0;
-    font-size: clamp(1rem, min(1.35vw, 2.4svh), 1.3rem);
+    font-size: clamp(0.72rem, min(3.3cqi, 3.6cqh), 1.3rem);
   }
 }
 
-/* Short landscape screens (phones turned sideways) */
-@media (max-height: 520px) and (min-aspect-ratio: 1/1) {
-  .home-hero {
-    --home-chrome: 7.5rem;
-    --globe: min(38vw, 58svh);
-    flex-direction: row;
-    gap: 1.5rem;
-  }
-
-  .home-copy { flex: 1 1 0; min-width: 0; text-align: left; }
-  .home-copy h1 { font-size: clamp(1rem, min(7.9cqi, 5.4svh), 1.6rem); }
-  .home-points { margin: 0; font-size: clamp(0.8rem, 3.6svh, 1rem); }
-}
-
-@keyframes home-spin     { to { transform: rotate(360deg); } }
-@keyframes home-spin-rev { from { transform: rotate(-35deg); } to { transform: rotate(-395deg); } }
-@keyframes home-breathe  { 50% { opacity: .55; transform: scale(1.06); } }
-@keyframes home-rise     { from { opacity: 0; transform: scale(.94); } }
-@keyframes home-up       { from { opacity: 0; transform: translateY(12px); } }
+@keyframes home-float     { 50% { transform: translateY(-1.2%); } }
+@keyframes home-breathe   { 50% { opacity: .55; transform: scale(1.06); } }
+@keyframes home-rise      { from { opacity: 0; transform: scale(.94); } }
+@keyframes home-up        { from { opacity: 0; transform: translateY(12px); } }
+@keyframes home-mark      { to { transform: rotate(-1.2deg) scaleX(1); } }
 
 @media (prefers-reduced-motion: reduce) {
   .home-hero *,
-  .home-hero *::before {
+  .home-hero *::before,
+  .home-globe {
     animation: none !important;
   }
+  .home-mark::before { transform: rotate(-1.2deg); }
 }
