@@ -635,41 +635,26 @@ main:has(> .home-hero) {
   animation: home-up 700ms 150ms cubic-bezier(.2,.7,.2,1) both;
 }
 
-/* Hand-drawn marker strokes behind a few words */
+/* Underline a key word */
 .home-mark {
-  position: relative;
-  white-space: nowrap;
-  isolation: isolate;
+  text-decoration: underline;
+  text-decoration-color: #492ae8;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.18em;
 }
-
-.home-mark::before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  left: -0.12em;
-  right: -0.12em;
-  bottom: 0.02em;
-  height: 0.42em;
-  border-radius: 0.5em 0.2em 0.6em 0.25em;
-  transform: rotate(-1.2deg) scaleX(0);
-  transform-origin: left center;
-  animation: home-mark 650ms 950ms cubic-bezier(.6,.1,.2,1) forwards;
-}
-
-.home-mark-mint::before { background: #c4ffc2; height: 0.7em; }
 
 .home-sub {
   margin: 0 auto;
   max-width: 32rem;
-  font-size: max(0.8rem, calc(var(--h) * 0.46));
+  font-size: max(0.95rem, calc(var(--h) * 0.6));
   line-height: 1.3;
   color: #222;
   animation: home-up 700ms 300ms cubic-bezier(.2,.7,.2,1) both;
 }
 
 .home-sub-small {
-  margin-top: calc(var(--h) * 0.35);
-  font-size: max(0.72rem, calc(var(--h) * 0.36));
+  margin-top: calc(var(--h) * 0.3);
+  font-size: max(0.85rem, calc(var(--h) * 0.5));
   color: #666;
   animation-delay: 450ms;
 }
@@ -702,13 +687,10 @@ main:has(> .home-hero) {
 @keyframes home-breathe   { 50% { opacity: .55; transform: scale(1.06); } }
 @keyframes home-rise      { from { opacity: 0; transform: scale(.94); } }
 @keyframes home-up        { from { opacity: 0; transform: translateY(12px); } }
-@keyframes home-mark      { to { transform: rotate(-1.2deg) scaleX(1); } }
 
 @media (prefers-reduced-motion: reduce) {
   .home-hero *,
-  .home-hero *::before,
   .home-globe {
     animation: none !important;
   }
-  .home-mark::before { transform: rotate(-1.2deg); }
 }
