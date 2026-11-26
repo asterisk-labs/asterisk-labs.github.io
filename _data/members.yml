@@ -38,7 +38,7 @@
   image: "/assets/imgs/profiles/cesar-transparent.png"
   image_web: "/assets/imgs/profiles/cesar-transparent.webp"
   color: "#ff6b35" # Cesar colour theme
-  bio: "Cesar is a remote sensing researcher obsessed with how we store, structure, and serve satellite data for AI. His work focuses on making satellite imagery more accessible and useful, from enhancing spatial resolution to detecting clouds and atmospheric gases from space. He holds a BSc from UNMSM (Peru), an Erasmus Mundus MSc from the University of Salzburg, and a PhD from the University of Valencia's Image Processing Laboratory, where he collaborated with ESA and published on super-resolution, cloud detection, onboard processing, and AI-ready datasets for Earth observation."
+  bio: "Cesar is a remote sensing researcher obsessed with how we store, structure, and serve satellite data for AI. His work focuses on making satellite imagery more accessible and useful, from enhancing spatial resolution to detecting clouds and atmospheric gases from space. He holds a BSc from UNMSM (Peru), an Erasmus Mundus MSc from the University of Salzburg, and finishing his PhD from the University of Valencia's Image Processing Laboratory, where he collaborated with ESA and published on super-resolution, cloud detection, onboard processing, and AI-ready datasets for Earth observation. Cesar is a quiet but devoted shojo manga fan, with Nodame Cantabile and NANA at the top of his list."
 
 - name: "Alex Saoulis"
   role: "Partner Scientist"
