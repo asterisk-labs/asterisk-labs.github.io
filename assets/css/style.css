@@ -635,18 +635,19 @@ main:has(> .home-hero) {
   animation: home-up 700ms 150ms cubic-bezier(.2,.7,.2,1) both;
 }
 
-/* Links in the copy: no underline, they grow on hover */
+/* Links in the copy: no underline; on hover they lift a touch and deepen,
+   without changing size, so the words around them stay put */
 .home-link {
   display: inline-block;
   color: #492ae8;
   font-weight: 500;
-  transition: transform 200ms cubic-bezier(.3,1.5,.5,1), color 200ms ease;
+  transition: transform 300ms ease, color 300ms ease;
 }
 
 .home-link:hover,
 .home-link:focus-visible {
-  color: #492ae8;
-  transform: scale(1.14);
+  color: #2a1499;
+  transform: translateY(-0.1em);
 }
 
 .home-sub {
