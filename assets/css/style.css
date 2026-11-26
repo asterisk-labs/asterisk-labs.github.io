@@ -500,3 +500,198 @@ header.mb-auto {
     navigation: none;
   }
 }
+
+/*
+ * Home hero: everything fits in the first screen, at any size.
+ * --home-chrome is the room taken by the header and page padding above it.
+ */
+.home-hero {
+  --home-chrome: 9rem;
+  --globe: min(68vw, 36svh);
+  position: relative;
+  min-height: calc(100vh - var(--home-chrome));
+  min-height: calc(100svh - var(--home-chrome));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1rem, 3svh, 2.5rem);
+  padding: 0 0 clamp(0.5rem, 2svh, 1.5rem);
+}
+
+.home-globe {
+  position: relative;
+  width: var(--globe);
+  aspect-ratio: 1;
+  flex: none;
+  display: grid;
+  place-items: center;
+}
+
+.home-earth {
+  position: relative;
+  width: 82%;
+  height: auto;
+  z-index: 2;
+  animation: home-rise 900ms cubic-bezier(.2,.7,.2,1) both;
+}
+
+.home-glow {
+  position: absolute;
+  inset: 12%;
+  border-radius: 50%;
+  background: radial-gradient(circle, #c4ffc2 0%, #c4ffc200 70%);
+  filter: blur(8px);
+  z-index: 0;
+  animation: home-breathe 6s ease-in-out infinite;
+}
+
+.home-orbit {
+  position: absolute;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.home-orbit-outer {
+  inset: 0;
+  border: 1.5px dashed #492ae866;
+  animation: home-spin 38s linear infinite;
+}
+
+.home-orbit-inner {
+  inset: 6%;
+  border: 1px solid #f7cc0966;
+  transform: rotate(-35deg);
+  animation: home-spin-rev 24s linear infinite;
+}
+
+.home-sat {
+  position: absolute;
+  top: 50%;
+  left: -7px;
+  width: 14px;
+  height: 14px;
+  margin-top: -7px;
+  background: #492ae8;
+  clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
+}
+
+.home-sat-small {
+  left: -5px;
+  width: 10px;
+  height: 10px;
+  margin-top: -5px;
+  background: #f7cc09;
+}
+
+.home-copy {
+  container-type: inline-size;
+  width: 100%;
+  max-width: 40rem;
+  text-align: center;
+}
+
+.home-copy h1 {
+  font-size: clamp(1.3rem, min(7.9cqi, 4.8svh), 3.2rem);
+  font-weight: 500;
+  line-height: 1.12;
+  margin: 0 0 clamp(0.75rem, 2.2svh, 1.6rem);
+  text-wrap: balance;
+  animation: home-up 700ms 150ms cubic-bezier(.2,.7,.2,1) both;
+}
+
+.home-points {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  display: grid;
+  gap: clamp(0.45rem, 1.4svh, 0.9rem);
+  font-size: clamp(0.95rem, min(3.8vw, 2.3svh), 1.2rem);
+  line-height: 1.35;
+  text-align: left;
+  max-width: 34rem;
+}
+
+.home-points li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7em;
+  animation: home-up 700ms cubic-bezier(.2,.7,.2,1) both;
+}
+
+.home-points li:nth-child(1) { animation-delay: 300ms; }
+.home-points li:nth-child(2) { animation-delay: 420ms; }
+.home-points li:nth-child(3) { animation-delay: 540ms; }
+
+.home-hex {
+  flex: none;
+  width: 0.75em;
+  height: 0.75em;
+  transform: translateY(0.05em);
+  clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
+}
+
+.home-hex-gold   { background: #f7cc09; }
+.home-hex-mint   { background: #c4ffc2; box-shadow: inset 0 0 0 2px #00000014; }
+.home-hex-purple { background: #492ae8; }
+
+.home-points a {
+  font-weight: 600;
+  border-bottom: 2px solid #f7cc09;
+}
+
+/* Wide screens: globe and text side by side */
+@media (min-width: 900px) and (min-aspect-ratio: 1/1) {
+  .home-hero {
+    --globe: min(40vw, 62svh, 600px);
+    flex-direction: row;
+    gap: clamp(2rem, 5vw, 5rem);
+  }
+
+  .cover-container:has(.home-hero) {
+    max-width: min(1400px, 94%);
+  }
+
+  .home-copy {
+    flex: 1 1 0;
+    min-width: 0;
+    text-align: left;
+    max-width: 38rem;
+  }
+
+  .home-copy h1 {
+    font-size: clamp(1.6rem, min(7.9cqi, 6svh), 3.4rem);
+  }
+
+  .home-points {
+    margin: 0;
+    font-size: clamp(1rem, min(1.35vw, 2.4svh), 1.3rem);
+  }
+}
+
+/* Short landscape screens (phones turned sideways) */
+@media (max-height: 520px) and (min-aspect-ratio: 1/1) {
+  .home-hero {
+    --home-chrome: 7.5rem;
+    --globe: min(38vw, 58svh);
+    flex-direction: row;
+    gap: 1.5rem;
+  }
+
+  .home-copy { flex: 1 1 0; min-width: 0; text-align: left; }
+  .home-copy h1 { font-size: clamp(1rem, min(7.9cqi, 5.4svh), 1.6rem); }
+  .home-points { margin: 0; font-size: clamp(0.8rem, 3.6svh, 1rem); }
+}
+
+@keyframes home-spin     { to { transform: rotate(360deg); } }
+@keyframes home-spin-rev { from { transform: rotate(-35deg); } to { transform: rotate(-395deg); } }
+@keyframes home-breathe  { 50% { opacity: .55; transform: scale(1.06); } }
+@keyframes home-rise     { from { opacity: 0; transform: scale(.94); } }
+@keyframes home-up       { from { opacity: 0; transform: translateY(12px); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .home-hero *,
+  .home-hero *::before {
+    animation: none !important;
+  }
+}
