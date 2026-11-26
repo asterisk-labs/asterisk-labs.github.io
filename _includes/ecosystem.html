@@ -1,0 +1,279 @@
+{%- comment -%}
+The Asterisk tools as an ecosystem diagram.
+  top      applications: BetaEarth, Clouds Decoded, IRIS
+  middle   the stack, with links from the projects' own docs:
+           Major TOM v2 is packaged with TACO and optionally Rumi; TACO writes
+           into cozip and Rumi and reads through Karu; cozip holds Rumi files
+           and bundles Karu; Rumi compresses with GeoZL and reads through Karu
+  bottom   where to get them: Hugging Face, PyPI, R-universe, the Julia
+           registry, npm, and compiled C libraries on GitHub releases
+The panel on the right starts with the tools intro and shows the hovered
+tool's description (the one-liners from its GitHub repo or tools.yml).
+Usage: {% include ecosystem.html %}
+{%- endcomment -%}
+<div class="eco-wrap">
+<div class="eco" id="eco">
+<svg class="eco-svg" viewBox="70 40 1120 830" role="group" aria-label="Asterisk tools and how they connect">
+  <defs>
+    <marker id="eco-head" viewBox="0 0 12 12" refX="7" refY="6" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M1 1.5 L10.5 6 L1 10.5 Q3.5 6 1 1.5z" fill="context-stroke"/>
+    </marker>
+    <marker id="eco-head-sm" viewBox="0 0 12 12" refX="7" refY="6" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M1 1.5 L10.5 6 L1 10.5 Q3.5 6 1 1.5z" fill="context-stroke"/>
+    </marker>
+  </defs>
+
+  <g class="eco-links" fill="none">
+    <path class="eco-link" data-a="majortom" data-b="taco" d="M274 328 Q349 385 420 323" marker-end="url(#eco-head)"/>
+    <path class="eco-link" data-a="majortom" data-b="rumi" d="M273 339 Q533 242 761 400" marker-end="url(#eco-head)"/>
+    <path class="eco-link" data-a="taco" data-b="cozip" d="M453 378 Q459 457 380 468" marker-end="url(#eco-head)"/>
+    <path class="eco-link" data-a="taco" data-b="rumi" d="M572 339 Q649 432 763 390" marker-end="url(#eco-head)"/>
+    <path class="eco-link" data-a="taco" data-b="karu" d="M534 386 Q515 480 603 519" marker-end="url(#eco-head)"/>
+    <path class="eco-link is-dashed" data-a="cozip" data-b="rumi" d="M402 513 Q606 573 762 428" marker-end="url(#eco-head)"/>
+    <path class="eco-link" data-a="cozip" data-b="karu" d="M403 544 Q494 497 561 575" marker-end="url(#eco-head)"/>
+    <path class="eco-link" data-a="rumi" data-b="geozl" d="M907 441 Q951 530 1047 506" marker-end="url(#eco-head)"/>
+    <path class="eco-link" data-a="rumi" data-b="karu" d="M785 460 Q706 458 699 536" marker-end="url(#eco-head)"/>
+    <path class="eco-dist" data-a="majortom" data-b="hf" d="M194 404 Q203 576 165 744" marker-end="url(#eco-head-sm)"/>
+    <path class="eco-dist" data-a="beta" data-b="hf" d="M358 187 Q302 478 177 747" marker-end="url(#eco-head-sm)"/>
+    <path class="eco-dist" data-a="beta" data-b="pypi" d="M377 190 Q399 468 352 744" marker-end="url(#eco-head-sm)"/>
+    <path class="eco-dist" data-a="clouds" data-b="hf" d="M656 175 Q460 492 195 756" marker-end="url(#eco-head-sm)"/>
+    <path class="eco-dist" data-a="clouds" data-b="pypi" d="M668 182 Q556 484 376 750" marker-end="url(#eco-head-sm)"/>
+    <path class="eco-dist" data-a="iris" data-b="hf" d="M965 160 Q619 505 204 765" marker-end="url(#eco-head-sm)"/>
+    <path class="eco-dist" data-a="iris" data-b="pypi" d="M971 166 Q714 497 389 760" marker-end="url(#eco-head-sm)"/>
+    <path class="eco-dist" data-a="taco" data-b="pypi" d="M478 391 Q446 576 367 747" marker-end="url(#eco-head-sm)"/>
+    <path class="eco-dist" data-a="taco" data-b="runiverse" d="M506 394 Q497 571 535 744" marker-end="url(#eco-head-sm)"/>
+    <path class="eco-dist" data-a="taco" data-b="julia" d="M532 387 Q595 580 706 749" marker-end="url(#eco-head-sm)"/>
+    <path class="eco-dist" data-a="taco" data-b="npm" d="M549 376 Q692 588 883 758" marker-end="url(#eco-head-sm)"/>
+    <path class="eco-dist" data-a="cozip" data-b="pypi" d="M335 604 Q327 675 346 744" marker-end="url(#eco-head-sm)"/>
+    <path class="eco-dist" data-a="cozip" data-b="runiverse" d="M375 588 Q427 683 506 756" marker-end="url(#eco-head-sm)"/>
+    <path class="eco-dist" data-a="cozip" data-b="julia" d="M391 571 Q524 690 684 769" marker-end="url(#eco-head-sm)"/>
+    <path class="eco-dist" data-a="cozip" data-b="npm" d="M397 561 Q620 698 869 777" marker-end="url(#eco-head-sm)"/>
+    <path class="eco-dist" data-a="rumi" data-b="pypi" d="M782 456 Q607 635 394 765" marker-end="url(#eco-head-sm)"/>
+    <path class="eco-dist" data-a="rumi" data-b="runiverse" d="M795 469 Q704 627 574 756" marker-end="url(#eco-head-sm)"/>
+    <path class="eco-dist" data-a="rumi" data-b="julia" d="M820 481 Q802 619 745 746" marker-end="url(#eco-head-sm)"/>
+    <path class="eco-dist" data-a="rumi" data-b="npm" d="M855 482 Q862 618 909 745" marker-end="url(#eco-head-sm)"/>
+    <path class="eco-dist" data-a="geozl" data-b="pypi" d="M1050 564 Q739 711 403 782" marker-end="url(#eco-head-sm)"/>
+    <path class="eco-dist" data-a="geozl" data-b="runiverse" d="M1052 570 Q835 703 591 777" marker-end="url(#eco-head-sm)"/>
+    <path class="eco-dist" data-a="geozl" data-b="julia" d="M1058 581 Q931 694 777 769" marker-end="url(#eco-head-sm)"/>
+    <path class="eco-dist" data-a="geozl" data-b="npm" d="M1075 599 Q1028 687 954 756" marker-end="url(#eco-head-sm)"/>
+    <path class="eco-dist" data-a="iris" data-b="npm" d="M1010 185 Q1003 470 928 745" marker-end="url(#eco-head-sm)"/>
+    <path class="eco-dist" data-a="cozip" data-b="capi" d="M400 554 Q715 707 1057 782" marker-end="url(#eco-head-sm)"/>
+    <path class="eco-dist" data-a="rumi" data-b="capi" d="M882 471 Q961 626 1078 754" marker-end="url(#eco-head-sm)"/>
+    <path class="eco-dist" data-a="geozl" data-b="capi" d="M1117 614 Q1128 679 1112 744" marker-end="url(#eco-head-sm)"/>
+    <path class="eco-dist" data-a="karu" data-b="capi" d="M708 620 Q873 722 1059 777" marker-end="url(#eco-head-sm)"/>
+  </g>
+
+  <a class="eco-node eco-n-app" data-id="beta" href="/tools-pages/betaearth.html" aria-label="BetaEarth">
+    <image href="/assets/imgs/eco/betaearth-mark.png" x="355" y="73" width="50" height="82"/>
+    <text class="eco-name eco-app" x="380" y="180">BetaEarth</text>
+  </a>
+  <a class="eco-node eco-n-app" data-id="clouds" href="/project-pages/project-clouds-decoded.html" aria-label="Clouds Decoded">
+    <image href="/assets/imgs/eco/clouds-decoded.png" x="668" y="78" width="64" height="72"/>
+    <text class="eco-name eco-app" x="700" y="180">Clouds Decoded</text>
+  </a>
+  <a class="eco-node eco-n-app" data-id="iris" href="/project-pages/project-iris.html" aria-label="IRIS">
+    <image href="/assets/imgs/iris-wordmark.svg" x="962" y="95" width="116" height="42"/>
+    
+  </a>
+  <a class="eco-node eco-n-stack" data-id="majortom" href="/tools-pages/major-tom.html" aria-label="Major TOM">
+    <image href="/assets/imgs/eco/majortom.png" x="158" y="288" width="84" height="72"/>
+    <text class="eco-name eco-stack" x="200" y="390">Major TOM</text>
+  </a>
+  <a class="eco-node eco-n-stack" data-id="taco" href="https://asterisk.coop/taco/" aria-label="TACO">
+    <image href="/assets/imgs/eco/taco.svg" x="460" y="274" width="80" height="80"/>
+    <text class="eco-name eco-stack" x="500" y="380">TACO</text>
+  </a>
+  <a class="eco-node eco-n-stack" data-id="cozip" href="https://asterisk.coop/cozip/" aria-label="cozip">
+    <image href="/assets/imgs/eco/cozip.svg" x="294" y="488" width="72" height="72"/>
+    <text class="eco-name eco-stack" x="330" y="590">cozip</text>
+  </a>
+  <a class="eco-node eco-n-stack" data-id="rumi" href="https://asterisk.coop/rumi/" aria-label="Rumi">
+    <image href="/assets/imgs/eco/rumi.svg" x="798" y="362" width="84" height="84"/>
+    <text class="eco-name eco-stack" x="840" y="470">Rumi</text>
+  </a>
+  <a class="eco-node eco-n-stack" data-id="geozl" href="https://asterisk.coop/geozl/" aria-label="GeoZL">
+    <image href="/assets/imgs/eco/geozl.svg" x="1082" y="496" width="76" height="76"/>
+    <text class="eco-name eco-stack" x="1120" y="600">GeoZL</text>
+  </a>
+  <a class="eco-node eco-n-stack" data-id="karu" href="https://github.com/asterisk-labs/karu" aria-label="Karu">
+    <image href="/assets/imgs/eco/karu.svg" x="600" y="544" width="80" height="80"/>
+    <text class="eco-name eco-stack" x="640" y="650">Karu</text>
+  </a>
+  <a class="eco-node eco-n-dist" data-id="hf" href="https://huggingface.co/asterisk-labs" aria-label="Hugging Face">
+    <image href="/assets/imgs/eco/dist-huggingface.svg" x="134" y="770" width="52" height="48"/>
+    <text class="eco-name eco-dist" x="160" y="846">Hugging Face</text>
+  </a>
+  <a class="eco-node eco-n-dist" data-id="pypi" href="https://pypi.org/user/asterisk-labs/" aria-label="PyPI">
+    <image href="/assets/imgs/eco/dist-pypi.svg" x="324" y="768" width="52" height="52"/>
+    <text class="eco-name eco-dist" x="350" y="846">PyPI</text>
+  </a>
+  <a class="eco-node eco-n-dist" data-id="runiverse" href="https://asterisk-labs.r-universe.dev" aria-label="R-universe">
+    <image href="/assets/imgs/eco/dist-r-universe.png" x="515" y="769" width="50" height="50"/>
+    <text class="eco-name eco-dist" x="540" y="846">R-universe</text>
+  </a>
+  <a class="eco-node eco-n-dist" data-id="julia" href="https://github.com/asterisk-labs/AsteriskRegistry" aria-label="Julia">
+    <image href="/assets/imgs/eco/dist-julia.svg" x="704" y="770" width="52" height="48"/>
+    <text class="eco-name eco-dist" x="730" y="846">Julia</text>
+  </a>
+  <a class="eco-node eco-n-dist" data-id="capi" href="https://github.com/asterisk-labs" aria-label="C API">
+    <image href="/assets/imgs/eco/dist-c.svg" x="1088" y="769" width="44" height="50"/>
+    <text class="eco-name eco-dist" x="1110" y="846">C API</text>
+  </a>
+  <a class="eco-node eco-n-dist" data-id="npm" href="https://www.npmjs.com/org/asterisk-labs" aria-label="npm">
+    <image href="/assets/imgs/eco/dist-npm.svg" x="896" y="770" width="48" height="48"/>
+    <text class="eco-name eco-dist" x="920" y="846">npm</text>
+  </a>
+</svg>
+</div>
+
+<aside class="eco-info" id="eco-info" aria-live="polite">
+  <div class="eco-info-default">
+    <h1>tools</h1>
+    <p>we're building the open stack for AI on Earth observation, from the bytes on disk to the models that read them.</p>
+    <p>every piece is open source, works on its own, and fits with the rest. hover over one to see what it does.</p>
+  </div>
+  <a class="eco-info-card" href="#" hidden>
+    <img src="" alt="">
+    <h2></h2>
+    <p></p>
+  </a>
+</aside>
+</div>
+
+<style>
+  .eco-wrap {
+    display: grid;
+    grid-template-columns: auto minmax(220px, 300px);
+    justify-content: center;
+    align-items: center;
+    gap: clamp(24px, 4vw, 56px);
+    margin: 0 auto 24px;
+  }
+  /* the diagram fits the window: limited by width and by height
+     (viewBox is 1120 x 830, so width = height * 1.35; ~150px is the header) */
+  .eco { width: min(62vw, 700px, calc((100vh - 150px) * 1.35)); width: min(62vw, 700px, calc((100svh - 150px) * 1.35)); }
+  .eco-svg { display: block; width: 100%; height: auto; }
+
+  .eco-link {
+    stroke: #b4bccb;
+    stroke-opacity: .8;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    transition: stroke .25s ease, stroke-opacity .25s ease;
+  }
+  .eco-link.is-dashed { stroke-dasharray: 2 8; }
+  .eco-dist {
+    stroke: #d3d8e1;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-dasharray: 1 6;
+    transition: stroke .25s ease, stroke-opacity .25s ease;
+  }
+
+  .eco-name {
+    font-family: "League Spartan", sans-serif;
+    font-size: 21px;
+    font-weight: 600;
+    fill: #2f3135;
+    text-anchor: middle;
+    pointer-events: none;
+    transition: fill .25s ease;
+  }
+  .eco-name.eco-dist { font-size: 16px; font-weight: 500; fill: #6b7079; stroke: none; }
+  .eco-node { cursor: pointer; transition: opacity .25s ease; }
+  .eco-node:focus { outline: none; }
+  .eco-node image { transform-box: fill-box; transform-origin: center; transition: scale .25s ease; }
+  .eco-node:hover image, .eco-node:focus-visible image { scale: 1.07; }
+
+  /* focus mode: one tool and its neighbours stay, the rest steps back */
+  .eco.is-focus .eco-node { opacity: .3; }
+  .eco.is-focus .eco-node.is-on { opacity: 1; }
+  .eco.is-focus .eco-link { stroke-opacity: .2; }
+  .eco.is-focus .eco-link.is-on { stroke: #492ae8; stroke-opacity: .8; }
+  .eco.is-focus .eco-dist { stroke-opacity: .25; }
+  .eco.is-focus .eco-dist.is-on { stroke: #492ae8; stroke-opacity: .7; }
+  .eco.is-focus .eco-node.is-on .eco-name { fill: #492ae8; }
+
+  /* distribution row: off until you hover a tool (or the logo itself) */
+  .eco-n-dist { opacity: .22; filter: grayscale(1); transition: opacity .25s ease, filter .25s ease; }
+  .eco-dist { stroke-opacity: 0; }
+  .eco.is-focus .eco-n-dist { opacity: .22; }
+  .eco.is-focus .eco-n-dist.is-on { opacity: 1; filter: none; }
+  .eco.is-focus .eco-dist { stroke-opacity: 0; }
+
+  /* the side panel */
+  .eco-info { text-align: left; min-height: 220px; }
+  .eco-info h1 { font-size: 30px; font-weight: 600; letter-spacing: -.01em; margin: 0 0 12px; }
+  .eco-info-default p { font-size: 17px; line-height: 1.55; color: #555; margin: 0 0 12px; }
+  .eco-info-card { display: block; color: #000; text-decoration: none; animation: eco-in .25s ease; }
+  .eco-info-card:hover { color: #000; }
+  .eco-info-card img { height: 64px; width: auto; max-width: 160px; display: block; margin: 0 0 14px; }
+  .eco-info-card h2 { font-size: 26px; font-weight: 600; margin: 0 0 8px; }
+  .eco-info-card p { font-size: 17px; line-height: 1.55; color: #555; margin: 0; }
+  .eco-info-card[hidden] { display: none; }
+  @keyframes eco-in { from { opacity: 0; transform: translateY(4px); } }
+
+  @media (max-width: 820px) {
+    .eco-wrap { grid-template-columns: 1fr; }
+    .eco-info { order: -1; min-height: 0; text-align: center; }
+    .eco-info-card img { margin: 0 auto 12px; }
+    .eco { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .eco-svg { width: 760px; max-width: none; }
+  }
+</style>
+
+<script>
+(function () {
+  var INFO = {"beta": {"name": "BetaEarth", "img": "/assets/imgs/eco/betaearth-mark.png", "href": "/tools-pages/betaearth.html", "text": "An open emulator of the AlphaEarth embedding product. It learns to reproduce the embeddings from a single date, so you can make your own for any time range or region.", "dist": false}, "clouds": {"name": "Clouds Decoded", "img": "/assets/imgs/eco/clouds-decoded.png", "href": "/project-pages/project-clouds-decoded.html", "text": "Cloud masks, cloud top height, surface albedo and cloud optical properties from Sentinel-2 imagery, delivered as georeferenced GeoTIFFs ready for QGIS or Python.", "dist": false}, "iris": {"name": "IRIS", "img": "/assets/imgs/iris-wordmark.svg", "href": "/project-pages/project-iris.html", "text": "Label satellite imagery pixel by pixel, right in the browser. AI suggestions help as you go, and images stream straight from Cloud Optimized GeoTIFFs on Hugging Face, S3 or anywhere else.", "dist": false}, "majortom": {"name": "Major TOM", "img": "/assets/imgs/eco/majortom.png", "href": "/tools-pages/major-tom.html", "text": "A standard for curating, sharing and combining large-scale Earth observation datasets, with open datasets on Hugging Face that line up on a common global grid.", "dist": false}, "taco": {"name": "TACO", "img": "/assets/imgs/eco/taco.svg", "href": "https://asterisk.coop/taco/", "text": "Packages Earth observation data for machine learning. Each training example is a sample that keeps its files and metadata together, and a shared contract makes whole datasets easy to filter and load.", "dist": false}, "cozip": {"name": "cozip", "img": "/assets/imgs/eco/cozip.svg", "href": "https://asterisk.coop/cozip/", "text": "Opens a ZIP like a table. A Parquet manifest inside an ordinary ZIP lets you filter thousands of files and fetch only the ones you need, even over the network.", "dist": false}, "rumi": {"name": "Rumi", "img": "/assets/imgs/eco/rumi.svg", "href": "https://asterisk.coop/rumi/", "text": "Stateless raster storage for AI. Images and cubes are cut into independently compressed frames, so every read fetches only the windows, bands and time steps you ask for.", "dist": false}, "geozl": {"name": "GeoZL", "img": "/assets/imgs/eco/geozl.svg", "href": "https://asterisk.coop/geozl/", "text": "Compression built for Earth observation. It extends OpenZL with spatial prediction, NoData handling and bounded-error quantization to shrink rasters without losing what matters.", "dist": false}, "karu": {"name": "Karu", "img": "/assets/imgs/eco/karu.svg", "href": "https://github.com/asterisk-labs/karu", "text": "Batched byte-range reads from local files, HTTP, S3, GCS, Azure, Hugging Face and Source Cooperative. The engine that lets the rest of the stack read only the bytes it needs.", "dist": false}, "hf": {"name": "Hugging Face", "img": "/assets/imgs/eco/dist-huggingface.svg", "href": "https://huggingface.co/asterisk-labs", "text": "Open datasets and trained models, ready to download or stream straight into your pipeline.", "dist": true}, "pypi": {"name": "PyPI", "img": "/assets/imgs/eco/dist-pypi.svg", "href": "https://pypi.org/user/asterisk-labs/", "text": "Python packages, one pip install away. The quickest way to use our tools in notebooks and training code.", "dist": true}, "runiverse": {"name": "R-universe", "img": "/assets/imgs/eco/dist-r-universe.png", "href": "https://asterisk-labs.r-universe.dev", "text": "R packages, built and checked automatically and installable with install.packages().", "dist": true}, "julia": {"name": "Julia", "img": "/assets/imgs/eco/dist-julia.svg", "href": "https://github.com/asterisk-labs/AsteriskRegistry", "text": "Julia packages served from our own registry, added to any project with Pkg.", "dist": true}, "capi": {"name": "C API", "img": "/assets/imgs/eco/dist-c.svg", "href": "https://github.com/asterisk-labs", "text": "Prebuilt C libraries for Linux, macOS and Windows, for using our tools from any language that speaks C.", "dist": true}, "npm": {"name": "npm", "img": "/assets/imgs/eco/dist-npm.svg", "href": "https://www.npmjs.com/org/asterisk-labs", "text": "JavaScript packages for using our tools in the browser and in Node.js.", "dist": true}};
+  var root = document.getElementById('eco');
+  if (!root) return;
+  var panel = document.getElementById('eco-info');
+  var intro = panel.querySelector('.eco-info-default');
+  var card = panel.querySelector('.eco-info-card');
+  var links = root.querySelectorAll('.eco-link, .eco-dist');
+  var timer;
+
+  function show(id) {
+    var d = INFO[id];
+    if (!d) return;
+    clearTimeout(timer);
+    card.href = d.href;
+    card.querySelector('img').src = d.img;
+    card.querySelector('h2').textContent = d.name;
+    card.querySelector('p').textContent = d.text;
+    intro.hidden = true;
+    card.hidden = false;
+    card.style.animation = 'none'; card.offsetHeight; card.style.animation = '';
+  }
+  function reset() {
+    timer = setTimeout(function () { card.hidden = true; intro.hidden = false; }, 250);
+  }
+
+  root.querySelectorAll('.eco-node').forEach(function (n) {
+    var id = n.dataset.id;
+    function on() {
+      show(id);
+      root.classList.add('is-focus');
+      n.classList.add('is-on');
+      links.forEach(function (l) {
+        if (l.dataset.a !== id && l.dataset.b !== id) return;
+        l.classList.add('is-on');
+        var other = l.dataset.a === id ? l.dataset.b : l.dataset.a;
+        var o = root.querySelector('.eco-node[data-id="' + other + '"]');
+        if (o) o.classList.add('is-on');
+      });
+    }
+    function off() {
+      root.classList.remove('is-focus');
+      root.querySelectorAll('.is-on').forEach(function (x) { x.classList.remove('is-on'); });
+      reset();
+    }
+    n.addEventListener('mouseenter', on);
+    n.addEventListener('mouseleave', off);
+    n.addEventListener('focus', on);
+    n.addEventListener('blur', off);
+  });
+  card.addEventListener('mouseenter', function () { clearTimeout(timer); });
+  card.addEventListener('mouseleave', reset);
+})();
+</script>
