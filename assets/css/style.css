@@ -682,7 +682,6 @@ footer .footer-coops { display: inline-flex; align-items: center; }
 .home-sub-small {
   margin-top: calc(var(--h) * 0.4);
   font-size: max(0.8rem, calc(var(--h) * 0.44));
-  color: #777;
   animation-delay: 450ms;
 }
 
